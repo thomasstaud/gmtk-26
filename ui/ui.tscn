@@ -27,6 +27,21 @@ offset_bottom = 165.0
 grow_horizontal = 2
 text = "01:00.000"
 
+[node name="BombLabel" type="Label" parent="." unique_id=1714219605]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -328.0
+offset_top = -134.0
+offset_right = -53.0
+offset_bottom = -46.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "[F] Bomb"
+
 [node name="StartPanel" type="MarginContainer" parent="." unique_id=526941086]
 layout_mode = 1
 anchors_preset = 15

@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bm6xjoyh28qnd" path="res://game/player.gd" id="1_4flbx"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(0.5761719, 0.33251953, 0.4453125)
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+radius = 0.05
+height = 0.1
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
-size = Vector3(0.5761719, 0.33251953, 0.4453125)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 
@@ -15,16 +19,25 @@ size = Vector3(0.5761719, 0.33251953, 0.4453125)
 script = ExtResource("1_4flbx")
 max_jump_count = 1
 
+[node name="Head" type="Node3D" parent="." unique_id=1310018871]
+
+[node name="HeadMesh" type="MeshInstance3D" parent="Head" unique_id=77606118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0087890625, 0.62546945, -0.27734375)
+visible = false
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="BombSpawn" type="Node3D" parent="Head" unique_id=1095471663]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -1.002)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/BombSpawn" unique_id=141440353]
+mesh = SubResource("SphereMesh_g4v7s")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1515071187]
 shape = SubResource("CapsuleShape3D_g4v7s")
 
 [node name="Model" type="MeshInstance3D" parent="." unique_id=1556873552]
 mesh = SubResource("CapsuleMesh_g4v7s")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Model" unique_id=77606118]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0087890625, 0.62546945, -0.27734375)
-visible = false
-mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="FinishDetection" type="Area3D" parent="." unique_id=60372272]
 collision_layer = 0
