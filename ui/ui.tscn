@@ -1,0 +1,173 @@
+[gd_scene format=3 uid="uid://bu61wp8mbtwf5"]
+
+[ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_m6e0p"]
+[ext_resource type="Script" uid="uid://qtk2jbaeaf8a" path="res://ui/ui.gd" id="2_27fn8"]
+
+[node name="UI" type="Control" unique_id=461141405]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_m6e0p")
+script = ExtResource("2_27fn8")
+
+[node name="Timer" type="Label" parent="." unique_id=1809859592]
+z_index = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.5
+offset_top = 77.0
+offset_right = 145.5
+offset_bottom = 165.0
+grow_horizontal = 2
+text = "01:00.000"
+
+[node name="StartPanel" type="MarginContainer" parent="." unique_id=526941086]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="StartPanel" unique_id=241094479]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="StartPanel/Panel" unique_id=1395599219]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -132.0
+offset_right = 168.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+text = " Start Level "
+
+[node name="TileGrid" type="GridContainer" parent="StartPanel/Panel" unique_id=970747552]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -759.5
+offset_top = -325.5
+offset_right = 748.5
+offset_bottom = 278.5
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="GameOver" type="MarginContainer" parent="." unique_id=705976761]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="GameOver" unique_id=325481593]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOver/Panel" unique_id=417304863]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have lost!!"
+
+[node name="Restart" type="Button" parent="GameOver/Panel" unique_id=1961384829]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -132.0
+offset_right = 168.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+text = " Restart Level "
+
+[node name="Win" type="MarginContainer" parent="." unique_id=38881849]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="Win" unique_id=1882651603]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Win/Panel" unique_id=1472240444]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have won!!"
+
+[node name="Restart" type="Button" parent="Win/Panel" unique_id=1453608001]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -132.0
+offset_right = 168.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+text = " Restart Level "
+
+[connection signal="pressed" from="StartPanel/Panel/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="GameOver/Panel/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Win/Panel/Restart" to="." method="_on_restart_pressed"]

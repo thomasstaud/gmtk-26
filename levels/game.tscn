@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://54tl67nc4qa2"]
+
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_30w35"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_cnc74"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_vpik0"]
+[ext_resource type="PackedScene" uid="uid://oqh5oxx1mkyn" path="res://game/player.tscn" id="4_arvxu"]
+[ext_resource type="PackedScene" uid="uid://bu61wp8mbtwf5" path="res://ui/ui.tscn" id="5_kc1m6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_feb5d"]
+sky_material = SubResource("ProceduralSkyMaterial_e2o6t")
+
+[sub_resource type="Environment" id="Environment_fc0e3"]
+background_mode = 2
+sky = SubResource("Sky_feb5d")
+
+[sub_resource type="Resource" id="Resource_ryrav"]
+script = ExtResource("2_cnc74")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g4v7s"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+size = Vector2(100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+albedo_color = Color(0.8280984, 0.25504667, 0.27513903, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yf5fn"]
+radius = 0.7164764
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryrav"]
+transparency = 4
+albedo_color = Color(0.22352941, 1, 0.27058825, 0.5921569)
+emission = Color(0.41645303, 0.53414816, 0.2624474, 1)
+emission_energy_multiplier = 2.0
+
+[node name="Game" type="Node3D" unique_id=1095529181]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=98621756]
+environment = SubResource("Environment_fc0e3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1958742849]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=286133280 node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+top_level = true
+script = ExtResource("1_30w35")
+follow_mode = 2
+follow_target = NodePath("../Player")
+tween_resource = SubResource("Resource_ryrav")
+tween_on_load = false
+follow_offset = Vector3(0, 0.5, 0)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1162071670]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1012304148]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_vpik0")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Player" parent="." unique_id=673498257 node_paths=PackedStringArray("pcam") instance=ExtResource("4_arvxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+sensitivity = 0.2
+pcam = NodePath("../PhantomCamera3D")
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1473587284]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=272630419]
+shape = SubResource("WorldBoundaryShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1550237007]
+mesh = SubResource("PlaneMesh_g4v7s")
+surface_material_override/0 = SubResource("StandardMaterial3D_yf5fn")
+
+[node name="Cube" type="StaticBody3D" parent="." unique_id=1097555355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9172723, 0.5, 2.726809)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube" unique_id=1678565162]
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube" unique_id=2048912382]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="Finish" type="Area3D" parent="." unique_id=1032420641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0047684, -11.680407)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Finish" unique_id=1292714095]
+shape = SubResource("SphereShape3D_yf5fn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Finish" unique_id=751718782]
+mesh = SubResource("SphereMesh_g4v7s")
+surface_material_override/0 = SubResource("StandardMaterial3D_ryrav")
+
+[node name="UI" parent="." unique_id=461141405 instance=ExtResource("5_kc1m6")]

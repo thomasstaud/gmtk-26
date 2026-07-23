@@ -13,12 +13,13 @@ config_version=5
 config/name="GMTK26"
 run/main_scene="uid://54tl67nc4qa2"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://ui/icon.svg"
 
 [autoload]
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
 GameManager="*uid://bcxr2vmcmr40o"
+AbilityManager="*uid://brr0buar7fs42"
 
 [display]
 
@@ -34,7 +35,10 @@ enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://addons/": "gray"
+"res://addons/": "gray",
+"res://game/": "orange",
+"res://levels/": "red",
+"res://ui/": "green"
 }
 
 [input]

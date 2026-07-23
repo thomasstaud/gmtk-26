@@ -1,11 +1,19 @@
 extends Control
 
+const ABILITY_TILE := preload("uid://pnriti1de4cj")
+
+
 var ms: int = 1000 * 7
 
 @onready var start_panel: MarginContainer = $StartPanel
 @onready var game_over: MarginContainer = $GameOver
 @onready var win: MarginContainer = $Win
+@onready var tile_grid: GridContainer = %TileGrid
 @onready var timer: Label = $Timer
+
+
+func _ready() -> void:
+	generate_ability_tiles()
 
 func _process(delta: float) -> void:
 	var delta_ms = int(delta * 1000)
@@ -27,6 +35,13 @@ func format_ms() -> String:
 	var millis := ms % 1000
 	
 	return "%02d:%02d.%03d" % [mins, secs, millis]
+
+
+func generate_ability_tiles():
+	for ability in AbilityManager.abilities:
+		var tile = ABILITY_TILE.instantiate()
+		tile_grid.add_child(tile)
+		tile.init(ability)
 
 
 func _on_start_pressed() -> void:
