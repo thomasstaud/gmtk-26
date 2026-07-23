@@ -4,12 +4,14 @@ signal time_updated
 signal win
 signal game_over
 
-const BASE_MS = 1000 * 5
 const LEVELS = 2
 const LEVEL_PATH = "res://levels/level_%d.tscn"
 
 var current_level: int
-var ms: int = BASE_MS
+var ms: int = BASE_SECONDS[0] * 1000
+
+const BASE_SECONDS = [5, 10]
+var best_times: Array[int]
 
 var paused: bool:
 	set(value):
@@ -43,7 +45,7 @@ func load_level(level: int):
 		return
 	current_level = level
 	get_tree().change_scene_to_file(LEVEL_PATH % current_level)
-	ms = BASE_MS
+	ms = BASE_SECONDS[level-1] * 1000
 	AbilityManager.reset()
 
 func start_level():

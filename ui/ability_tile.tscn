@@ -13,6 +13,7 @@ corner_radius_bottom_left = 50
 [node name="AbilityTile" type="Control" unique_id=1901928797]
 custom_minimum_size = Vector2(500, 300)
 layout_mode = 3
+anchors_preset = 0
 offset_right = 500.0
 offset_bottom = 300.0
 theme = ExtResource("1_3hk0j")

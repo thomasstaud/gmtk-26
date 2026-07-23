@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://54tl67nc4qa2"]
 
+[ext_resource type="Script" uid="uid://bpatqgqbvt63w" path="res://levels/level.gd" id="1_gwceb"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_n46q3"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_btoec"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_gwceb"]
@@ -33,7 +34,9 @@ albedo_color = Color(0.8280984, 0.25504667, 0.27513903, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 
-[node name="Game" type="Node3D" unique_id=1095529181]
+[node name="Level" type="Node3D" unique_id=1095529181]
+script = ExtResource("1_gwceb")
+base_seconds = 5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=98621756]
 environment = SubResource("Environment_fc0e3")
