@@ -5,8 +5,9 @@ var dash := Ability.new("Dash")
 var jump := Ability.new("Jump")
 var bomb := Ability.new("Bomb")
 var climb := Ability.new("Climb")
+var glide := Ability.new("Glide")
 
-var abilities: Array[Ability] = [dash, jump, bomb, climb]
+var abilities: Array[Ability] = [dash, jump, bomb, climb, glide]
 
 func reset(level: Level) -> void:
 	for a in abilities:
@@ -15,3 +16,4 @@ func reset(level: Level) -> void:
 	jump.cost = level.jump_cost
 	bomb.cost = level.bomb_cost
 	climb.cost = level.climb_cost
+	glide.cost = level.glide_cost
