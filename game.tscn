@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_fc0e3"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_7jktm"]
+[ext_resource type="Script" uid="uid://qtk2jbaeaf8a" path="res://ui.gd" id="5_7jktm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -31,7 +32,14 @@ albedo_color = Color(0.8280984, 0.25504667, 0.27513903, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 
-[node name="Node3D" type="Node3D" unique_id=1095529181]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fc0e3"]
+bg_color = Color(0.7770262, 0.5479095, 0.25745875, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="Game" type="Node3D" unique_id=1095529181]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=98621756]
 environment = SubResource("Environment_fc0e3")
@@ -47,6 +55,7 @@ script = ExtResource("1_fc0e3")
 follow_mode = 2
 follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_ryrav")
+tween_on_load = false
 follow_offset = Vector3(0, 0.5, 0)
 align_transform_with_view = Callable()
 align_position_with_view = Callable()
@@ -54,7 +63,7 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1162071670]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1012304148]
@@ -84,3 +93,65 @@ mesh = SubResource("BoxMesh_yf5fn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2048912382]
 shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="UI" type="Control" parent="." unique_id=49439538]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_7jktm")
+
+[node name="Timer" type="Label" parent="UI" unique_id=1090509427]
+z_index = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.5
+offset_top = 77.0
+offset_right = 145.5
+offset_bottom = 165.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.1785568, 0.042299785, 0.072427325, 1)
+theme_override_colors/font_outline_color = Color(0.93327993, 0.7474863, 0.7333261, 1)
+theme_override_constants/outline_size = 23
+theme_override_font_sizes/font_size = 64
+text = "01:00.000"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=567734648]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="UI/MarginContainer" unique_id=1171781652]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fc0e3")
+
+[node name="Start" type="Button" parent="UI/MarginContainer/Panel" unique_id=1158999345]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -132.0
+offset_right = 168.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = " Start Level "
+
+[connection signal="pressed" from="UI/MarginContainer/Panel/Start" to="UI" method="_on_start_pressed"]

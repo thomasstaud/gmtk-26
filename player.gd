@@ -22,7 +22,7 @@ const DASH_COOLDOWN = 2.0
 @export var sensitivity = 0.2
 @export var max_jump_count := 2
 
-var can_move := true
+var can_move := false
 var speed_mult: float
 var jump := false
 var gravity_multiplier := 1.0
@@ -34,6 +34,10 @@ var can_dash := true
 
 @export var pcam: PhantomCamera3D
 @onready var player_model: Node3D = $Model
+
+
+func _ready() -> void:
+	GameManager.player = self
 
 
 func _input(event: InputEvent) -> void:
@@ -50,10 +54,12 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("pause"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		GameManager.paused = true
 
 func _unhandled_input(event) -> void:
 	if event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		GameManager.paused = false
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var pcam_rotation_degrees: Vector3
 		
@@ -119,6 +125,8 @@ func _physics_process(delta: float) -> void:
 		
 	if is_on_floor():
 		jump_count = 0
+	else:
+		speed_mult = 0.5
 	
 	
 	if not can_move:
