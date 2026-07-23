@@ -38,7 +38,7 @@ func change_time(delta: int) -> void:
 	time_updated.emit(ms)
 
 func load_level(level: int):
-	if level >= LEVELS:
+	if level > LEVELS:
 		push_error("Level %d does not exist!!!" % level)
 		return
 	current_level = level
@@ -61,3 +61,6 @@ func on_lose():
 
 func restart():
 	load_level(current_level)
+
+func to_level_select():
+	get_tree().change_scene_to_file("uid://cdpcfqx7ugyyd")

@@ -43,21 +43,6 @@ theme_override_constants/margin_bottom = 50
 [node name="Panel" type="Panel" parent="StartPanel" unique_id=241094479]
 layout_mode = 2
 
-[node name="Start" type="Button" parent="StartPanel/Panel" unique_id=1395599219]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -168.0
-offset_top = -132.0
-offset_right = 168.0
-offset_bottom = -36.0
-grow_horizontal = 2
-grow_vertical = 0
-text = " Start Level "
-
 [node name="TileGrid" type="GridContainer" parent="StartPanel/Panel" unique_id=970747552]
 unique_name_in_owner = true
 layout_mode = 1
@@ -73,6 +58,31 @@ offset_bottom = 278.5
 grow_horizontal = 2
 grow_vertical = 2
 columns = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartPanel/Panel" unique_id=1810571262]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -188.5
+offset_top = -135.0
+offset_right = 188.5
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 25
+
+[node name="Start" type="Button" parent="StartPanel/Panel/HBoxContainer" unique_id=1395599219]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Start Level"
+
+[node name="Menu" type="Button" parent="StartPanel/Panel/HBoxContainer" unique_id=2083310699]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Menu"
 
 [node name="GameOver" type="MarginContainer" parent="." unique_id=705976761]
 visible = false
@@ -106,20 +116,30 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "You have lost!!"
 
-[node name="Restart" type="Button" parent="GameOver/Panel" unique_id=1961384829]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/Panel" unique_id=2069750170]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -168.0
-offset_top = -132.0
-offset_right = 168.0
-offset_bottom = -36.0
+offset_left = -188.5
+offset_top = -135.0
+offset_right = 188.5
+offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
-text = " Restart Level "
+theme_override_constants/separation = 25
+
+[node name="Restart" type="Button" parent="GameOver/Panel/HBoxContainer" unique_id=1961384829]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Restart Level"
+
+[node name="Menu" type="Button" parent="GameOver/Panel/HBoxContainer" unique_id=470998657]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Menu"
 
 [node name="Win" type="MarginContainer" parent="." unique_id=38881849]
 visible = false
@@ -153,21 +173,34 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "You have won!!"
 
-[node name="Restart" type="Button" parent="Win/Panel" unique_id=1453608001]
+[node name="HBoxContainer" type="HBoxContainer" parent="Win/Panel" unique_id=1986476228]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -168.0
-offset_top = -132.0
-offset_right = 168.0
-offset_bottom = -36.0
+offset_left = -188.5
+offset_top = -135.0
+offset_right = 188.5
+offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
-text = " Restart Level "
+theme_override_constants/separation = 25
 
-[connection signal="pressed" from="StartPanel/Panel/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="GameOver/Panel/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="Win/Panel/Restart" to="." method="_on_restart_pressed"]
+[node name="Restart" type="Button" parent="Win/Panel/HBoxContainer" unique_id=1453608001]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Restart Level"
+
+[node name="Menu" type="Button" parent="Win/Panel/HBoxContainer" unique_id=762465825]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Menu"
+
+[connection signal="pressed" from="StartPanel/Panel/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="StartPanel/Panel/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="GameOver/Panel/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="GameOver/Panel/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Win/Panel/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Win/Panel/HBoxContainer/Menu" to="." method="_on_menu_pressed"]

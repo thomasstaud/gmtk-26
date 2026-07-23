@@ -49,3 +49,6 @@ func on_win() -> void:
 
 func on_game_over() -> void:
 	game_over.show()
+
+func _on_menu_pressed() -> void:
+	GameManager.to_level_select()
