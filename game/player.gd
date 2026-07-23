@@ -4,31 +4,31 @@ extends CharacterBody3D
 const BOMB = preload("uid://dff0rnn50u2q1")
 
 const MIN_PITCH: float = -89.9
-const MAX_PITCH: float = 75
+const MAX_PITCH: float = 75.0
 const SPEED = 10.0
 const JUMP_POWER = 10.0
-const LERP_VAL = .5
 const PUSH_FORCE = 2.0
 
-const JUMP_GRAVITY = 3.0
-const JUMP_HOLD_GRAVITY = 1.0
+const GROUND_ACCEL = 14.0
+const AIR_ACCEL = 3.5
+const GROUND_DECEL = 12.0
+const DASH_DECAY = 2.0
 
+const JUMP_GRAVITY = 3.0
+const JUMP_HOLD_GRAVITY = 2.0
 const WALL_SLIDE_GRAVITY = 0.5
 
-const DASH_FORCE = 35.0
+const DASH_FORCE = 25.0
+const DASH_VERTICAL_SCALE = 0.25
 const DASH_DURATION = 0.15
 const DASH_COOLDOWN = 1.0
-
 const BOMB_COOLDOWN = 0.2
-
 
 @export var sensitivity = 0.2
 @export var max_jump_count := 2
 
 var can_move := false
-var speed_mult: float
 var jump := false
-var gravity_multiplier := 1.0
 var jump_count := 0
 
 var is_dashing := false
@@ -48,16 +48,16 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and AbilityManager.jump.bought:
-		if is_on_floor() or jump_count < max_jump_count-1 or is_on_wall():
+		if is_on_floor() or jump_count < max_jump_count or is_on_wall():
 			jump = true
-	
+			
 	if event.is_action_pressed("dash"):
 		if not is_dashing and can_move and can_dash and AbilityManager.dash.bought:
 			is_dashing = true
 			can_dash = false
 			dash_timer = DASH_DURATION
 			get_tree().create_timer(DASH_COOLDOWN).timeout.connect(func(): can_dash = true)
-	
+		
 	if event.is_action_pressed("bomb"):
 		if can_bomb and AbilityManager.bomb.bought:
 			can_bomb = false
@@ -70,14 +70,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		GameManager.paused = true
 
+
 func _unhandled_input(event) -> void:
 	if event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		GameManager.paused = false
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		var pcam_rotation_degrees: Vector3
-		
-		pcam_rotation_degrees = pcam.rotation_degrees
+		var pcam_rotation_degrees: Vector3 = pcam.rotation_degrees
 		pcam_rotation_degrees.x -= event.relative.y * sensitivity
 		pcam_rotation_degrees.x = clampf(pcam_rotation_degrees.x, MIN_PITCH, MAX_PITCH)
 		pcam_rotation_degrees.y -= event.relative.x * sensitivity
@@ -88,78 +87,73 @@ func _unhandled_input(event) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# inputs
-	if can_move:
-		if Input.is_action_pressed("jump"):
-			gravity_multiplier = JUMP_HOLD_GRAVITY
-		else:
-			gravity_multiplier = JUMP_GRAVITY
+	if is_on_floor():
+		jump_count = 0
 
-	# Dash logic
 	if is_dashing:
 		dash_timer -= delta
 		if dash_timer <= 0:
 			is_dashing = false
-			return 
 		else:
 			var dash_direction = -pcam.global_transform.basis.z.normalized()
+			dash_direction.y *= DASH_VERTICAL_SCALE
 			velocity = dash_direction * DASH_FORCE
 			move_and_slide()
 			return
 
-	
 	if not is_on_floor():
-		if is_on_wall() and not is_dashing and velocity.y <= 0:
-			# Apply reduced gravity for wall sliding.
+		if is_on_wall() and velocity.y <= 0:
 			velocity += get_gravity() * WALL_SLIDE_GRAVITY * delta
 		else:
-			# Apply normal gravity.
-			velocity += get_gravity() * gravity_multiplier * delta
-	
+			var grav_mult := JUMP_GRAVITY
+			if velocity.y > 0 and Input.is_action_pressed("jump"):
+				grav_mult = JUMP_HOLD_GRAVITY
+			velocity += get_gravity() * grav_mult * delta
+
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := quaternion * Vector3(input_dir.x, 0, input_dir.y)
 	direction.y = 0
 	direction = direction.normalized()
-	speed_mult = 1.0
-	
+
+	if not can_move:
+		direction = Vector3.ZERO
+
 	if jump:
 		jump = false
 		if is_on_floor():
-			
 			velocity.y = JUMP_POWER
-			jump_count += 1
+			jump_count = 1
 		elif is_on_wall():
-			print("walljump")
-			# Wall jump velocity: upward and away from the wall.
 			velocity = -direction * JUMP_POWER + Vector3.UP * JUMP_POWER
-			
-		else:
-			# If not on floor or wall, perform a regular double jump.
+		elif jump_count < max_jump_count:
 			velocity.y = JUMP_POWER
 			jump_count += 1
+
+	var horiz_vel := Vector3(velocity.x, 0, velocity.z)
+	var current_speed := horiz_vel.length()
+	var accel := GROUND_ACCEL if is_on_floor() else AIR_ACCEL
+
+	if direction != Vector3.ZERO:
+		var target_max_speed := maxf(SPEED, current_speed)
+		var target_vel := direction * target_max_speed
 		
-	if is_on_floor():
-		jump_count = 0
-	else:
-		speed_mult = 0.5
-	
-	
-	if not can_move:
-		direction = Vector3.ZERO
-	
-	if direction:
-		velocity.x = lerp(velocity.x, direction.x * SPEED * speed_mult, LERP_VAL)
-		velocity.z = lerp(velocity.z, direction.z * SPEED * speed_mult, LERP_VAL)
+		horiz_vel = horiz_vel.lerp(target_vel, accel * delta)
+		
+		if horiz_vel.length() > SPEED:
+			var new_speed := move_toward(horiz_vel.length(), SPEED, DASH_DECAY * SPEED * delta)
+			horiz_vel = horiz_vel.normalized() * new_speed
 	else:
 		if is_on_floor():
-			velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
-			velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
-	
+			horiz_vel = horiz_vel.lerp(Vector3.ZERO, GROUND_DECEL * delta)
+
+	velocity.x = horiz_vel.x
+	velocity.z = horiz_vel.z
+
 	move_and_slide()
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody3D:
-			c.get_collider().apply_central_force(-c.get_normal()*PUSH_FORCE)
+			c.get_collider().apply_central_force(-c.get_normal() * PUSH_FORCE)
 
 
 func _on_finish_detection_area_entered(_area: Area3D) -> void:
