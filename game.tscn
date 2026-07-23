@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_fc0e3"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_7jktm"]
 [ext_resource type="Script" uid="uid://qtk2jbaeaf8a" path="res://ui.gd" id="5_7jktm"]
+[ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://theme.tres" id="6_ryrav"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -31,13 +32,6 @@ albedo_color = Color(0.8280984, 0.25504667, 0.27513903, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fc0e3"]
-bg_color = Color(0.7770262, 0.5479095, 0.25745875, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
 
 [node name="Game" type="Node3D" unique_id=1095529181]
 
@@ -102,6 +96,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("6_ryrav")
 script = ExtResource("5_7jktm")
 
 [node name="Timer" type="Label" parent="UI" unique_id=1090509427]
@@ -115,13 +110,9 @@ offset_top = 77.0
 offset_right = 145.5
 offset_bottom = 165.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.1785568, 0.042299785, 0.072427325, 1)
-theme_override_colors/font_outline_color = Color(0.93327993, 0.7474863, 0.7333261, 1)
-theme_override_constants/outline_size = 23
-theme_override_font_sizes/font_size = 64
 text = "01:00.000"
 
-[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=567734648]
+[node name="StartPanel" type="MarginContainer" parent="UI" unique_id=567734648]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,11 +125,10 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="Panel" type="Panel" parent="UI/MarginContainer" unique_id=1171781652]
+[node name="Panel" type="Panel" parent="UI/StartPanel" unique_id=1171781652]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_fc0e3")
 
-[node name="Start" type="Button" parent="UI/MarginContainer/Panel" unique_id=1158999345]
+[node name="Start" type="Button" parent="UI/StartPanel/Panel" unique_id=1158999345]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -151,7 +141,54 @@ offset_right = 168.0
 offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 64
 text = " Start Level "
 
-[connection signal="pressed" from="UI/MarginContainer/Panel/Start" to="UI" method="_on_start_pressed"]
+[node name="GameOver" type="MarginContainer" parent="UI" unique_id=1517344469]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="UI/GameOver" unique_id=1770490828]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/GameOver/Panel" unique_id=121947038]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have lost!!"
+
+[node name="Restart" type="Button" parent="UI/GameOver/Panel" unique_id=259110015]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -132.0
+offset_right = 168.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+text = " Restart Level "
+
+[connection signal="pressed" from="UI/StartPanel/Panel/Start" to="UI" method="_on_start_pressed"]
+[connection signal="pressed" from="UI/GameOver/Panel/Restart" to="UI" method="_on_restart_pressed"]

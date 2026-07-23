@@ -1,13 +1,20 @@
 extends Control
 
-var ms: int = 1000 * 60
+var ms: int = 1000 * 7
 
-@onready var margin_container: MarginContainer = $MarginContainer
+@onready var start_panel: MarginContainer = $StartPanel
+@onready var game_over: MarginContainer = $GameOver
 @onready var timer: Label = $Timer
 
 func _process(delta: float) -> void:
 	var delta_ms = int(delta * 1000)
 	ms -= delta_ms
+	
+	if ms <= 0:
+		ms = 0
+		GameManager.paused = true
+		game_over.show()
+	
 	timer.text = format_ms()
 
 
@@ -22,5 +29,9 @@ func format_ms() -> String:
 
 
 func _on_start_pressed() -> void:
-	margin_container.hide()
+	start_panel.hide()
 	GameManager.start_level()
+
+
+func _on_restart_pressed() -> void:
+	GameManager.restart()

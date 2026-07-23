@@ -53,7 +53,6 @@ func _input(event: InputEvent) -> void:
 			get_tree().create_timer(DASH_COOLDOWN).timeout.connect(func(): can_dash = true)
 		
 	if event.is_action_pressed("pause"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		GameManager.paused = true
 
 func _unhandled_input(event) -> void:
