@@ -52,3 +52,7 @@ func on_game_over() -> void:
 
 func _on_menu_pressed() -> void:
 	GameManager.to_level_select()
+
+
+func _on_next_pressed() -> void:
+	GameManager.load_next_level()

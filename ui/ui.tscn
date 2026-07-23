@@ -188,10 +188,10 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 25
 
-[node name="Restart" type="Button" parent="Win/Panel/HBoxContainer" unique_id=1453608001]
+[node name="Next" type="Button" parent="Win/Panel/HBoxContainer" unique_id=1453608001]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-text = "Restart Level"
+text = "Next Level"
 
 [node name="Menu" type="Button" parent="Win/Panel/HBoxContainer" unique_id=762465825]
 custom_minimum_size = Vector2(400, 0)
@@ -202,5 +202,5 @@ text = "Menu"
 [connection signal="pressed" from="StartPanel/Panel/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="GameOver/Panel/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="GameOver/Panel/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="Win/Panel/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Win/Panel/HBoxContainer/Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="Win/Panel/HBoxContainer/Menu" to="." method="_on_menu_pressed"]

@@ -9,15 +9,19 @@ const LEVEL_SCENE_PATH = "res://levels/level_%d.tscn"
 const LEVEL_RES_PATH = "res://levels/level_%d.tres"
 
 var current_level := 1
-var ms: int
+var time_left_ms: int
 
 var levels: Array[Level] = []
+
+var carried_time_ms: int = 0      # Verbleibende Zeit, die beim Sieg mitgenommen wird
+var active_level_carry: int = 0   # Aktive Start-Bonuszeit für das aktuelle Level
 
 var paused: bool:
 	set(value):
 		paused = value
 		Engine.time_scale = 0 if paused else 1
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if paused else Input.MOUSE_MODE_CAPTURED
+
 var player: Player
 
 
@@ -25,48 +29,85 @@ func _ready() -> void:
 	paused = true
 	for i in range(LEVELS):
 		levels.append(load(LEVEL_RES_PATH % (i + 1)))
+	
+	active_level_carry = 0
+	carried_time_ms = 0
 	AbilityManager.reset(levels[0])
-	ms = levels[0].base_seconds * 1000
+	time_left_ms = levels[0].base_seconds * 1000
+
 
 func _process(delta: float) -> void:
 	var delta_ms = int(delta * 1000)
-	ms -= delta_ms
+	time_left_ms -= delta_ms
 	
-	if ms <= 0:
-		ms = 0
+	if time_left_ms <= 0:
+		time_left_ms = 0
 		on_lose()
 	
-	time_updated.emit(ms)
+	time_updated.emit(time_left_ms)
 
 
 func change_time(delta: int) -> void:
-	ms += delta
-	time_updated.emit(ms)
+	time_left_ms += delta
+	time_updated.emit(time_left_ms)
 
-func load_level(level: int):
+
+func load_level(level: int, carry: int = -1) -> void:
 	if level > LEVELS:
 		push_error("Level %d does not exist!!!" % level)
 		return
+	
 	current_level = level
+	
+	var total_bonus_ms = 0
+	for i in range(current_level - 1):
+		total_bonus_ms += levels[i].best_time
+	
 	AbilityManager.reset(levels[level-1])
 	get_tree().change_scene_to_file(LEVEL_SCENE_PATH % current_level)
-	ms = levels[level-1].base_seconds * 1000
+	
+	time_left_ms = (levels[level-1].base_seconds * 1000) + total_bonus_ms
 
-func start_level():
-	player.can_move = true
+
+func load_next_level() -> void:
+	load_level(current_level + 1, carried_time_ms)
+
+
+func calculate_remaining_time() -> int:
+	var all_level_remaining_time = 0
+	for i in range(current_level - 1):
+		all_level_remaining_time += (levels[i].base_seconds * 1000) - levels[i].best_time
+	return all_level_remaining_time
+
+
+func start_level() -> void:
+	if player:
+		player.can_move = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	paused = false
 
-func on_win():
+
+func on_win() -> void:
 	paused = true
 	win.emit()
+	
+	carried_time_ms = time_left_ms
+	if time_left_ms > levels[current_level-1].best_time:
+		print("Neuer Rekord / Besserer Lauf!")
+		levels[current_level-1].best_time = time_left_ms
+		
+	
+	
 
-func on_lose():
+
+func on_lose() -> void:
 	paused = true
 	game_over.emit()
 
-func restart():
-	load_level(current_level)
 
-func to_level_select():
+func restart() -> void:
+	load_level(current_level, active_level_carry)
+
+
+func to_level_select() -> void:
 	get_tree().change_scene_to_file("uid://cdpcfqx7ugyyd")
