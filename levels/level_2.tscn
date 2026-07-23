@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://8jtejhwpk5mt"]
 
-[ext_resource type="Script" uid="uid://bpatqgqbvt63w" path="res://levels/level.gd" id="1_ep78u"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_ilhis"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_ep78u"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_dfjjl"]
@@ -35,11 +34,6 @@ size = Vector2(100, 100)
 albedo_color = Color(0.8280984, 0.25504667, 0.27513903, 1)
 
 [node name="Level" type="Node3D" unique_id=1095529181]
-script = ExtResource("1_ep78u")
-costs = Dictionary[String, int]({
-"dash": 2,
-"jump": 3
-})
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=98621756]
 environment = SubResource("Environment_fc0e3")

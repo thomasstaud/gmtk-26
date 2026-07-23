@@ -5,13 +5,13 @@ signal win
 signal game_over
 
 const LEVELS = 2
-const LEVEL_PATH = "res://levels/level_%d.tscn"
+const LEVEL_SCENE_PATH = "res://levels/level_%d.tscn"
+const LEVEL_RES_PATH = "res://levels/level_%d.tres"
 
 var current_level: int
-var ms: int = BASE_SECONDS[0] * 1000
+var ms: int
 
-const BASE_SECONDS = [5, 10]
-var best_times: Array[int]
+var levels: Array[Level] = []
 
 var paused: bool:
 	set(value):
@@ -23,6 +23,10 @@ var player: Player
 
 func _ready() -> void:
 	paused = true
+	for i in range(LEVELS):
+		levels.append(load(LEVEL_RES_PATH % (i + 1)))
+	AbilityManager.reset(levels[0])
+	ms = levels[0].base_seconds * 1000
 
 func _process(delta: float) -> void:
 	var delta_ms = int(delta * 1000)
@@ -44,9 +48,9 @@ func load_level(level: int):
 		push_error("Level %d does not exist!!!" % level)
 		return
 	current_level = level
-	get_tree().change_scene_to_file(LEVEL_PATH % current_level)
-	ms = BASE_SECONDS[level-1] * 1000
-	AbilityManager.reset()
+	AbilityManager.reset(levels[level-1])
+	get_tree().change_scene_to_file(LEVEL_SCENE_PATH % current_level)
+	ms = levels[level-1].base_seconds * 1000
 
 func start_level():
 	player.can_move = true

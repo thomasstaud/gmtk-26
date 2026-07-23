@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Level" format=3 uid="uid://dlw75fj4fif0l"]
+
+[ext_resource type="Script" uid="uid://bpatqgqbvt63w" path="res://levels/level.gd" id="1_2c610"]
+
+[resource]
+script = ExtResource("1_2c610")
+name = "Level 2"
+base_seconds = 10
+dash_cost = 2
+jump_cost = 3
+metadata/_custom_type_script = "uid://bpatqgqbvt63w"

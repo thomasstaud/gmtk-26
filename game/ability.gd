@@ -1,10 +1,9 @@
 class_name Ability
 extends Resource
 
-@export var name: String
-@export var cost: int
-@export var bought: bool = false
+var name: String
+var cost: int
+var bought: bool = false
 
-func _init(_name: String, _cost: int):
+func _init(_name: String):
 	name = _name
-	cost = _cost
