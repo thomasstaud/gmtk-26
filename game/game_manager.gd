@@ -5,11 +5,10 @@ signal win
 signal game_over
 
 const BASE_MS = 1000 * 5
+const LEVELS = 2
+const LEVEL_PATH = "res://levels/level_%d.tscn"
 
-var levels: Array[String] = [
-	"res://levels/level_1.tscn",
-]
-
+var current_level: int
 var ms: int = BASE_MS
 
 var paused: bool:
@@ -38,6 +37,15 @@ func change_time(delta: int) -> void:
 	ms += delta
 	time_updated.emit(ms)
 
+func load_level(level: int):
+	if level >= LEVELS:
+		push_error("Level %d does not exist!!!" % level)
+		return
+	current_level = level
+	get_tree().change_scene_to_file(LEVEL_PATH % current_level)
+	ms = BASE_MS
+	AbilityManager.reset()
+
 func start_level():
 	player.can_move = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -52,6 +60,4 @@ func on_lose():
 	game_over.emit()
 
 func restart():
-	ms = BASE_MS
-	AbilityManager.reset()
-	get_tree().change_scene_to_file(levels[0])
+	load_level(current_level)

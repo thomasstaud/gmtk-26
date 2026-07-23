@@ -1,7 +1,5 @@
 extends Control
 
-
-
 @onready var label: Label = %Label
 @onready var button: Button = %Button
 

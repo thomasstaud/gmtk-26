@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cdpcfqx7ugyyd"]
+
+[ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_o7pgs"]
+[ext_resource type="Script" uid="uid://dx68g5g81ukdw" path="res://ui/level_select.gd" id="2_2cjkr"]
+
+[node name="LevelSelect" type="Control" unique_id=501126264]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_o7pgs")
+script = ExtResource("2_2cjkr")
+
+[node name="StartPanel" type="MarginContainer" parent="." unique_id=1846133284]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="StartPanel" unique_id=214583109]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StartPanel/Panel" unique_id=1581903867]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.5
+offset_top = 51.0
+offset_right = 180.5
+offset_bottom = 139.0
+grow_horizontal = 2
+text = "Select Level"
+
+[node name="TileGrid" type="GridContainer" parent="StartPanel/Panel" unique_id=747118102]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -759.5
+offset_top = -325.5
+offset_right = 748.5
+offset_bottom = 278.5
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
