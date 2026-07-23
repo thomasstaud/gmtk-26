@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody3D
 
+const BOMB = preload("uid://dff0rnn50u2q1")
 
 const MIN_PITCH: float = -89.9
 const MAX_PITCH: float = 75
@@ -18,6 +19,8 @@ const DASH_FORCE = 35.0
 const DASH_DURATION = 0.15
 const DASH_COOLDOWN = 1.0
 
+const BOMB_COOLDOWN = 0.2
+
 
 @export var sensitivity = 0.2
 @export var max_jump_count := 2
@@ -31,9 +34,12 @@ var jump_count := 0
 var is_dashing := false
 var dash_timer := 0.0
 var can_dash := true
+var can_bomb := true
 
 @export var pcam: PhantomCamera3D
 @onready var player_model: Node3D = $Model
+@onready var head: Node3D = $Head
+@onready var bomb_spawn: Node3D = %BombSpawn
 
 
 func _ready() -> void:
@@ -44,14 +50,22 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and AbilityManager.jump.bought:
 		if is_on_floor() or jump_count < max_jump_count-1 or is_on_wall():
 			jump = true
-			
+	
 	if event.is_action_pressed("dash"):
 		if not is_dashing and can_move and can_dash and AbilityManager.dash.bought:
 			is_dashing = true
 			can_dash = false
 			dash_timer = DASH_DURATION
 			get_tree().create_timer(DASH_COOLDOWN).timeout.connect(func(): can_dash = true)
-		
+	
+	if event.is_action_pressed("bomb"):
+		if can_bomb and AbilityManager.bomb.bought:
+			can_bomb = false
+			var bomb = BOMB.instantiate()
+			bomb_spawn.add_child(bomb)
+			bomb.explode()
+			get_tree().create_timer(BOMB_COOLDOWN).timeout.connect(func(): can_bomb = true)
+	
 	if event.is_action_pressed("pause"):
 		GameManager.paused = true
 
@@ -69,6 +83,7 @@ func _unhandled_input(event) -> void:
 		
 		pcam.rotation_degrees = pcam_rotation_degrees
 		rotation_degrees.y = pcam_rotation_degrees.y
+		head.global_rotation_degrees = pcam.rotation_degrees
 
 
 func _physics_process(delta: float) -> void:
