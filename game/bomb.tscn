@@ -2,20 +2,34 @@
 
 [ext_resource type="Script" uid="uid://cws84kj47rwv3" path="res://game/bomb.gd" id="1_kjrfn"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjrfn"]
+transparency = 4
+albedo_color = Color(0.68235296, 0.21568628, 0.1254902, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_218fb"]
+material = SubResource("StandardMaterial3D_kjrfn")
+radius = 0.3
+height = 0.6
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_218fb"]
-albedo_color = Color(0, 0, 0, 1)
+transparency = 4
+albedo_color = Color(0.75686276, 0, 0, 0.1882353)
 
 [sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
 material = SubResource("StandardMaterial3D_218fb")
-radius = 0.2
-height = 0.4
+radius = 1.0
+height = 2.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 1.0
 
 [node name="Bomb" type="Node3D" unique_id=1005525704]
 script = ExtResource("1_kjrfn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=531836566]
+mesh = SubResource("SphereMesh_218fb")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=426791300]
 mesh = SubResource("SphereMesh_g4v7s")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=665647303]
@@ -24,3 +38,4 @@ mesh = SubResource("SphereMesh_g4v7s")
 shape = SubResource("SphereShape3D_g4v7s")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

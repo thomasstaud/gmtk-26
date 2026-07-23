@@ -58,7 +58,6 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1162071670]
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1012304148]
 process_priority = 300

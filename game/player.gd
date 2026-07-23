@@ -61,9 +61,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("bomb"):
 		if can_bomb and AbilityManager.bomb.bought:
 			can_bomb = false
-			var bomb = BOMB.instantiate()
-			bomb_spawn.add_child(bomb)
-			bomb.explode()
+			var bomb: Bomb = BOMB.instantiate()
+			get_parent().add_child(bomb)
+			bomb.position = bomb_spawn.global_position
+			bomb.fuse()
 			get_tree().create_timer(BOMB_COOLDOWN).timeout.connect(func(): can_bomb = true)
 	
 	if event.is_action_pressed("pause"):
