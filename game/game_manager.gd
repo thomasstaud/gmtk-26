@@ -13,9 +13,6 @@ var time_left_ms: int
 
 var levels: Array[Level] = []
 
-var carried_time_ms: int = 0      # Verbleibende Zeit, die beim Sieg mitgenommen wird
-var active_level_carry: int = 0   # Aktive Start-Bonuszeit für das aktuelle Level
-
 var paused: bool:
 	set(value):
 		paused = value
@@ -30,13 +27,13 @@ func _ready() -> void:
 	for i in range(LEVELS):
 		levels.append(load(LEVEL_RES_PATH % (i + 1)))
 	
-	active_level_carry = 0
-	carried_time_ms = 0
 	AbilityManager.reset(levels[0])
 	time_left_ms = levels[0].base_seconds * 1000
 
 
 func _process(delta: float) -> void:
+	if paused: delta = 0
+	
 	var delta_ms = int(delta * 1000)
 	time_left_ms -= delta_ms
 	
@@ -52,7 +49,7 @@ func change_time(delta: int) -> void:
 	time_updated.emit(time_left_ms)
 
 
-func load_level(level: int, carry: int = -1) -> void:
+func load_level(level: int) -> void:
 	if level > LEVELS:
 		push_error("Level %d does not exist!!!" % level)
 		return
@@ -70,7 +67,7 @@ func load_level(level: int, carry: int = -1) -> void:
 
 
 func load_next_level() -> void:
-	load_level(current_level + 1, carried_time_ms)
+	load_level(current_level + 1)
 
 
 func calculate_remaining_time() -> int:
@@ -91,13 +88,8 @@ func on_win() -> void:
 	paused = true
 	win.emit()
 	
-	carried_time_ms = time_left_ms
 	if time_left_ms > levels[current_level-1].best_time:
-		print("Neuer Rekord / Besserer Lauf!")
 		levels[current_level-1].best_time = time_left_ms
-		
-	
-	
 
 
 func on_lose() -> void:
@@ -106,7 +98,7 @@ func on_lose() -> void:
 
 
 func restart() -> void:
-	load_level(current_level, active_level_carry)
+	load_level(current_level)
 
 
 func to_level_select() -> void:
