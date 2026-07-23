@@ -8,6 +8,7 @@ const MAX_PITCH: float = 75.0
 const SPEED = 10.0
 const JUMP_POWER = 10.0
 const PUSH_FORCE = 2.0
+const CLIMB_POWER = 5.0
 
 const GROUND_ACCEL = 14.0
 const AIR_ACCEL = 3.5
@@ -30,6 +31,7 @@ const BOMB_COOLDOWN = 0.2
 var can_move := false
 var jump := false
 var jump_count := 0
+var climb := false
 
 var is_dashing := false
 var dash_timer := 0.0
@@ -40,6 +42,7 @@ var can_bomb := true
 @onready var player_model: Node3D = $Model
 @onready var head: Node3D = $Head
 @onready var bomb_spawn: Node3D = %BombSpawn
+@onready var forward_area: Area3D = $ForwardArea
 
 
 func _ready() -> void:
@@ -66,6 +69,15 @@ func _input(event: InputEvent) -> void:
 			bomb.position = bomb_spawn.global_position
 			bomb.fuse()
 			get_tree().create_timer(BOMB_COOLDOWN).timeout.connect(func(): can_bomb = true)
+			
+	if event.is_action_pressed("forward", true):
+		# check if there is a block before the player
+		if can_move and AbilityManager.climb.bought and forward_area.has_normal_overlapping_bodies():
+			climb = true
+			
+	if event.is_action_released("forward"):
+		if climb:
+			climb = false
 	
 	if event.is_action_pressed("pause"):
 		GameManager.paused = true
@@ -89,6 +101,9 @@ func _unhandled_input(event) -> void:
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		jump_count = 0
+		
+	if climb and not forward_area.has_normal_overlapping_bodies():
+		climb = false
 
 	if is_dashing:
 		dash_timer -= delta
@@ -101,7 +116,7 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 			return
 
-	if not is_on_floor():
+	if not is_on_floor() and not climb:
 		if is_on_wall() and velocity.y <= 0:
 			velocity += get_gravity() * WALL_SLIDE_GRAVITY * delta
 		else:
@@ -118,7 +133,7 @@ func _physics_process(delta: float) -> void:
 	if not can_move:
 		direction = Vector3.ZERO
 
-	if jump:
+	if jump and not climb:
 		jump = false
 		if is_on_floor():
 			velocity.y = JUMP_POWER
@@ -128,6 +143,9 @@ func _physics_process(delta: float) -> void:
 		elif jump_count < max_jump_count:
 			velocity.y = JUMP_POWER
 			jump_count += 1
+			
+	if climb:
+		velocity.y = CLIMB_POWER		
 
 	var horiz_vel := Vector3(velocity.x, 0, velocity.z)
 	var current_speed := horiz_vel.length()
