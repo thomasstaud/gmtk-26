@@ -8,7 +8,7 @@ const LEVELS = 2
 const LEVEL_SCENE_PATH = "res://levels/level_%d.tscn"
 const LEVEL_RES_PATH = "res://levels/level_%d.tres"
 
-var current_level: int
+var current_level := 1
 var ms: int
 
 var levels: Array[Level] = []
