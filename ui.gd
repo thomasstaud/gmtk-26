@@ -4,6 +4,7 @@ var ms: int = 1000 * 7
 
 @onready var start_panel: MarginContainer = $StartPanel
 @onready var game_over: MarginContainer = $GameOver
+@onready var win: MarginContainer = $Win
 @onready var timer: Label = $Timer
 
 func _process(delta: float) -> void:
@@ -35,3 +36,8 @@ func _on_start_pressed() -> void:
 
 func _on_restart_pressed() -> void:
 	GameManager.restart()
+
+
+func _on_player_win() -> void:
+	GameManager.paused = true
+	win.show()

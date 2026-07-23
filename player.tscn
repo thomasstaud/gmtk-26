@@ -9,8 +9,11 @@
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(0.5761719, 0.33251953, 0.4453125)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
+
 [node name="Player" type="CharacterBody3D" unique_id=673498257]
 script = ExtResource("1_4flbx")
+sensitivity = null
 max_jump_count = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1515071187]
@@ -23,3 +26,12 @@ mesh = SubResource("CapsuleMesh_g4v7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0087890625, 0.62546945, -0.27734375)
 visible = false
 mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="FinishDetection" type="Area3D" parent="." unique_id=60372272]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishDetection" unique_id=64914099]
+shape = SubResource("CapsuleShape3D_4flbx")
+
+[connection signal="area_entered" from="FinishDetection" to="." method="_on_finish_detection_area_entered"]

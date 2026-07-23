@@ -33,6 +33,17 @@ albedo_color = Color(0.8280984, 0.25504667, 0.27513903, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_yf5fn"]
+radius = 0.7164764
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryrav"]
+transparency = 4
+albedo_color = Color(0.22352941, 1, 0.27058825, 0.5921569)
+emission = Color(0.41645303, 0.53414816, 0.2624474, 1)
+emission_energy_multiplier = 2.0
+
 [node name="Game" type="Node3D" unique_id=1095529181]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=98621756]
@@ -68,6 +79,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Player" parent="." unique_id=673498257 node_paths=PackedStringArray("pcam") instance=ExtResource("1_80nbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+sensitivity = 0.2
 pcam = NodePath("../PhantomCamera3D")
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=1473587284]
@@ -79,14 +91,26 @@ shape = SubResource("WorldBoundaryShape3D_g4v7s")
 mesh = SubResource("PlaneMesh_g4v7s")
 surface_material_override/0 = SubResource("StandardMaterial3D_yf5fn")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1097555355]
+[node name="Cube" type="StaticBody3D" parent="." unique_id=1097555355]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9172723, 0.5, 2.726809)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1678565162]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube" unique_id=1678565162]
 mesh = SubResource("BoxMesh_yf5fn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2048912382]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube" unique_id=2048912382]
 shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="Finish" type="Area3D" parent="." unique_id=1032420641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0047684, -11.680407)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Finish" unique_id=1292714095]
+shape = SubResource("SphereShape3D_yf5fn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Finish" unique_id=751718782]
+mesh = SubResource("SphereMesh_g4v7s")
+surface_material_override/0 = SubResource("StandardMaterial3D_ryrav")
 
 [node name="UI" type="Control" parent="." unique_id=49439538]
 layout_mode = 3
@@ -190,5 +214,54 @@ grow_horizontal = 2
 grow_vertical = 0
 text = " Restart Level "
 
+[node name="Win" type="MarginContainer" parent="UI" unique_id=203626707]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="UI/Win" unique_id=388898867]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Win/Panel" unique_id=1188696613]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have won!!"
+
+[node name="Restart" type="Button" parent="UI/Win/Panel" unique_id=1361597532]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -132.0
+offset_right = 168.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+text = " Restart Level "
+
+[connection signal="win" from="Player" to="UI" method="_on_player_win"]
 [connection signal="pressed" from="UI/StartPanel/Panel/Start" to="UI" method="_on_start_pressed"]
 [connection signal="pressed" from="UI/GameOver/Panel/Restart" to="UI" method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/Win/Panel/Restart" to="UI" method="_on_restart_pressed"]

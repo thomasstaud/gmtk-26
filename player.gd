@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody3D
 
+signal win
+
 
 const MIN_PITCH: float = -89.9
 const MAX_PITCH: float = 75
@@ -144,3 +146,7 @@ func _physics_process(delta: float) -> void:
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody3D:
 			c.get_collider().apply_central_force(-c.get_normal()*PUSH_FORCE)
+
+
+func _on_finish_detection_area_entered(_area: Area3D) -> void:
+	win.emit()
