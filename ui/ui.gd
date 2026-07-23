@@ -2,9 +2,6 @@ extends Control
 
 const ABILITY_TILE := preload("uid://pnriti1de4cj")
 
-
-var ms: int = 1000 * 7
-
 @onready var start_panel: MarginContainer = $StartPanel
 @onready var game_over: MarginContainer = $GameOver
 @onready var win: MarginContainer = $Win
@@ -13,21 +10,13 @@ var ms: int = 1000 * 7
 
 
 func _ready() -> void:
+	GameManager.time_updated.connect(on_timer_update)
+	GameManager.win.connect(on_win)
+	GameManager.game_over.connect(on_game_over)
 	generate_ability_tiles()
 
-func _process(delta: float) -> void:
-	var delta_ms = int(delta * 1000)
-	ms -= delta_ms
-	
-	if ms <= 0:
-		ms = 0
-		GameManager.paused = true
-		game_over.show()
-	
-	timer.text = format_ms()
 
-
-func format_ms() -> String:
+func format_ms(ms: int) -> String:
 	@warning_ignore("integer_division")
 	var mins := ms / (1000 * 60)
 	@warning_ignore("integer_division")
@@ -48,11 +37,15 @@ func _on_start_pressed() -> void:
 	start_panel.hide()
 	GameManager.start_level()
 
-
 func _on_restart_pressed() -> void:
 	GameManager.restart()
 
 
-func _on_player_win() -> void:
-	GameManager.paused = true
+func on_timer_update(ms: int) -> void:
+	timer.text = format_ms(ms)
+
+func on_win() -> void:
 	win.show()
+
+func on_game_over() -> void:
+	game_over.show()

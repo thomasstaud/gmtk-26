@@ -1,13 +1,11 @@
 class_name Player
 extends CharacterBody3D
 
-signal win
-
 
 const MIN_PITCH: float = -89.9
 const MAX_PITCH: float = 75
 const SPEED = 10.0
-const JUMP_POWER = 8.0
+const JUMP_POWER = 10.0
 const LERP_VAL = .5
 const PUSH_FORCE = 2.0
 
@@ -16,9 +14,9 @@ const JUMP_HOLD_GRAVITY = 1.0
 
 const WALL_SLIDE_GRAVITY = 0.5
 
-const DASH_FORCE = 25.0
+const DASH_FORCE = 35.0
 const DASH_DURATION = 0.15
-const DASH_COOLDOWN = 2.0
+const DASH_COOLDOWN = 1.0
 
 
 @export var sensitivity = 0.2
@@ -43,12 +41,12 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump"):
+	if event.is_action_pressed("jump") and AbilityManager.jump.bought:
 		if is_on_floor() or jump_count < max_jump_count-1 or is_on_wall():
 			jump = true
 			
 	if event.is_action_pressed("dash"):
-		if not is_dashing and can_move and can_dash:
+		if not is_dashing and can_move and can_dash and AbilityManager.dash.bought:
 			is_dashing = true
 			can_dash = false
 			dash_timer = DASH_DURATION
@@ -149,4 +147,4 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_finish_detection_area_entered(_area: Area3D) -> void:
-	win.emit()
+	GameManager.on_win()

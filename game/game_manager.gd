@@ -1,8 +1,16 @@
 extends Node
 
+signal time_updated
+signal win
+signal game_over
+
+const BASE_MS = 1000 * 5
+
 var levels: Array[String] = [
-	"res://game.tscn",
+	"res://levels/level_1.tscn",
 ]
+
+var ms: int = BASE_MS
 
 var paused: bool:
 	set(value):
@@ -11,13 +19,39 @@ var paused: bool:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if paused else Input.MOUSE_MODE_CAPTURED
 var player: Player
 
+
 func _ready() -> void:
 	paused = true
+
+func _process(delta: float) -> void:
+	var delta_ms = int(delta * 1000)
+	ms -= delta_ms
+	
+	if ms <= 0:
+		ms = 0
+		on_lose()
+	
+	time_updated.emit(ms)
+
+
+func change_time(delta: int) -> void:
+	ms += delta
+	time_updated.emit(ms)
 
 func start_level():
 	player.can_move = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	paused = false
 
+func on_win():
+	paused = true
+	win.emit()
+
+func on_lose():
+	paused = true
+	game_over.emit()
+
 func restart():
+	ms = BASE_MS
+	AbilityManager.reset()
 	get_tree().change_scene_to_file(levels[0])

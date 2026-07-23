@@ -1,5 +1,7 @@
 extends Control
 
+
+
 @onready var label: Label = %Label
 @onready var button: Button = %Button
 
@@ -20,4 +22,6 @@ func update_button_text():
 
 func _on_button_pressed() -> void:
 	ability.bought = !ability.bought
+	var delta = 1000 * (-ability.cost if ability.bought else ability.cost)
+	GameManager.change_time(delta)
 	update_button_text()

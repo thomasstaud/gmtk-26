@@ -1,7 +1,7 @@
 extends Node
 
-var dash := Ability.new("Dash", 10)
-var jump := Ability.new("Jump", 10)
+var dash := Ability.new("Dash", 1)
+var jump := Ability.new("Jump", 1)
 
 var abilities: Array[Ability] = [dash, jump]
 
