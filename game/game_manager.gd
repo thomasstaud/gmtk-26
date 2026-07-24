@@ -32,7 +32,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if paused: delta = 0
+	# Wenn pausiert, gar nichts berechnen und keine Signals emitten!
+	if paused:
+		return
 	
 	var delta_ms = int(delta * 1000)
 	time_left_ms -= delta_ms

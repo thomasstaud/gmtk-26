@@ -71,10 +71,13 @@ func _input(event: InputEvent) -> void:
 		GameManager.paused = true
 
 
-func _unhandled_input(event) -> void:
-	if event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		GameManager.paused = false
+func _unhandled_input(event: InputEvent) -> void:
+	# Reagiere NUR auf tatsächliche Mausklicks (nicht auf das Mausrad) und nur, wenn der Klick GEDRÜCKT wurde!
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			GameManager.paused = false
+
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var pcam_rotation_degrees: Vector3 = pcam.rotation_degrees
 		pcam_rotation_degrees.x -= event.relative.y * sensitivity
