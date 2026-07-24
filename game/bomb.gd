@@ -1,7 +1,8 @@
 class_name Bomb
 extends Node3D
 
-const EXPLOSION_STRENGTH := 3
+const EXPLOSION_STRENGTH := 0.25
+const DECAY_FACTOR := 0.2
 const DELAY := 2.5
 
 @onready var area: Area3D = $Area3D
@@ -14,7 +15,9 @@ func fuse():
 func explode():
 	for body in targets:
 		var vec = body.global_position - self.global_position
-		body.apply_central_impulse(vec * EXPLOSION_STRENGTH)
+		var base_impulse = vec.normalized() * EXPLOSION_STRENGTH
+		var decay = 1 / (DECAY_FACTOR * vec.length())
+		body.apply_central_impulse(base_impulse * decay)
 	queue_free()
 
 
