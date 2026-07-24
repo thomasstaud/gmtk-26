@@ -4,7 +4,7 @@ signal time_updated
 signal win
 signal game_over
 
-const LEVELS = 3
+const LEVELS = 4
 const LEVEL_SCENE_PATH = "res://levels/level_%d.tscn"
 const LEVEL_RES_PATH = "res://levels/level_%d.tres"
 
