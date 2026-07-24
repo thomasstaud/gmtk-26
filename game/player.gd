@@ -10,7 +10,7 @@ const MAX_PITCH: float = 75.0
 const SPEED = 10.0
 const JUMP_POWER = 12.0
 const PUSH_FORCE = 2.0
-const CLIMB_POWER = 4.5 # Leicht erhöht für ein flüssigeres Klettergefühl
+const CLIMB_POWER = 5.5 # Leicht erhöht für ein flüssigeres Klettergefühl
 
 const GROUND_ACCEL = 40.0
 const AIR_ACCEL = 3.5
