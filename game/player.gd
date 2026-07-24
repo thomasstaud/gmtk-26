@@ -10,7 +10,7 @@ const JUMP_POWER = 10.0
 const PUSH_FORCE = 2.0
 const CLIMB_POWER = 4.5 # Leicht erhöht für ein flüssigeres Klettergefühl
 
-const GROUND_ACCEL = 14.0
+const GROUND_ACCEL = 40.0
 const AIR_ACCEL = 3.5
 const GROUND_DECEL = 12.0
 const DASH_DECAY = 2.0
@@ -157,24 +157,29 @@ func _physics_process(delta: float) -> void:
 			jump_count += 1
 			
 	if climb:
-		velocity.y = CLIMB_POWER        
+		velocity.y = CLIMB_POWER       
 
 	var horiz_vel := Vector3(velocity.x, 0, velocity.z)
 	var current_speed := horiz_vel.length()
 	var accel := GROUND_ACCEL if is_on_floor() else AIR_ACCEL
 
 	if direction != Vector3.ZERO:
-		var target_max_speed := maxf(SPEED, current_speed)
-		var target_vel := direction * target_max_speed
+		# commented out because the lerp will almost always go to 1 
+		# and that causes weird velocity when the player keeps holding
+		# forward after the climb
 		
-		horiz_vel = horiz_vel.lerp(target_vel, accel * delta)
+		# var target_max_speed := maxf(SPEED, current_speed)
+		# var target_vel := direction * target_max_speed
+		# horiz_vel = horiz_vel.lerp(target_vel, accel * delta)
+		
+		var clamped_speed = min(SPEED, current_speed + delta * accel)
+		horiz_vel = clamped_speed * direction
 		
 		if horiz_vel.length() > SPEED:
 			var new_speed := move_toward(horiz_vel.length(), SPEED, DASH_DECAY * SPEED * delta)
 			horiz_vel = horiz_vel.normalized() * new_speed
 	else:
-		if is_on_floor():
-			horiz_vel = horiz_vel.lerp(Vector3.ZERO, GROUND_DECEL * delta)
+		horiz_vel = horiz_vel.lerp(Vector3.ZERO, GROUND_DECEL * delta)
 
 	velocity.x = horiz_vel.x
 	velocity.z = horiz_vel.z
