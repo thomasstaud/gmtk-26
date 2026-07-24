@@ -29,6 +29,7 @@ func _ready() -> void:
 	
 	AbilityManager.reset(levels[0])
 	time_left_ms = levels[0].base_seconds * 1000
+	time_updated.emit(time_left_ms)
 
 
 func _process(delta: float) -> void:
@@ -66,6 +67,7 @@ func load_level(level: int) -> void:
 	get_tree().change_scene_to_file(LEVEL_SCENE_PATH % current_level)
 	
 	time_left_ms = (levels[level-1].base_seconds * 1000) + total_bonus_ms
+	time_updated.emit(time_left_ms)
 
 
 func load_next_level() -> void:

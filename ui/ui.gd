@@ -14,6 +14,7 @@ func _ready() -> void:
 	GameManager.win.connect(on_win)
 	GameManager.game_over.connect(on_game_over)
 	generate_ability_tiles()
+	on_timer_update(GameManager.time_left_ms)
 
 
 func format_ms(ms: int) -> String:
@@ -28,6 +29,8 @@ func format_ms(ms: int) -> String:
 
 func generate_ability_tiles():
 	for ability in AbilityManager.abilities:
+		if ability.cost == 0: continue
+		
 		var tile = ABILITY_TILE.instantiate()
 		tile_grid.add_child(tile)
 		tile.init(ability)

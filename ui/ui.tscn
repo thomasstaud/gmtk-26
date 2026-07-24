@@ -48,9 +48,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -145.5
+offset_left = -160.0
 offset_top = 77.0
-offset_right = 145.5
+offset_right = 211.0
 offset_bottom = 165.0
 grow_horizontal = 2
 text = "01:00.000"
@@ -262,6 +262,11 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Next Level"
 
+[node name="Restart" type="Button" parent="Win/Panel2/MarginContainer/HBoxContainer" unique_id=1366222069]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Restart Level"
+
 [node name="Menu" type="Button" parent="Win/Panel2/MarginContainer/HBoxContainer" unique_id=762465825]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
@@ -272,4 +277,5 @@ text = "Menu"
 [connection signal="pressed" from="GameOver/Panel2/MarginContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="GameOver/Panel2/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
