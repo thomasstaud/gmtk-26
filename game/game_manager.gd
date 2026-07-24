@@ -33,9 +33,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	# Wenn pausiert, gar nichts berechnen und keine Signals emitten!
-	if paused:
-		return
+	if paused: return
 	
 	var delta_ms = int(delta * 1000)
 	time_left_ms -= delta_ms
@@ -45,6 +43,11 @@ func _process(delta: float) -> void:
 		on_lose()
 	
 	time_updated.emit(time_left_ms)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("restart"):
+		paused = true
+		restart()
 
 
 func change_time(delta: int) -> void:

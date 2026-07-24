@@ -7,12 +7,14 @@ const ABILITY_TILE := preload("uid://pnriti1de4cj")
 @onready var win: MarginContainer = $Win
 @onready var tile_grid: GridContainer = %TileGrid
 @onready var timer: Label = $Timer
+@onready var controls: Controls = $Controls
 
 
 func _ready() -> void:
 	GameManager.time_updated.connect(on_timer_update)
 	GameManager.win.connect(on_win)
 	GameManager.game_over.connect(on_game_over)
+	GameManager.player.dashed.connect(func(cooldown): controls.dash(cooldown))
 	generate_ability_tiles()
 	on_timer_update(GameManager.time_left_ms)
 

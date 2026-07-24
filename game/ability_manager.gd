@@ -7,7 +7,7 @@ var bomb := Ability.new("Bomb")
 var climb := Ability.new("Climb")
 var glide := Ability.new("Glide")
 
-var abilities: Array[Ability] = [dash, jump, bomb, climb, glide]
+var abilities: Array[Ability] = [dash, jump, glide, bomb, climb]
 
 func reset(level: Level) -> void:
 	for a in abilities:

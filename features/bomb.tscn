@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dff0rnn50u2q1"]
 
-[ext_resource type="Script" uid="uid://cws84kj47rwv3" path="res://game/bomb.gd" id="1_kjrfn"]
+[ext_resource type="Script" uid="uid://cws84kj47rwv3" path="res://features/bomb.gd" id="1_kjrfn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjrfn"]
 transparency = 4

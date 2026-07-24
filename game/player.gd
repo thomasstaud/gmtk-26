@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody3D
 
+signal dashed
+
 const BOMB = preload("uid://dff0rnn50u2q1")
 
 const MIN_PITCH: float = -89.9
@@ -25,7 +27,7 @@ const GLIDE_SMOOTHING = 12.0
 
 const DASH_FORCE = 25.0
 const DASH_VERTICAL_SCALE = 0.25
-const DASH_DURATION = 0.15
+const DASH_DURATION = 0.13
 const DASH_COOLDOWN = 1.0
 const BOMB_COOLDOWN = 0.2
 
@@ -68,6 +70,7 @@ func _input(event: InputEvent) -> void:
 			is_dashing = true
 			can_dash = false
 			dash_timer = DASH_DURATION
+			dashed.emit(DASH_COOLDOWN)
 			get_tree().create_timer(DASH_COOLDOWN).timeout.connect(func(): can_dash = true)
 		
 	if event.is_action_pressed("bomb"):

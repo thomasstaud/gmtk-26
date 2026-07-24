@@ -2,8 +2,16 @@
 
 [ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_m6e0p"]
 [ext_resource type="Script" uid="uid://qtk2jbaeaf8a" path="res://ui/ui.gd" id="2_27fn8"]
+[ext_resource type="Script" uid="uid://cw4p2cyychxfy" path="res://ui/controls.gd" id="3_tf0e0"]
 [ext_resource type="Texture2D" uid="uid://duxys66nl0h6m" path="res://ui/ui_assets/Container1_default.png" id="3_wl5ax"]
 [ext_resource type="Texture2D" uid="uid://cwle2l6j4fenx" path="res://ui/ui_assets/SquareButton3_purple.png" id="4_vkava"]
+
+[sub_resource type="Gradient" id="Gradient_bo1jx"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pa1oa"]
+gradient = SubResource("Gradient_bo1jx")
+width = 300
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bhunq"]
 texture = ExtResource("4_vkava")
@@ -55,19 +63,40 @@ offset_bottom = 165.0
 grow_horizontal = 2
 text = "01:00.000"
 
-[node name="BombLabel" type="Label" parent="." unique_id=1714219605]
+[node name="Controls" type="VBoxContainer" parent="." unique_id=925141949]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -328.0
-offset_top = -134.0
-offset_right = -53.0
-offset_bottom = -46.0
+offset_left = -361.0
+offset_top = -167.0
+offset_right = -41.0
+offset_bottom = -36.0
 grow_horizontal = 0
 grow_vertical = 0
+alignment = 2
+script = ExtResource("3_tf0e0")
+
+[node name="DashCooldown" type="TextureProgressBar" parent="Controls" unique_id=2012902179]
+layout_mode = 2
+step = 0.1
+texture_progress = SubResource("GradientTexture2D_pa1oa")
+
+[node name="Dash" type="Label" parent="Controls/DashCooldown" unique_id=1714219605]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 320.0
+offset_bottom = 69.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "[shift] Dash"
+
+[node name="Bomb" type="Label" parent="Controls" unique_id=75553068]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "[F] Bomb"
 
 [node name="StartPanel" type="MarginContainer" parent="." unique_id=1501259970]
