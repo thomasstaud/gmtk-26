@@ -8,7 +8,7 @@ const MAX_PITCH: float = 75.0
 const SPEED = 10.0
 const JUMP_POWER = 10.0
 const PUSH_FORCE = 2.0
-const CLIMB_POWER = 3.5
+const CLIMB_POWER = 4.5 # Leicht erhöht für ein flüssigeres Klettergefühl
 
 const GROUND_ACCEL = 14.0
 const AIR_ACCEL = 3.5
@@ -18,7 +18,10 @@ const DASH_DECAY = 2.0
 const JUMP_GRAVITY = 3.0
 const JUMP_HOLD_GRAVITY = 2.0
 const WALL_SLIDE_GRAVITY = 0.5
-const GLIDE_GRAVITY = 0.1
+
+# Gleit-Anpassungen
+const GLIDE_TERMINAL_VELOCITY = -2.5
+const GLIDE_SMOOTHING = 12.0
 
 const DASH_FORCE = 25.0
 const DASH_VERTICAL_SCALE = 0.25
@@ -53,7 +56,11 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and AbilityManager.jump.bought:
-		if is_on_floor() or jump_count < max_jump_count or is_on_wall():
+		# Sprung nur ausführen, wenn man auf dem Boden ist, an der Wand hängt, 
+		# ODER noch Sprünge übrig hat UND noch NICHT fällt (um nicht beim Fallen zu hüpfen)
+		if is_on_floor() or is_on_wall():
+			jump = true
+		elif jump_count < max_jump_count and velocity.y >= -1.0:
 			jump = true
 			
 	if event.is_action_pressed("dash"):
@@ -71,22 +78,12 @@ func _input(event: InputEvent) -> void:
 			bomb.position = bomb_spawn.global_position
 			bomb.fuse()
 			get_tree().create_timer(BOMB_COOLDOWN).timeout.connect(func(): can_bomb = true)
-			
-	if event.is_action_pressed("forward", true):
-		# check if there is a wall before the player
-		if can_move and AbilityManager.climb.bought and forward_area.has_normal_overlapping_bodies():
-			climb = true
-			
-	if event.is_action_released("forward"):
-		if climb:
-			climb = false
 	
 	if event.is_action_pressed("pause"):
 		GameManager.paused = true
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Reagiere NUR auf tatsächliche Mausklicks (nicht auf das Mausrad) und nur, wenn der Klick GEDRÜCKT wurde!
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -104,13 +101,18 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	glide = AbilityManager.glide.bought and not is_on_floor()
+	var is_holding_jump := Input.is_action_pressed("jump")
+	var is_holding_forward := Input.is_action_pressed("forward")
+	
+	# Dynamische Kletter-Prüfung: Klettern funktioniert nun jederzeit in der Luft oder am Boden, 
+	# sobald "Vorwärts" gehalten wird und eine Wand da ist.
+	climb = can_move and AbilityManager.climb.bought and is_holding_forward and forward_area.has_normal_overlapping_bodies()
+
+	# Gleiten ist aktiv, wenn man fällt, NICHT klettert und Leertaste hält
+	glide = AbilityManager.glide.bought and not is_on_floor() and not climb and is_holding_jump and velocity.y < 0
 	
 	if is_on_floor():
 		jump_count = 0
-		
-	if climb and not forward_area.has_normal_overlapping_bodies():
-		climb = false
 
 	if is_dashing:
 		dash_timer -= delta
@@ -123,20 +125,17 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 			return
 
-	if not is_on_floor() and not climb and not glide:
-		if is_on_wall() and velocity.y <= 0:
+	if not is_on_floor() and not climb:
+		if glide:
+			# Sanftes Gleiten mit Terminal Velocity
+			velocity.y = lerp(velocity.y, GLIDE_TERMINAL_VELOCITY, GLIDE_SMOOTHING * delta)
+		elif is_on_wall() and velocity.y <= 0:
 			velocity += get_gravity() * WALL_SLIDE_GRAVITY * delta
 		else:
 			var grav_mult := JUMP_GRAVITY
-			if velocity.y > 0 and Input.is_action_pressed("jump"):
+			if velocity.y > 0 and is_holding_jump:
 				grav_mult = JUMP_HOLD_GRAVITY
 			velocity += get_gravity() * grav_mult * delta
-	elif not is_on_floor() and glide:
-		# decrease positive velocity until its negative, then apply glide
-		if velocity.y < 0:
-			velocity += get_gravity() * GLIDE_GRAVITY * delta
-		else:
-			velocity += get_gravity() * delta
 
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := quaternion * Vector3(input_dir.x, 0, input_dir.y)
@@ -158,7 +157,7 @@ func _physics_process(delta: float) -> void:
 			jump_count += 1
 			
 	if climb:
-		velocity.y = CLIMB_POWER		
+		velocity.y = CLIMB_POWER        
 
 	var horiz_vel := Vector3(velocity.x, 0, velocity.z)
 	var current_speed := horiz_vel.length()

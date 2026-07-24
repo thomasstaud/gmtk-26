@@ -3,12 +3,13 @@
 [ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_3hk0j"]
 [ext_resource type="Script" uid="uid://ry3mh76h28io" path="res://ui/ability_tile.gd" id="2_sh243"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hk0j"]
-bg_color = Color(0.81846744, 0.3672309, 0.35930398, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sh243"]
+bg_color = Color(0.30848086, 0.16795903, 0.081450306, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
 
 [node name="AbilityTile" type="Control" unique_id=1901928797]
 custom_minimum_size = Vector2(500, 300)
@@ -32,7 +33,7 @@ offset_right = 235.0
 offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3hk0j")
+theme_override_styles/panel = SubResource("StyleBoxFlat_sh243")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=947607514]
 layout_mode = 1
