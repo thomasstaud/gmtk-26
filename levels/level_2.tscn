@@ -21,10 +21,6 @@ sky = SubResource("Sky_feb5d")
 [sub_resource type="Resource" id="Resource_ryrav"]
 script = ExtResource("2_ep78u")
 
-[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
-
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g4v7s"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
@@ -51,13 +47,12 @@ follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_ryrav")
 tween_on_load = false
 follow_offset = Vector3(0, 0.5, 0)
-align_transform_with_view = Callable()
-align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1162071670]
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1012304148]
 process_priority = 300
@@ -69,16 +64,6 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 pcam = NodePath("../PhantomCamera3D")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1047901561]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9466252, 0.5, 0)
-mass = 0.1
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1269430546]
-mesh = SubResource("BoxMesh_yf5fn")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=272237054]
-shape = SubResource("BoxShape3D_g4v7s")
-
 [node name="Ground" type="StaticBody3D" parent="." unique_id=1473587284]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=272630419]
@@ -89,6 +74,45 @@ mesh = SubResource("PlaneMesh_g4v7s")
 surface_material_override/0 = SubResource("StandardMaterial3D_yf5fn")
 
 [node name="Finish" parent="." unique_id=378886241 instance=ExtResource("5_sd18g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.658333, 1.167934, -11.680407)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07806492, 8.714042, -35.463737)
 
 [node name="UI" parent="." unique_id=461141405 instance=ExtResource("6_vm7no")]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=772658168]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1336056165]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.69437, 3.5589752, 2.2846)
+size = Vector3(6, 9.350822, 5.069565)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1233393834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16965199, 2.654418, -34.697704)
+size = Vector3(6, 9.811447, 5.2797546)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=596899903]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.891523, 8.762968, 2.284601)
+size = Vector3(6, 20.25224, 4.7066183)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2052514398]
+transform = Transform3D(-4.371139e-08, 0.6427875, 0.7660444, 0, 0.7660444, -0.6427875, -1, -2.8097135e-08, -3.3484863e-08, -6.9319353, 2.0098903, 0.78459996)
+size = Vector3(3, 4.1015625, 14.479279)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=910655058]
+transform = Transform3D(-4.3711385e-08, -0.6427875, -0.7660444, -9.473121e-16, 0.7660444, -0.6427875, 1, -2.8097132e-08, -3.3484863e-08, -2.6333346, 10.9669075, 3.7846005)
+size = Vector3(3, 6.774658, 16.57584)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1614864466]
+transform = Transform3D(0.5674142, 0, 0.82343256, 0, 1, 0, -0.82343256, 0, 0.5674142, -5.749078, 15.692575, -4.9433603)
+size = Vector3(3.6538086, 1, 6.6635284)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1990152681]
+transform = Transform3D(0.9315198, 0, 0.36369085, 0, 1, 0, -0.36369085, 0, 0.9315198, -13.363192, 13.613779, -11.888568)
+size = Vector3(3.6538086, 1, 6.648121)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1070209616]
+transform = Transform3D(0.91060686, 0, -0.41327393, 0, 1, 0, 0.41327393, 0, 0.91060686, -15.780132, 11.074982, -23.604958)
+size = Vector3(3.6538086, 1, 6.648121)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1665671820]
+transform = Transform3D(0.55599594, 0, -0.831185, 0, 1, 0, 0.831185, 0, 0.55599594, -9.902919, 8.029718, -31.676847)
+size = Vector3(3.6538086, 1, 6.648121)
