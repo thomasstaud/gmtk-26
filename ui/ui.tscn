@@ -2,6 +2,34 @@
 
 [ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_m6e0p"]
 [ext_resource type="Script" uid="uid://qtk2jbaeaf8a" path="res://ui/ui.gd" id="2_27fn8"]
+[ext_resource type="Texture2D" uid="uid://duxys66nl0h6m" path="res://ui/ui_assets/Container1_default.png" id="3_wl5ax"]
+[ext_resource type="Texture2D" uid="uid://cwle2l6j4fenx" path="res://ui/ui_assets/SquareButton3_purple.png" id="4_vkava"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bhunq"]
+texture = ExtResource("4_vkava")
+texture_margin_left = 21.85643
+texture_margin_top = 23.905472
+texture_margin_right = 21.173416
+texture_margin_bottom = 17.75835
+region_rect = Rect2(0, 0, 104, 107)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vkava"]
+texture = ExtResource("4_vkava")
+texture_margin_left = 21.85643
+texture_margin_top = 23.905472
+texture_margin_right = 21.173416
+texture_margin_bottom = 17.75835
+region_rect = Rect2(0, 0, 104, 107)
+modulate_color = Color(0.84705883, 0.7411765, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tf0e0"]
+texture = ExtResource("4_vkava")
+texture_margin_left = 21.85643
+texture_margin_top = 23.905472
+texture_margin_right = 21.173416
+texture_margin_bottom = 17.75835
+region_rect = Rect2(0, 0, 104, 107)
+modulate_color = Color(0.796243, 0.796243, 0.796243, 1)
 
 [node name="UI" type="Control" unique_id=461141405]
 layout_mode = 3
@@ -42,21 +70,26 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "[F] Bomb"
 
-[node name="StartPanel" type="MarginContainer" parent="." unique_id=526941086]
-layout_mode = 1
-anchors_preset = 15
+[node name="StartPanel" type="MarginContainer" parent="." unique_id=1501259970]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="Panel" type="Panel" parent="StartPanel" unique_id=241094479]
+[node name="Panel" type="NinePatchRect" parent="StartPanel" unique_id=1539587844]
 layout_mode = 2
+texture = ExtResource("3_wl5ax")
+region_rect = Rect2(1.8862801, 0.13557434, 784.4415, 193.05006)
+patch_margin_left = 66
+patch_margin_top = 69
+patch_margin_right = 68
+patch_margin_bottom = 65
 
 [node name="TileGrid" type="GridContainer" parent="StartPanel/Panel" unique_id=970747552]
 unique_name_in_owner = true
@@ -74,29 +107,32 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="StartPanel/Panel" unique_id=1810571262]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -188.5
-offset_top = -135.0
-offset_right = 188.5
-offset_bottom = -31.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="MarginContainer" type="MarginContainer" parent="StartPanel" unique_id=1746425173]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 65
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartPanel/MarginContainer" unique_id=1810571262]
+layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="Start" type="Button" parent="StartPanel/Panel/HBoxContainer" unique_id=1395599219]
+[node name="Start" type="Button" parent="StartPanel/MarginContainer/HBoxContainer" unique_id=1395599219]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_bhunq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vkava")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tf0e0")
 text = "Start Level"
 
-[node name="Menu" type="Button" parent="StartPanel/Panel/HBoxContainer" unique_id=2083310699]
+[node name="Menu" type="Button" parent="StartPanel/MarginContainer/HBoxContainer" unique_id=2083310699]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_bhunq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vkava")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tf0e0")
 text = "Menu"
 
 [node name="GameOver" type="MarginContainer" parent="." unique_id=705976761]
@@ -113,45 +149,51 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="Panel" type="Panel" parent="GameOver" unique_id=325481593]
+[node name="Panel2" type="NinePatchRect" parent="GameOver" unique_id=1358309189]
 layout_mode = 2
+texture = ExtResource("3_wl5ax")
+region_rect = Rect2(1.8862801, 0.13557434, 784.4415, 193.05006)
+patch_margin_left = 66
+patch_margin_top = 69
+patch_margin_right = 68
+patch_margin_bottom = 65
 
-[node name="Label" type="Label" parent="GameOver/Panel" unique_id=417304863]
+[node name="Label" type="Label" parent="GameOver/Panel2" unique_id=417304863]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -317.0
+offset_top = -107.5
+offset_right = 183.0
+offset_bottom = -26.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "You have lost!!"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/Panel" unique_id=2069750170]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/Panel2" unique_id=2069750170]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -188.5
-offset_top = -135.0
-offset_right = 188.5
-offset_bottom = -31.0
+offset_left = -479.5
+offset_top = -269.0
+offset_right = 345.5
+offset_bottom = -165.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 25
 
-[node name="Restart" type="Button" parent="GameOver/Panel/HBoxContainer" unique_id=1961384829]
+[node name="Restart" type="Button" parent="GameOver/Panel2/HBoxContainer" unique_id=1961384829]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Restart Level"
 
-[node name="Menu" type="Button" parent="GameOver/Panel/HBoxContainer" unique_id=470998657]
+[node name="Menu" type="Button" parent="GameOver/Panel2/HBoxContainer" unique_id=470998657]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Menu"
@@ -170,52 +212,58 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="Panel" type="Panel" parent="Win" unique_id=1882651603]
+[node name="Panel2" type="NinePatchRect" parent="Win" unique_id=1293588276]
 layout_mode = 2
+texture = ExtResource("3_wl5ax")
+region_rect = Rect2(1.8862801, 0.13557434, 784.4415, 193.05006)
+patch_margin_left = 66
+patch_margin_top = 69
+patch_margin_right = 68
+patch_margin_bottom = 65
 
-[node name="Label" type="Label" parent="Win/Panel" unique_id=1472240444]
+[node name="Label" type="Label" parent="Win/Panel2" unique_id=1472240444]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -330.5
+offset_top = -107.5
+offset_right = 196.5
+offset_bottom = -26.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "You have won!!"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Win/Panel" unique_id=1986476228]
+[node name="HBoxContainer" type="HBoxContainer" parent="Win/Panel2" unique_id=1986476228]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -188.5
-offset_top = -135.0
-offset_right = 188.5
-offset_bottom = -31.0
+offset_left = -479.5
+offset_top = -269.0
+offset_right = 345.5
+offset_bottom = -165.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 25
 
-[node name="Next" type="Button" parent="Win/Panel/HBoxContainer" unique_id=1453608001]
+[node name="Next" type="Button" parent="Win/Panel2/HBoxContainer" unique_id=1453608001]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Next Level"
 
-[node name="Menu" type="Button" parent="Win/Panel/HBoxContainer" unique_id=762465825]
+[node name="Menu" type="Button" parent="Win/Panel2/HBoxContainer" unique_id=762465825]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Menu"
 
-[connection signal="pressed" from="StartPanel/Panel/HBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="StartPanel/Panel/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="GameOver/Panel/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="GameOver/Panel/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="Win/Panel/HBoxContainer/Next" to="." method="_on_next_pressed"]
-[connection signal="pressed" from="Win/Panel/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="StartPanel/MarginContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="StartPanel/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="GameOver/Panel2/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="GameOver/Panel2/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Win/Panel2/HBoxContainer/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Win/Panel2/HBoxContainer/Menu" to="." method="_on_menu_pressed"]

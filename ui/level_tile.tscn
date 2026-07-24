@@ -2,14 +2,24 @@
 
 [ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_oyc0h"]
 [ext_resource type="Script" uid="uid://lkyp4y1b2lxv" path="res://ui/level_tile.gd" id="2_oyc0h"]
+[ext_resource type="Texture2D" uid="uid://bv4owesylgai7" path="res://ui/ui_assets/Container3_blue.png" id="3_bokqi"]
+[ext_resource type="Texture2D" uid="uid://c66rsh751bddw" path="res://ui/ui_assets/SquareButton3_ultramarine.png" id="4_q2dq2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hk0j"]
-bg_color = Color(0.30848086, 0.16795903, 0.081450306, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5m05f"]
+texture = ExtResource("3_bokqi")
+texture_margin_left = 40.297794
+texture_margin_top = 40.98081
+texture_margin_right = 43.029846
+texture_margin_bottom = 40.297794
+region_rect = Rect2(0, 0, 721, 129)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g3cbd"]
+texture = ExtResource("4_q2dq2")
+texture_margin_left = 21.85643
+texture_margin_top = 23.905472
+texture_margin_right = 21.173416
+texture_margin_bottom = 17.75835
+region_rect = Rect2(0, 0, 104, 107)
 
 [node name="LevelTile" type="Control" unique_id=1901928797]
 custom_minimum_size = Vector2(500, 300)
@@ -33,7 +43,7 @@ offset_right = 235.0
 offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3hk0j")
+theme_override_styles/panel = SubResource("StyleBoxTexture_5m05f")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=947607514]
 layout_mode = 1
@@ -60,6 +70,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_g3cbd")
 text = "start"
 
 [connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
