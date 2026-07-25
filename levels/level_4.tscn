@@ -159,6 +159,18 @@ size = Vector3(4.30249, 0.61816406, 3.959076)
 transform = Transform3D(1, 0, 0, 0, 0.719258, -0.6947429, 0, 0.6947429, 0.719258, -3.4681196, 15.070628, -9.350105)
 size = Vector3(4.30249, 0.1359253, 3.5139008)
 
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1730649287]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.9999999, 0, 0.9999999, -4.3711385e-08, 6.8411865, 14.6058, -12.609708)
+size = Vector3(16.307556, 0.1359253, 4.466305)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1599119879]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.9999999, 0, 0.9999999, -4.3711385e-08, 6.8411865, 14.6058, -15.584884)
+size = Vector3(16.307556, 0.1359253, 4.466305)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1301248538]
+transform = Transform3D(-4.371139e-08, 0.9999999, -4.371138e-08, 0, -4.371138e-08, -0.9999999, -1, -4.3711385e-08, 1.9106853e-15, -1.2716329, 14.6058, -11.069567)
+size = Vector3(3.084381, 0.1359253, 4.466305)
+
 [node name="Box" type="RigidBody3D" parent="." unique_id=1652665136]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.202629, 1.096926, -9.863943)
 mass = 0.04
@@ -173,22 +185,22 @@ shape = SubResource("CylinderShape3D_8l0e1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0687613, 12.517755, -13.652735)
 
 [node name="Box3" parent="." unique_id=1641349372 instance=ExtResource("7_0fd8o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1328466, 12.517756, -14.743201)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0705884, 12.517756, -14.666819)
 
-[node name="Box6" parent="." unique_id=1677969310 instance=ExtResource("7_0fd8o")]
-transform = Transform3D(0.991837, 0, -0.127512, 0, 1, 0, 0.127512, 0, 0.991837, 1.063133, 13.517755, -13.685875)
+[node name="Box4" parent="." unique_id=273984649 instance=ExtResource("7_0fd8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0687613, 13.632839, -13.652735)
 
-[node name="Box8" parent="." unique_id=57854722 instance=ExtResource("7_0fd8o")]
-transform = Transform3D(0.9984532, 0, -0.055600196, 0, 1, 0, 0.055600196, 0, 0.9984532, 1.1329261, 13.517756, -14.725925)
+[node name="Box5" parent="." unique_id=78605742 instance=ExtResource("7_0fd8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0705884, 13.632841, -14.666819)
 
-[node name="Box9" parent="." unique_id=1743096223 instance=ExtResource("7_0fd8o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0042875, 14.517755, -13.656952)
+[node name="Box6" parent="." unique_id=339938307 instance=ExtResource("7_0fd8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0687613, 14.7288265, -13.652735)
 
-[node name="Box10" parent="." unique_id=1579451246 instance=ExtResource("7_0fd8o")]
-transform = Transform3D(0.990751, 0, 0.13569213, 0, 1, 0, -0.13569213, 0, 0.990751, 1.0940493, 14.517755, -14.737895)
+[node name="Box7" parent="." unique_id=137696387 instance=ExtResource("7_0fd8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0705884, 14.728828, -14.666819)
 
-[node name="Box11" parent="." unique_id=2092297183 instance=ExtResource("7_0fd8o")]
-transform = Transform3D(0.9432594, 0, 0.33205667, 0, 1, 0, -0.33205667, 0, 0.9432594, 1.1304139, 15.517755, -13.627243)
+[node name="Box8" parent="." unique_id=811508358 instance=ExtResource("7_0fd8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0687613, 15.765091, -13.652735)
 
-[node name="Box12" parent="." unique_id=1349701019 instance=ExtResource("7_0fd8o")]
-transform = Transform3D(-0.6956404, 0, 0.7183901, 0, 1, 0, -0.7183901, 0, -0.6956404, 1.0234514, 15.517755, -14.874361)
+[node name="Box9" parent="." unique_id=1390390386 instance=ExtResource("7_0fd8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0705884, 15.765093, -14.666819)

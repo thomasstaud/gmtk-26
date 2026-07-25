@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_3et5p")
 name = "Level 4"
-base_seconds = 100
+base_seconds = 30
 glide_cost = 2
 bomb_cost = 3
 climb_cost = 0
