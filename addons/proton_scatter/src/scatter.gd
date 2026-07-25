@@ -1,34 +1,37 @@
 @tool
+@icon("../icons/scatter.svg")
+class_name ProtonScatter
 extends Node3D
 
 
-signal shape_changed
-signal thread_completed
 signal build_completed
 
 
 # Includes
 const ProtonScatterDomain := preload("./common/domain.gd")
-const ProtonScatterItem := preload("./scatter_item.gd")
-const ProtonScatterModifierStack := preload("./stack/modifier_stack.gd")
 const ProtonScatterPhysicsHelper := preload("./common/physics_helper.gd")
-const ProtonScatterShape := preload("./scatter_shape.gd")
 const ProtonScatterTransformList := preload("./common/transform_list.gd")
 const ProtonScatterUtil := preload('./common/scatter_util.gd')
 
-
-@export_category("ProtonScatter")
-
 @export_group("General")
+
+## Controls whether the scatter system is active. When disabled, all scattered objects
+## are removed from the scene. When enabled, the system rebuilds according to current settings.
 @export var enabled := true:
 	set(val):
 		enabled = val
 		if is_ready:
 			rebuild()
+
+## Used for random number generation across all modifiers.
+## Using the same seed with the same settings will produce identical results.
 @export var global_seed := 0:
 	set(val):
 		global_seed = val
 		rebuild()
+
+## scattered objects will be visible in the scene tree.
+## Useful for debugging but may impact editor performance with large numbers of objects.
 @export var show_output_in_tree := false:
 	set(val):
 		show_output_in_tree = val
@@ -36,21 +39,27 @@ const ProtonScatterUtil := preload('./common/scatter_util.gd')
 			ProtonScatterUtil.enforce_output_root_owner(self)
 
 @export_group("Performance")
+
+
+## Determines how scattered objects are rendered in the scene:
+## Use Instancing (0): Uses MultiMesh instances for efficient rendering of identical objects.
+## Create Copies (1): Creates individual node copies for each scattered object.
+## Use Particles (2): Uses GPU particles system for very large numbers of objects.
 @export_enum("Use Instancing:0",
 			"Create Copies:1",
 			"Use Particles:2")\
 		var render_mode := 0:
 	set(val):
 		render_mode = val
-		notify_property_list_changed()
 		if is_ready:
+			notify_property_list_changed()
 			full_rebuild.call_deferred()
 
 var use_chunks : bool = true:
 	set(val):
 		use_chunks = val
-		notify_property_list_changed()
 		if is_ready:
+			notify_property_list_changed()
 			full_rebuild.call_deferred()
 
 var chunk_dimensions := Vector3.ONE * 15.0:
@@ -59,13 +68,35 @@ var chunk_dimensions := Vector3.ONE * 15.0:
 		chunk_dimensions.y = max(val.y, 1.0)
 		chunk_dimensions.z = max(val.z, 1.0)
 		if is_ready:
+			notify_property_list_changed()
 			rebuild.call_deferred()
 
+## If enabled, creates static collision shapes for scattered objects.
+## Uses the Physics server directly instead of creating actual collision nodes
 @export var keep_static_colliders := false
+
+## If enabled, forces a complete rebuild of the scattered objects when the scene loads.
+## Disable this if you want to restore the previously cached transforms instead of
+## regenerating them, which can be useful for faster scene loading times.
 @export var force_rebuild_on_load := true
+
+## If enabled, allows the scatter node to rebuild its output during gameplay.
+## Disable this in production to prevent unnecessary updates and improve performance,
+## since scattered objects typically don't need to change after the scene is loaded.
 @export var enable_updates_in_game := false
 
+@export_group("Compatibility")
+
+@export var force_uniform_scale: bool = false:
+	set(val):
+		force_uniform_scale = val
+		if is_ready:
+			rebuild.call_deferred()
+
 @export_group("Dependency")
+
+## References another ProtonScatter node whose build completion should trigger this node to rebuild.
+## Used to create dependency chains where scattered objects are generated in a specific order.
 @export var scatter_parent: NodePath:
 	set(val):
 		if not is_inside_tree():
@@ -95,6 +126,10 @@ var chunk_dimensions := Vector3.ONE * 15.0:
 
 
 @export_group("Debug", "dbg_")
+
+## Debug option to disable multithreading during scatter operations.
+## When enabled, all scatter calculations run on the main thread, which is slower
+## but easier to debug. Only use this during development.
 @export var dbg_disable_thread := false
 
 var undo_redo # EditorUndoRedoManager - Can't type this, class not available outside the editor
@@ -107,8 +142,15 @@ var modifier_stack: ProtonScatterModifierStack:
 				modifier_stack.stack_changed.disconnect(rebuild)
 			if modifier_stack.transforms_ready.is_connected(_on_transforms_ready):
 				modifier_stack.transforms_ready.disconnect(_on_transforms_ready)
-
-		modifier_stack = val.get_copy() # Enfore uniqueness
+		if not val:
+			modifier_stack = null
+			return
+		# Enforce uniqueness if the stack is in used by another Scatter node
+		if val.parent and val.parent != self:
+			modifier_stack = val.get_copy()
+		else:
+			modifier_stack = val
+		modifier_stack.parent = self
 		modifier_stack.value_changed.connect(rebuild, CONNECT_DEFERRED)
 		modifier_stack.stack_changed.connect(rebuild, CONNECT_DEFERRED)
 		modifier_stack.transforms_ready.connect(_on_transforms_ready, CONNECT_DEFERRED)
@@ -133,6 +175,7 @@ var _physics_helper: ProtonScatterPhysicsHelper
 var _body_rid: RID
 var _collision_shapes: Array[RID]
 var _ignore_transform_notification = false
+var _is_using_jolt: bool = false
 
 
 func _ready() -> void:
@@ -140,6 +183,7 @@ func _ready() -> void:
 		set_notify_transform(true)
 		child_exiting_tree.connect(_on_child_exiting_tree)
 
+	_is_using_jolt = ProjectSettings.get_setting("physics/3d/physics_engine") == "Jolt Physics"
 	_perform_sanity_check()
 	_discover_items()
 	update_configuration_warnings.call_deferred()
@@ -150,11 +194,12 @@ func _ready() -> void:
 
 
 func _exit_tree():
-	_clear_collision_data()
-
 	if is_thread_running():
-		await _thread.wait_to_finish()
+		modifier_stack.stop_update()
+		_thread.wait_to_finish()
 		_thread = null
+
+	_clear_collision_data()
 
 
 func _get_property_list() -> Array:
@@ -215,18 +260,20 @@ func _notification(what):
 
 
 func _set(property, value):
+	# use_chunks and chunk_dimensions need to be updated regardless of being in-editor
+	# or not, otherwise they will always use their defaults ingame (on, [15.0, 15.0, 15.0])
+	if property == "Performance/use_chunks":
+		use_chunks = value
+
+	elif property == "Performance/chunk_dimensions":
+		chunk_dimensions = value
+
 	if not Engine.is_editor_hint():
 		return false
 
 	# Workaround to detect when the node was duplicated from the editor.
 	if property == "transform":
 		_on_node_duplicated.call_deferred()
-
-	elif property == "Performance/use_chunks":
-		use_chunks = value
-
-	elif property == "Performance/chunk_dimensions":
-		chunk_dimensions = value
 
 	# Backward compatibility.
 	# Convert the value of previous property "use_instancing" into the proper render_mode.
@@ -243,7 +290,7 @@ func _get(property):
 
 	elif property == "Performance/chunk_dimensions":
 		return chunk_dimensions
-
+	return null
 
 func is_thread_running() -> bool:
 	return _thread != null and _thread.is_started()
@@ -274,7 +321,8 @@ func _clear_collision_data() -> void:
 		_body_rid = RID()
 
 	for rid in _collision_shapes:
-		PhysicsServer3D.free_rid(rid)
+		if rid.is_valid():
+			PhysicsServer3D.free_rid(rid)
 
 	_collision_shapes.clear()
 
@@ -304,7 +352,7 @@ func full_rebuild():
 func rebuild(force_discover := false) -> void:
 	update_gizmos()
 
-	if not is_inside_tree():
+	if not is_inside_tree() or not is_ready:
 		return
 
 	if is_thread_running():
@@ -423,6 +471,9 @@ func _update_split_multimeshes() -> void:
 
 	for item in items:
 		var root: Node3D = ProtonScatterUtil.get_or_create_item_root(item)
+		if not is_instance_valid(root):
+			continue
+
 		# use count number of transforms for this item
 		var count = int(round(float(item.proportion) / total_item_proportion * transforms_count))
 
@@ -464,9 +515,9 @@ func _update_split_multimeshes() -> void:
 					if chunk_elements == 0:
 						continue
 					var mmi = ProtonScatterUtil.get_or_create_multimesh_chunk(
-													item, 
-													mesh_instance, 
-													Vector3i(xi, yi, zi), 
+													item,
+													mesh_instance,
+													Vector3i(xi, yi, zi),
 													chunk_elements)
 					if not mmi:
 						continue
@@ -510,6 +561,7 @@ func _update_duplicates() -> void:
 
 			var t: Transform3D = item.process_transform(transforms.list[offset + i])
 			instance.transform = t
+			ProtonScatterUtil.set_visibility_layers(instance, item.visibility_layers)
 
 		# Delete the unused instances left in the pool if any
 		if count < child_count:
@@ -677,10 +729,10 @@ func _perform_sanity_check() -> void:
 	scatter_parent = scatter_parent
 
 
+# Remove output coming from the source node to avoid linked multimeshes or
+# other unwanted side effects
 func _on_node_duplicated() -> void:
-	# Force a full rebuild (which clears the existing outputs), otherwise we get
-	# linked multimeshes or other unwanted side effects
-	full_rebuild.call_deferred()
+	clear_output()
 
 
 func _on_child_exiting_tree(node: Node) -> void:
@@ -703,6 +755,9 @@ func _on_transforms_ready(new_transforms: ProtonScatterTransformList) -> void:
 
 	transforms = new_transforms
 
+	if force_uniform_scale or _is_using_jolt:
+		transforms.enforce_uniform_scale()
+
 	if not transforms or transforms.is_empty():
 		clear_output()
 		update_gizmos()
@@ -721,5 +776,8 @@ func _on_transforms_ready(new_transforms: ProtonScatterTransformList) -> void:
 
 	update_gizmos()
 	build_version += 1
-	await get_tree().process_frame
+
+	if is_inside_tree():
+		await get_tree().process_frame
+
 	build_completed.emit()

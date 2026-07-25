@@ -46,7 +46,6 @@ var can_dash := true
 var can_bomb := true
 
 @export var pcam: PhantomCamera3D
-@onready var player_model: Node3D = $Model
 @onready var head: Node3D = $Head
 @onready var bomb_spawn: Node3D = %BombSpawn
 @onready var forward_area: Area3D = $ForwardArea

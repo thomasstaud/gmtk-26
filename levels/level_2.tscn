@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://cygd47x7g1wsk" path="res://assets/GLB format/block-grass-overhang-large-slope-steep-narrow.glb" id="9_at1ld"]
 [ext_resource type="PackedScene" uid="uid://bceu8bu46rr18" path="res://assets/GLB format/block-grass-overhang-large-tall.glb" id="10_sd18g"]
 [ext_resource type="PackedScene" uid="uid://bl8v5h380tjij" path="res://assets/gltf/Tree_Bare_1_A_Color1.gltf" id="12_hbb88"]
+[ext_resource type="PackedScene" uid="uid://dsoecmk7fm5vm" path="res://assets/gltf/Tree_Bare_1_B_Color1.gltf" id="13_5orea"]
+[ext_resource type="PackedScene" uid="uid://dq1kyqpqrmsg" path="res://assets/gltf/Tree_Bare_2_A_Color1.gltf" id="14_0ourt"]
+[ext_resource type="PackedScene" uid="uid://b05wco8eqgjdn" path="res://assets/gltf/Tree_Bare_1_C_Color1.gltf" id="15_0ourt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -178,14 +181,55 @@ transform = Transform3D(5.831329, 0, 0, 0, 5.831329, 0, 0, 0, 5.831329, 6.985379
 [node name="block-grass-overhang-large-tall3" parent="." unique_id=2050307140 instance=ExtResource("10_sd18g")]
 transform = Transform3D(4.873209, 0, 0, 0, 4.873209, 0, 0, 0, 4.873209, -15.895871, -1.242254, 1.1165357)
 
-[node name="Tree_Bare_1_A_Color12" parent="." unique_id=1922025142 instance=ExtResource("12_hbb88")]
-transform = Transform3D(1.027751, 0, 0, 0, -0.8094184, 0.036059774, 0, -0.01997861, -1.4609346, -13.239052, 12.712383, -9.901489)
+[node name="Roots" type="Node3D" parent="." unique_id=287470796]
 
-[node name="Tree_Bare_1_A_Color13" parent="." unique_id=759128794 instance=ExtResource("12_hbb88")]
-transform = Transform3D(-1.0111953, 0.018122422, 0.78040797, 0, -1.3871244, 0.03639196, 0.6308526, 0.029048488, 1.2509183, -13.239052, 12.554068, -13.648361)
+[node name="Tree_Bare_1_A_Color12" parent="Roots" unique_id=1922025142 instance=ExtResource("12_hbb88")]
+transform = Transform3D(0.71021134, 0, 0, 0, -0.55933595, 0.024918545, 0, -0.013805908, -1.0095562, -12.62021, 12.712383, -9.523996)
 
-[node name="Tree_Bare_1_A_Color14" parent="." unique_id=1907904850 instance=ExtResource("12_hbb88")]
-transform = Transform3D(-0.26493064, -0.019288598, -0.7484221, 0, -0.7966969, 0.018833177, -1.3352427, 0.0038271258, 0.14849736, -12.236454, 12.712383, -12.139534)
+[node name="Tree_Bare_1_A_Color13" parent="Roots" unique_id=759128794 instance=ExtResource("12_hbb88")]
+transform = Transform3D(-1.0111953, 0.018122422, 0.78040797, 0, -1.3871244, 0.03639196, 0.6308526, 0.029048488, 1.2509183, -13.239052, 13.288462, -13.648361)
 
-[node name="Tree_Bare_1_A_Color15" parent="." unique_id=1572902256 instance=ExtResource("12_hbb88")]
+[node name="Tree_Bare_1_A_Color15" parent="Roots" unique_id=1572902256 instance=ExtResource("12_hbb88")]
 transform = Transform3D(0.73697054, 0.024535328, 0.52405864, -2.1081603e-10, -1.3631929, 0.01773903, 0.7853086, -0.023025092, -0.49180093, -14.241649, 12.554068, -11.410317)
+
+[node name="Tree_Bare_1_A_Color14" parent="Roots" unique_id=630683077 instance=ExtResource("12_hbb88")]
+transform = Transform3D(-0.36088246, -0.011890726, -0.8695086, 3.1452668e-10, -0.55933595, 0.024918547, -0.61168945, 0.0070152488, 0.5129897, -9.015713, 7.417351, -33.265602)
+
+[node name="Tree_Bare_1_A_Color17" parent="Roots" unique_id=1579304847 instance=ExtResource("12_hbb88")]
+transform = Transform3D(-0.37982813, -0.022434426, -0.972682, 0, -1.0441757, 0.024083393, -0.9729406, 0.008758219, 0.3797272, -4.7749424, 15.327976, -3.461545)
+
+[node name="Tree_Bare_1_B_Color12" parent="Roots" unique_id=877186593 instance=ExtResource("13_5orea")]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -6.713832, 14.730762, -5.2821407)
+
+[node name="Tree_Bare_2_A_Color12" parent="Roots" unique_id=1415128313 instance=ExtResource("14_0ourt")]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -6.8659964, 14.697097, -6.3494797)
+
+[node name="Tree_Bare_1_C_Color12" parent="Roots" unique_id=1751895469 instance=ExtResource("15_0ourt")]
+transform = Transform3D(0.039727636, 3.235036e-08, -0.370045, -1.5762076e-22, -0.37217146, -3.253626e-08, -0.370045, 3.4731003e-09, -0.039727636, -3.1160295, 14.585238, -4.189725)
+
+[node name="Tree_Bare_1_A_Color18" parent="Roots" unique_id=359705774 instance=ExtResource("12_hbb88")]
+transform = Transform3D(0.058633223, 5.0985037e-08, 0.5603457, 7.627224e-09, -0.56340486, 5.0465292e-08, 0.5603457, 2.333925e-09, -0.058633223, -16.439083, 10.144533, -20.87943)
+
+[node name="Tree_Bare_1_A_Color19" parent="Roots" unique_id=898690725 instance=ExtResource("12_hbb88")]
+transform = Transform3D(0.9281292, -0.0110453935, -0.4788917, -2.2220905e-09, -1.0441756, 0.024083378, -0.479019, -0.02140113, -0.92788225, -16.346283, 10.164612, -22.543232)
+
+[node name="Tree_Bare_1_B_Color13" parent="Roots" unique_id=1895747539 instance=ExtResource("13_5orea")]
+transform = Transform3D(-0.10406941, -5.551641e-09, -0.99457, 7.388504e-08, -1, -2.1492044e-09, -0.99457, -7.370752e-08, 0.10406941, -14.916221, 10.307508, -25.384624)
+
+[node name="Tree_Bare_1_B_Color14" parent="Roots" unique_id=1150333018 instance=ExtResource("13_5orea")]
+transform = Transform3D(-0.10406941, -5.551641e-09, -0.99457, 7.388504e-08, -1, -2.1492044e-09, -0.99457, -7.370752e-08, 0.10406941, -10.7386265, 7.3320084, -31.31068)
+
+[node name="Tree_Bare_2_A_Color13" parent="Roots" unique_id=1265371709 instance=ExtResource("14_0ourt")]
+transform = Transform3D(-0.10406941, -5.551641e-09, -0.99457, 7.388504e-08, -1, -2.1492044e-09, -0.99457, -7.370752e-08, 0.10406941, -14.725812, 10.42597, -24.127338)
+
+[node name="Tree_Bare_1_C_Color13" parent="Roots" unique_id=1776121629 instance=ExtResource("15_0ourt")]
+transform = Transform3D(0.038731664, -3.1039722e-08, 0.37015057, 5.03836e-09, -0.3721715, -3.1736388e-08, 0.37015057, 8.313793e-09, -0.038731664, -17.572535, 10.314112, -21.536634)
+
+[node name="Tree_Bare_2_A_Color14" parent="Roots" unique_id=986911467 instance=ExtResource("14_0ourt")]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, -11.538086, 6.3183312, -29.745617)
+
+[node name="Tree_Bare_2_A_Color16" parent="Roots" unique_id=785741217 instance=ExtResource("14_0ourt")]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, -11.096005, 6.73115, -29.732767)
+
+[node name="Tree_Bare_2_A_Color15" parent="Roots" unique_id=1366167182 instance=ExtResource("14_0ourt")]
+transform = Transform3D(-0.72164404, 6.308812e-08, 0, -6.308812e-08, -0.72164404, 0, 0, 0, 0.72164404, -10.522863, 6.875551, -30.165941)
