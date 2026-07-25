@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://oqh5oxx1mkyn" path="res://game/player.tscn" id="4_at1ld"]
 [ext_resource type="PackedScene" uid="uid://dlg5te7em1wnr" path="res://game/finish.tscn" id="5_sd18g"]
 [ext_resource type="PackedScene" uid="uid://bu61wp8mbtwf5" path="res://ui/ui.tscn" id="6_vm7no"]
+[ext_resource type="PackedScene" uid="uid://bceu8bu46rr18" path="res://assets/GLB format/block-grass-overhang-large-tall.glb" id="7_ep78u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -47,6 +48,8 @@ follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_ryrav")
 tween_on_load = false
 follow_offset = Vector3(0, 0.5, 0)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1162071670]
@@ -116,3 +119,6 @@ size = Vector3(3.6538086, 1, 6.648121)
 [node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1665671820]
 transform = Transform3D(0.55599594, 0, -0.831185, 0, 1, 0, 0.831185, 0, 0.55599594, -9.902919, 8.029718, -31.676847)
 size = Vector3(3.6538086, 1, 6.648121)
+
+[node name="block-grass-overhang-large-tall2" parent="." unique_id=1553933017 instance=ExtResource("7_ep78u")]
+transform = Transform3D(3.497711, 0, 0, 0, 3.497711, 0, 0, 0, 3.497711, 4.4926734, 11.893976, 2.0754013)
