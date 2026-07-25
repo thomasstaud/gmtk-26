@@ -11,8 +11,6 @@ extends RefCounted
 # An instance of this class is passed to the modifiers during a rebuild.
 
 
-const ProtonScatter := preload("../scatter.gd")
-const ProtonScatterShape := preload("../scatter_shape.gd")
 const BaseShape := preload("../shapes/base_shape.gd")
 const Bounds := preload("../common/bounds.gd")
 
@@ -23,12 +21,14 @@ class DomainShapeInfo:
 
 	func is_point_inside(point: Vector3, local: bool) -> bool:
 		var t: Transform3D
-		t = node.get_transform() if local else node.get_global_transform()
-		return shape.is_point_inside(point, t)
-
+		if is_instance_valid(node):
+			t = node.get_transform() if local else node.get_global_transform()
+			return shape.is_point_inside(point, t)
+		else:
+			return false	
+	
 	func get_corners_global() -> Array:
 		return shape.get_corners_global(node.get_global_transform())
-
 
 # A polygon made of one outer boundary and one or multiple holes (inner polygons)
 class ComplexPolygon:
