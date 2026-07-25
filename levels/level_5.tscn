@@ -5,7 +5,11 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_ldpug"]
 [ext_resource type="PackedScene" uid="uid://oqh5oxx1mkyn" path="res://game/player.tscn" id="4_8vr3t"]
 [ext_resource type="PackedScene" uid="uid://dlg5te7em1wnr" path="res://game/finish.tscn" id="5_a58qw"]
+[ext_resource type="PackedScene" uid="uid://bun4pdqyr6ylv" path="res://features/ground.tscn" id="6_g5mgy"]
 [ext_resource type="PackedScene" uid="uid://bu61wp8mbtwf5" path="res://ui/ui.tscn" id="6_ij65d"]
+[ext_resource type="PackedScene" uid="uid://o8ak1op60hgr" path="res://assets/GLB format/block-grass-overhang-low-large.glb" id="8_ldpug"]
+[ext_resource type="PackedScene" uid="uid://cygd47x7g1wsk" path="res://assets/GLB format/block-grass-overhang-large-slope-steep-narrow.glb" id="9_8vr3t"]
+[ext_resource type="PackedScene" uid="uid://cty8yfmi8e5hh" path="res://assets/GLB format/block-grass-overhang-long.glb" id="10_8vr3t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -20,14 +24,6 @@ sky = SubResource("Sky_feb5d")
 
 [sub_resource type="Resource" id="Resource_ryrav"]
 script = ExtResource("2_v5ho1")
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g4v7s"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
-size = Vector2(100, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
-albedo_color = Color(0.8280984, 0.25504667, 0.27513903, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1y5xd"]
 albedo_color = Color(0.3185825, 0.39292884, 0.20700252, 1)
@@ -69,17 +65,10 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 transform = Transform3D(0.0011436499, 0, -0.99999934, 0, 1, 0, 0.99999934, 0, 0.0011436499, -7.40418, 1.0000005, -0.06480503)
 pcam = NodePath("../PhantomCamera3D")
 
-[node name="Ground" type="StaticBody3D" parent="." unique_id=1473587284]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=272630419]
-shape = SubResource("WorldBoundaryShape3D_g4v7s")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1550237007]
-mesh = SubResource("PlaneMesh_g4v7s")
-surface_material_override/0 = SubResource("StandardMaterial3D_yf5fn")
-
 [node name="Finish" parent="." unique_id=378886241 instance=ExtResource("5_a58qw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.620387, 8.657325, -33.616364)
+
+[node name="Ground" parent="." unique_id=2134665566 instance=ExtResource("6_g5mgy")]
 
 [node name="UI" parent="." unique_id=461141405 instance=ExtResource("6_ij65d")]
 
@@ -157,5 +146,26 @@ transform = Transform3D(-4.3711385e-08, 0, -1, 0, 0.99999994, 0, 0.99999994, 0, 
 size = Vector3(16.449097, 2.0668335, 1.9396973)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=1366717110]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 3.5527137e-15, 0, 0.99999994, -4.918884, 10.2821865, 7.82011)
-size = Vector3(7.289856, 2.0668335, 1.9396973)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 3.5527137e-15, 0, 0.99999994, -4.918884, 10.2821865, 7.860118)
+size = Vector3(7.289856, 2.0668335, 2.7266235)
+
+[node name="block-grass-overhang-low-large2" parent="." unique_id=2044411751 instance=ExtResource("8_ldpug")]
+transform = Transform3D(1.2077241, 0, 0, 0, 1.2077241, 0, 0, 0, 1.3625224, -14.904504, 10.448311, 8.8442745)
+
+[node name="block-grass-overhang-low-large3" parent="." unique_id=1780662985 instance=ExtResource("8_ldpug")]
+transform = Transform3D(1.2077241, 0, 0, 0, 1.2077241, 0, 0, 0, 1.3625224, -21.901403, 10.448311, 4.6551275)
+
+[node name="block-grass-overhang-low-large4" parent="." unique_id=442740587 instance=ExtResource("8_ldpug")]
+transform = Transform3D(1.2077241, 0, 0, 0, 1.2077241, 0, 0, 0, 1.3625224, -23.347525, 10.435576, -4.2619805)
+
+[node name="block-grass-overhang-large-slope-steep-narrow2" parent="." unique_id=1958404844 instance=ExtResource("9_8vr3t")]
+transform = Transform3D(-1.4159193e-07, 1.1602272, 6.579975, 0, 6.579975, -1.1602272, -3.2392457, -5.071514e-08, -2.8761983e-07, 2.0456014, 2.7107697, 7.7729397)
+
+[node name="block-grass-overhang-large-slope-steep-narrow3" parent="." unique_id=315958412 instance=ExtResource("9_8vr3t")]
+transform = Transform3D(2.5516582e-07, -0.6969565, -3.9526372, -1.2674224e-15, 3.9526372, -0.6969565, 1.9458379, 9.139483e-08, 5.1832586e-07, 5.102457, -0.8728585, -6.709638)
+
+[node name="block-grass-overhang-long2" parent="." unique_id=458735069 instance=ExtResource("10_8vr3t")]
+transform = Transform3D(-3.8325993e-07, 0, -4.7665596, 0, 4.76656, 0, 8.767965, 0, -2.0835294e-07, 9.39199, -0.43570614, 0.71078396)
+
+[node name="block-grass-overhang-long3" parent="." unique_id=1201536469 instance=ExtResource("10_8vr3t")]
+transform = Transform3D(3.6387367, 0, 0, 0, 3.2251844, 0, 0, 0, 2.8109145, -4.8740563, 8.159097, 7.8622704)
