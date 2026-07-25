@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://7l0y3levr28g" path="res://assets/GLB format/block-grass-overhang-low-long.glb" id="8_dfjjl"]
 [ext_resource type="PackedScene" uid="uid://cygd47x7g1wsk" path="res://assets/GLB format/block-grass-overhang-large-slope-steep-narrow.glb" id="9_at1ld"]
 [ext_resource type="PackedScene" uid="uid://bceu8bu46rr18" path="res://assets/GLB format/block-grass-overhang-large-tall.glb" id="10_sd18g"]
+[ext_resource type="PackedScene" uid="uid://bl8v5h380tjij" path="res://assets/gltf/Tree_Bare_1_A_Color1.gltf" id="12_hbb88"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -176,3 +177,15 @@ transform = Transform3D(5.831329, 0, 0, 0, 5.831329, 0, 0, 0, 5.831329, 6.985379
 
 [node name="block-grass-overhang-large-tall3" parent="." unique_id=2050307140 instance=ExtResource("10_sd18g")]
 transform = Transform3D(4.873209, 0, 0, 0, 4.873209, 0, 0, 0, 4.873209, -15.895871, -1.242254, 1.1165357)
+
+[node name="Tree_Bare_1_A_Color12" parent="." unique_id=1922025142 instance=ExtResource("12_hbb88")]
+transform = Transform3D(1.027751, 0, 0, 0, -0.8094184, 0.036059774, 0, -0.01997861, -1.4609346, -13.239052, 12.712383, -9.901489)
+
+[node name="Tree_Bare_1_A_Color13" parent="." unique_id=759128794 instance=ExtResource("12_hbb88")]
+transform = Transform3D(-1.0111953, 0.018122422, 0.78040797, 0, -1.3871244, 0.03639196, 0.6308526, 0.029048488, 1.2509183, -13.239052, 12.554068, -13.648361)
+
+[node name="Tree_Bare_1_A_Color14" parent="." unique_id=1907904850 instance=ExtResource("12_hbb88")]
+transform = Transform3D(-0.26493064, -0.019288598, -0.7484221, 0, -0.7966969, 0.018833177, -1.3352427, 0.0038271258, 0.14849736, -12.236454, 12.712383, -12.139534)
+
+[node name="Tree_Bare_1_A_Color15" parent="." unique_id=1572902256 instance=ExtResource("12_hbb88")]
+transform = Transform3D(0.73697054, 0.024535328, 0.52405864, -2.1081603e-10, -1.3631929, 0.01773903, 0.7853086, -0.023025092, -0.49180093, -14.241649, 12.554068, -11.410317)
