@@ -9,4 +9,5 @@ extends Resource
 @export var bomb_cost := 2
 @export var climb_cost := 1
 
+var unlocked := false
 var best_time := 0

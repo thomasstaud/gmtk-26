@@ -8,7 +8,7 @@ const LEVELS = 5
 const LEVEL_SCENE_PATH = "res://levels/level_%d.tscn"
 const LEVEL_RES_PATH = "res://levels/level_%d.tres"
 
-var current_level := 1
+var current_level := 0
 var time_left_ms: int
 
 var levels: Array[Level] = []
@@ -27,9 +27,13 @@ func _ready() -> void:
 	for i in range(LEVELS):
 		levels.append(load(LEVEL_RES_PATH % (i + 1)))
 	
+	levels[0].unlocked = true
 	AbilityManager.reset(levels[0])
 	time_left_ms = levels[0].base_seconds * 1000
 	time_updated.emit(time_left_ms)
+	
+	# DEBUG:
+	for level in levels: level.unlocked = true
 
 
 func _process(delta: float) -> void:
@@ -63,11 +67,11 @@ func load_level(level: int) -> void:
 	current_level = level
 	
 	var total_bonus_ms = 0
-	for i in range(current_level - 1):
+	for i in range(current_level):
 		total_bonus_ms += levels[i].best_time
 	
 	AbilityManager.reset(levels[level-1])
-	get_tree().change_scene_to_file(LEVEL_SCENE_PATH % current_level)
+	get_tree().change_scene_to_file(LEVEL_SCENE_PATH % (current_level + 1))
 	
 	time_left_ms = (levels[level-1].base_seconds * 1000) + total_bonus_ms
 	time_updated.emit(time_left_ms)
@@ -79,7 +83,7 @@ func load_next_level() -> void:
 
 func calculate_remaining_time() -> int:
 	var all_level_remaining_time = 0
-	for i in range(current_level - 1):
+	for i in range(current_level):
 		all_level_remaining_time += (levels[i].base_seconds * 1000) - levels[i].best_time
 	return all_level_remaining_time
 
@@ -95,8 +99,11 @@ func on_win() -> void:
 	paused = true
 	win.emit()
 	
-	if time_left_ms > levels[current_level-1].best_time:
-		levels[current_level-1].best_time = time_left_ms
+	if current_level != LEVELS - 1:
+		levels[current_level + 1].unlocked = true
+	
+	if time_left_ms > levels[current_level].best_time:
+		levels[current_level].best_time = time_left_ms
 
 
 func on_lose() -> void:

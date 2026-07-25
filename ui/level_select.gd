@@ -10,4 +10,4 @@ func _ready() -> void:
 	for i in range(GameManager.LEVELS):
 		var tile = LEVEL_TILE.instantiate()
 		tile_grid.add_child(tile)
-		tile.init(i+1)
+		tile.init(i+1, GameManager.levels[i])

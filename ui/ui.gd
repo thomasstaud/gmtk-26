@@ -1,3 +1,4 @@
+class_name UI
 extends Control
 
 const ABILITY_TILE := preload("uid://pnriti1de4cj")
@@ -19,7 +20,7 @@ func _ready() -> void:
 	on_timer_update(GameManager.time_left_ms)
 
 
-func format_ms(ms: int) -> String:
+static func format_ms(ms: int) -> String:
 	@warning_ignore("integer_division")
 	var mins := ms / (1000 * 60)
 	@warning_ignore("integer_division")
