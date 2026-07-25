@@ -9,6 +9,8 @@ const LEVEL_SCENE_PATH = "res://levels/level_%d.tscn"
 const LEVEL_RES_PATH = "res://levels/level_%d.tres"
 
 var current_level := 0
+# starting time for the current level, before purchases
+var total_time_ms: int
 var time_left_ms: int
 
 var levels: Array[Level] = []
@@ -30,6 +32,7 @@ func _ready() -> void:
 	levels[0].unlocked = true
 	AbilityManager.reset(levels[0])
 	time_left_ms = levels[0].base_seconds * 1000
+	total_time_ms = time_left_ms
 	time_updated.emit(time_left_ms)
 	
 	# DEBUG:
@@ -60,20 +63,17 @@ func change_time(delta: int) -> void:
 
 
 func load_level(level: int) -> void:
-	if level > LEVELS:
+	if level >= LEVELS:
 		push_error("Level %d does not exist!!!" % level)
 		return
 	
 	current_level = level
 	
-	var total_bonus_ms = 0
-	for i in range(current_level):
-		total_bonus_ms += levels[i].best_time
-	
-	AbilityManager.reset(levels[level-1])
+	AbilityManager.reset(levels[level])
 	get_tree().change_scene_to_file(LEVEL_SCENE_PATH % (current_level + 1))
 	
-	time_left_ms = (levels[level-1].base_seconds * 1000) + total_bonus_ms
+	time_left_ms = (levels[level].base_seconds * 1000) + calculate_remaining_time(current_level)
+	total_time_ms = time_left_ms
 	time_updated.emit(time_left_ms)
 
 
@@ -81,9 +81,9 @@ func load_next_level() -> void:
 	load_level(current_level + 1)
 
 
-func calculate_remaining_time() -> int:
+func calculate_remaining_time(level: int) -> int:
 	var all_level_remaining_time = 0
-	for i in range(current_level):
+	for i in range(level):
 		all_level_remaining_time += (levels[i].base_seconds * 1000) - levels[i].best_time
 	return all_level_remaining_time
 
@@ -97,13 +97,15 @@ func start_level() -> void:
 
 func on_win() -> void:
 	paused = true
-	win.emit()
 	
 	if current_level != LEVELS - 1:
 		levels[current_level + 1].unlocked = true
 	
-	if time_left_ms > levels[current_level].best_time:
-		levels[current_level].best_time = time_left_ms
+	var time = total_time_ms - time_left_ms
+	if time > levels[current_level].best_time:
+		levels[current_level].best_time = time
+	
+	win.emit(time)
 
 
 func on_lose() -> void:
