@@ -10,7 +10,7 @@ const MAX_PITCH: float = 75.0
 const SPEED = 10.0
 const JUMP_POWER = 13.5
 const PUSH_FORCE = 2.0
-const CLIMB_POWER = 5.5 # Leicht erhöht für ein flüssigeres Klettergefühl
+const CLIMB_POWER = 5.5
 
 const GROUND_ACCEL = 40.0
 const AIR_ACCEL = 6.0
@@ -30,6 +30,9 @@ const DASH_VERTICAL_SCALE = 0.25
 const DASH_DURATION = 0.17
 const DASH_COOLDOWN = 1.0
 const BOMB_COOLDOWN = 0.2
+
+const COYOTE_TIME = 0.15 
+var coyote_timer := 0.0
 
 @export var sensitivity = 0.2
 @export var max_jump_count := 2
@@ -57,9 +60,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and AbilityManager.jump.bought:
-		# Sprung nur ausführen, wenn man auf dem Boden ist,
-		# ODER noch Sprünge übrig hat UND noch NICHT fällt (um nicht beim Fallen zu hüpfen)
-		if is_on_floor():
+		if is_on_floor() or coyote_timer > 0.0:
 			jump = true
 		elif jump_count < max_jump_count and velocity.y >= -1.0:
 			jump = true
@@ -106,15 +107,15 @@ func _physics_process(delta: float) -> void:
 	var is_holding_jump := Input.is_action_pressed("jump")
 	var is_holding_forward := Input.is_action_pressed("forward")
 	
-	# Dynamische Kletter-Prüfung: Klettern funktioniert nun jederzeit in der Luft oder am Boden, 
-	# sobald "Vorwärts" gehalten wird und eine Wand da ist.
 	climb = can_move and AbilityManager.climb.bought and is_holding_forward and forward_area.has_normal_overlapping_bodies()
-
-	# Gleiten ist aktiv, wenn man fällt, NICHT klettert und Leertaste hält
 	glide = AbilityManager.glide.bought and not is_on_floor() and not climb and is_holding_jump and velocity.y < 0
 	
 	if is_on_floor():
 		jump_count = 0
+		coyote_timer = COYOTE_TIME
+	else:
+		coyote_timer -= delta 
+
 
 	if is_dashing:
 		dash_timer -= delta
@@ -129,7 +130,6 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor() and not climb:
 		if glide:
-			# Sanftes Gleiten mit Terminal Velocity
 			velocity.y = lerp(velocity.y, GLIDE_TERMINAL_VELOCITY, GLIDE_SMOOTHING * delta)
 		elif is_on_wall() and velocity.y <= 0:
 			velocity += get_gravity() * WALL_SLIDE_GRAVITY * delta
@@ -149,9 +149,10 @@ func _physics_process(delta: float) -> void:
 
 	if jump and not climb:
 		jump = false
-		if is_on_floor():
+		if is_on_floor() or coyote_timer > 0.0:
 			velocity.y = JUMP_POWER
 			jump_count = 1
+			coyote_timer = 0.0 
 		elif is_on_wall():
 			velocity = -direction * JUMP_POWER + Vector3.UP * JUMP_POWER
 		elif jump_count < max_jump_count:
@@ -166,14 +167,6 @@ func _physics_process(delta: float) -> void:
 	var accel := GROUND_ACCEL if is_on_floor() else AIR_ACCEL
 
 	if direction != Vector3.ZERO:
-		# commented out because the lerp will almost always go to 1 
-		# and that causes weird velocity when the player keeps holding
-		# forward after the climb
-		
-		#var target_max_speed := maxf(SPEED, current_speed)
-		#var target_vel := direction * target_max_speed
-		#horiz_vel = horiz_vel.lerp(target_vel, accel * delta)
-		
 		var clamped_speed = min(SPEED, current_speed + delta * accel)
 		horiz_vel = clamped_speed * direction
 		
@@ -187,6 +180,7 @@ func _physics_process(delta: float) -> void:
 	velocity.z = horiz_vel.z
 
 	move_and_slide()
+	
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody3D:
