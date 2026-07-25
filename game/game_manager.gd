@@ -60,7 +60,7 @@ func change_time(delta: int) -> void:
 
 
 func load_level(level: int) -> void:
-	if level > LEVELS:
+	if level >= LEVELS:
 		push_error("Level %d does not exist!!!" % level)
 		return
 	
@@ -70,10 +70,10 @@ func load_level(level: int) -> void:
 	for i in range(current_level):
 		total_bonus_ms += levels[i].best_time
 	
-	AbilityManager.reset(levels[level-1])
+	AbilityManager.reset(levels[level])
 	get_tree().change_scene_to_file(LEVEL_SCENE_PATH % (current_level + 1))
 	
-	time_left_ms = (levels[level-1].base_seconds * 1000) + total_bonus_ms
+	time_left_ms = (levels[level].base_seconds * 1000) + total_bonus_ms
 	time_updated.emit(time_left_ms)
 
 
@@ -97,7 +97,7 @@ func start_level() -> void:
 
 func on_win() -> void:
 	paused = true
-	win.emit()
+	win.emit(time_left_ms)
 	
 	if current_level != LEVELS - 1:
 		levels[current_level + 1].unlocked = true

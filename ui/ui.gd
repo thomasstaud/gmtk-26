@@ -9,6 +9,7 @@ const ABILITY_TILE := preload("uid://pnriti1de4cj")
 @onready var tile_grid: GridContainer = %TileGrid
 @onready var timer: Label = $Timer
 @onready var controls: Controls = $Controls
+@onready var win_time: Label = %WinTime
 
 
 func _ready() -> void:
@@ -50,7 +51,8 @@ func _on_restart_pressed() -> void:
 func on_timer_update(ms: int) -> void:
 	timer.text = format_ms(ms)
 
-func on_win() -> void:
+func on_win(time) -> void:
+	win_time.text = format_ms(time)
 	win.show()
 
 func on_game_over() -> void:

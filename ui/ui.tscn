@@ -269,6 +269,22 @@ patch_margin_top = 69
 patch_margin_right = 68
 patch_margin_bottom = 65
 
+[node name="WinTime" type="Label" parent="Win/Panel2" unique_id=1699068970]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.5
+offset_top = -40.5
+offset_right = 263.5
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "00:00.000"
+
 [node name="Label" type="Label" parent="Win/Panel2" unique_id=1472240444]
 layout_mode = 1
 anchors_preset = 8
