@@ -2,6 +2,7 @@ extends Control
 
 @onready var label: Label = %Label
 @onready var button: Button = %Button
+@onready var description: Label = %Description
 
 var ability: Ability
 
@@ -10,6 +11,7 @@ func init(_ability: Ability):
 	ability = _ability
 	
 	label.text = ability.name
+	description.text = ability.description
 	update_button_text()
 
 
