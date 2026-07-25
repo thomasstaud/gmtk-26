@@ -6,7 +6,7 @@
 script = ExtResource("1_8g6tw")
 name = "Level 1"
 base_seconds = 10
+glide_cost = 0
 bomb_cost = 0
 climb_cost = 0
-glide_cost = 0
 metadata/_custom_type_script = "uid://bpatqgqbvt63w"

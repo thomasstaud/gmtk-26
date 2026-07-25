@@ -46,7 +46,7 @@ autoplay = &"bob"
 [node name="jewel2" parent="." unique_id=946234340 instance=ExtResource("1_m3o2r")]
 transform = Transform3D(3.323474, 0, 0, 0, 3.323474, 0, 0, 0, 3.323474, 0, -0.37906128, 0)
 
-[node name="jewel" parent="jewel2" index="0" unique_id=549655063]
+[node name="jewel" parent="jewel2" index="0" unique_id=1787638375]
 transform = Transform3D(0.9999999, 0, 0, 0, 1.9173726, 0, 0, 0, 0.9999999, 0, -0.1753657, 0)
 material_override = SubResource("StandardMaterial3D_i6od7")
 
