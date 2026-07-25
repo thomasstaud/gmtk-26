@@ -12,8 +12,6 @@ height = 0.1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tjrnq"]
@@ -40,9 +38,6 @@ mesh = SubResource("SphereMesh_g4v7s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1515071187]
 shape = SubResource("CapsuleShape3D_g4v7s")
-
-[node name="Model" type="MeshInstance3D" parent="." unique_id=1556873552]
-mesh = SubResource("CapsuleMesh_g4v7s")
 
 [node name="FinishDetection" type="Area3D" parent="." unique_id=60372272]
 collision_layer = 0

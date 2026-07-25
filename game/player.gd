@@ -8,7 +8,7 @@ const BOMB = preload("uid://dff0rnn50u2q1")
 const MIN_PITCH: float = -89.9
 const MAX_PITCH: float = 75.0
 const SPEED = 10.0
-const JUMP_POWER = 12.0
+const JUMP_POWER = 13.5
 const PUSH_FORCE = 2.0
 const CLIMB_POWER = 5.5 # Leicht erhöht für ein flüssigeres Klettergefühl
 
@@ -17,8 +17,8 @@ const AIR_ACCEL = 6.0
 const GROUND_DECEL = 12.0
 const DASH_DECAY = 2.0
 
-const JUMP_GRAVITY = 3.0
-const JUMP_HOLD_GRAVITY = 2.0
+const JUMP_GRAVITY = 4.3
+const JUMP_HOLD_GRAVITY = 3.3
 const WALL_SLIDE_GRAVITY = 3.0
 
 # Gleit-Anpassungen
@@ -27,7 +27,7 @@ const GLIDE_SMOOTHING = 12.0
 
 const DASH_FORCE = 35.0
 const DASH_VERTICAL_SCALE = 0.25
-const DASH_DURATION = 0.15
+const DASH_DURATION = 0.17
 const DASH_COOLDOWN = 1.0
 const BOMB_COOLDOWN = 0.2
 

@@ -50,6 +50,22 @@ mouse_filter = 2
 theme = ExtResource("1_m6e0p")
 script = ExtResource("2_27fn8")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=989841898]
+custom_maximum_size = Vector2(18, 1.5)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -0.75
+offset_right = 9.0
+offset_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="Timer" type="Label" parent="." unique_id=1809859592]
 z_index = 1
 layout_mode = 1

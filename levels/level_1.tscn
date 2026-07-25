@@ -47,12 +47,15 @@ follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_ryrav")
 tween_on_load = false
 follow_offset = Vector3(0, 0.5, 0)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1162071670]
 physics_interpolation_mode = 1
 transform = Transform3D(0.0725985, 0, -0.99736124, 0, 1, 0, 0.99736124, 0, 0.0725985, -7.40418, 1.5000005, -0.06480503)
 top_level = true
+fov = 90.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1012304148]
 process_priority = 300
