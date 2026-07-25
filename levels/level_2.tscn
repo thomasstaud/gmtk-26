@@ -8,13 +8,34 @@
 [ext_resource type="PackedScene" uid="uid://dlg5te7em1wnr" path="res://game/finish.tscn" id="5_sd18g"]
 [ext_resource type="PackedScene" uid="uid://bu61wp8mbtwf5" path="res://ui/ui.tscn" id="6_vm7no"]
 [ext_resource type="PackedScene" uid="uid://d02i0vwfjm367" path="res://objects/platform.tscn" id="7_ep78u"]
+[ext_resource type="Script" uid="uid://t2flrf1i7ndn" path="res://addons/proton_scatter/src/scatter.gd" id="8_00pa0"]
 [ext_resource type="PackedScene" uid="uid://7l0y3levr28g" path="res://assets/GLB format/block-grass-overhang-low-long.glb" id="8_dfjjl"]
+[ext_resource type="Script" uid="uid://c7vjuftvncpvs" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="9_amxoe"]
 [ext_resource type="PackedScene" uid="uid://cygd47x7g1wsk" path="res://assets/GLB format/block-grass-overhang-large-slope-steep-narrow.glb" id="9_at1ld"]
+[ext_resource type="Script" uid="uid://tjeiwverefj" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="10_cp3aq"]
 [ext_resource type="PackedScene" uid="uid://bceu8bu46rr18" path="res://assets/GLB format/block-grass-overhang-large-tall.glb" id="10_sd18g"]
+[ext_resource type="Script" uid="uid://7wrkimxdrudx" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="11_wgvos"]
 [ext_resource type="PackedScene" uid="uid://bl8v5h380tjij" path="res://assets/gltf/Tree_Bare_1_A_Color1.gltf" id="12_hbb88"]
+[ext_resource type="Script" uid="uid://dwhiii5ghdgx2" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="12_m4706"]
+[ext_resource type="Script" uid="uid://d3ed5h50trryb" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="13_4xp61"]
 [ext_resource type="PackedScene" uid="uid://dsoecmk7fm5vm" path="res://assets/gltf/Tree_Bare_1_B_Color1.gltf" id="13_5orea"]
 [ext_resource type="PackedScene" uid="uid://dq1kyqpqrmsg" path="res://assets/gltf/Tree_Bare_2_A_Color1.gltf" id="14_0ourt"]
+[ext_resource type="Script" uid="uid://dva8mt8ggo46g" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="14_4yoxl"]
 [ext_resource type="PackedScene" uid="uid://b05wco8eqgjdn" path="res://assets/gltf/Tree_Bare_1_C_Color1.gltf" id="15_0ourt"]
+[ext_resource type="Script" uid="uid://b0xlj8ekc64in" path="res://addons/proton_scatter/src/scatter_item.gd" id="15_6dcgf"]
+[ext_resource type="Script" uid="uid://cpyxv2r4l8ri1" path="res://addons/proton_scatter/src/modifiers/offset_position.gd" id="15_amxoe"]
+[ext_resource type="Script" uid="uid://ceb1l01y5i0ww" path="res://addons/proton_scatter/src/scatter_shape.gd" id="16_ubuva"]
+[ext_resource type="Script" uid="uid://cfh6jl3eil2as" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="17_0nm7o"]
+[ext_resource type="Script" uid="uid://bkbx8yli58r86" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="18_pjs8f"]
+[ext_resource type="Script" uid="uid://baia4iwkwenu1" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="19_bf7t1"]
+[ext_resource type="PackedScene" uid="uid://b23e16tsdhy2f" path="res://assets/gltf/Tree_1_A_Color1.gltf" id="29_cp3aq"]
+[ext_resource type="PackedScene" uid="uid://dasnp553jdppy" path="res://assets/gltf/Tree_1_C_Color1.gltf" id="30_wgvos"]
+[ext_resource type="PackedScene" uid="uid://csvmwjp4hv1fk" path="res://assets/gltf/Tree_1_B_Color1.gltf" id="31_m4706"]
+[ext_resource type="PackedScene" uid="uid://uad7exntl5i7" path="res://assets/GLB format/fence-rope.glb" id="32_4xp61"]
+[ext_resource type="PackedScene" uid="uid://dunb2j1i43apr" path="res://assets/GLB format/flowers-tall.glb" id="33_4yoxl"]
+[ext_resource type="PackedScene" uid="uid://m2j7okpcsuif" path="res://assets/GLB format/flowers.glb" id="34_6dcgf"]
+[ext_resource type="PackedScene" uid="uid://1ybauv2o2xu3" path="res://assets/GLB format/arrow.glb" id="35_ubuva"]
+[ext_resource type="PackedScene" uid="uid://cj7rsm8qtfvi3" path="res://assets/GLB format/stones.glb" id="36_0nm7o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -29,6 +50,107 @@ sky = SubResource("Sky_feb5d")
 
 [sub_resource type="Resource" id="Resource_ryrav"]
 script = ExtResource("2_ep78u")
+
+[sub_resource type="Resource" id="Resource_ghfw4"]
+script = ExtResource("11_wgvos")
+amount = 175
+override_global_seed = true
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_s67ts"]
+script = ExtResource("12_m4706")
+position = Vector3(0.15, 0, 0.15)
+rotation = Vector3(5, 360, 5)
+scale = Vector3(0.1, 0.1, 0.1)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_6oa44"]
+script = ExtResource("13_4xp61")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = false
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_3582p"]
+script = ExtResource("14_4yoxl")
+ray_length = 20.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_cp3aq"]
+script = ExtResource("15_amxoe")
+position = Vector3(0, -0.2, 0)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_nomkf"]
+script = ExtResource("9_amxoe")
+stack = Array[ExtResource("10_cp3aq")]([SubResource("Resource_ghfw4"), SubResource("Resource_s67ts"), SubResource("Resource_6oa44"), SubResource("Resource_3582p"), SubResource("Resource_cp3aq")])
+
+[sub_resource type="Resource" id="Resource_3gngh"]
+script = ExtResource("17_0nm7o")
+size = Vector3(62.916916, 27.123161, 63.72891)
+metadata/_custom_type_script = "uid://cfh6jl3eil2as"
+
+[sub_resource type="Curve3D" id="Curve3D_00pa0"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.9240246, 0, -1.1024008, 0, 0, 0, 0, 0, 0, -0.8067732, 0, 0.40181255, 0, 0, 0, 0, 0, 0, -6.8480606, 0, 2.866311, 0, 0, 0, 0, 0, 0, -11.446333, 0, 10.871336),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_amxoe"]
+script = ExtResource("19_bf7t1")
+thickness = 5.0
+curve = SubResource("Curve3D_00pa0")
+
+[sub_resource type="Resource" id="Resource_rddwe"]
+script = ExtResource("11_wgvos")
+amount = 75
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_6bdx5"]
+script = ExtResource("12_m4706")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(5, 360, 5)
+scale = Vector3(0.1, 0.1, 0.1)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_qthv2"]
+script = ExtResource("13_4xp61")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = false
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_wnekv"]
+script = ExtResource("14_4yoxl")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_jyp08"]
+script = ExtResource("9_amxoe")
+stack = Array[ExtResource("10_cp3aq")]([SubResource("Resource_rddwe"), SubResource("Resource_6bdx5"), SubResource("Resource_qthv2"), SubResource("Resource_wnekv")])
+
+[sub_resource type="Resource" id="Resource_7numd"]
+script = ExtResource("18_pjs8f")
+radius = 11.319633
+metadata/_custom_type_script = "uid://bkbx8yli58r86"
+
+[sub_resource type="Curve3D" id="Curve3D_wvv8u"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.9240246, 0, -1.1024008, 0, 0, 0, 0, 0, 0, -0.8067732, 0, 0.40181255, 0, 0, 0, 0, 0, 0, -6.8480606, 0, 2.866311, 0, 0, 0, 0, 0, 0, -11.446333, 0, 10.871336),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_d0u6y"]
+script = ExtResource("19_bf7t1")
+thickness = 5.0
+curve = SubResource("Curve3D_wvv8u")
+metadata/_custom_type_script = "uid://baia4iwkwenu1"
 
 [node name="Level2" type="Node3D" unique_id=1095529181]
 
@@ -70,9 +192,71 @@ transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 
 pcam = NodePath("../PhantomCamera3D")
 
 [node name="Finish" parent="." unique_id=378886241 instance=ExtResource("5_sd18g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07806492, 8.714042, -35.463737)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06664133, 8.714042, -34.47422)
 
 [node name="UI" parent="." unique_id=461141405 instance=ExtResource("6_vm7no")]
+
+[node name="LightGrass" type="Node3D" parent="." unique_id=1376906362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73079, 13.911844, -15.968993)
+script = ExtResource("8_00pa0")
+modifier_stack = SubResource("Resource_nomkf")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://t2flrf1i7ndn"
+
+[node name="ScatterItem" type="Node3D" parent="LightGrass" unique_id=1867739429]
+script = ExtResource("15_6dcgf")
+path = "uid://dv7q3udjonlka"
+
+[node name="ScatterItem2" type="Node3D" parent="LightGrass" unique_id=468701580]
+script = ExtResource("15_6dcgf")
+proportion = 50
+path = "uid://c34we8y0hcm8"
+
+[node name="ScatterItem3" type="Node3D" parent="LightGrass" unique_id=664875450]
+script = ExtResource("15_6dcgf")
+proportion = 50
+path = "uid://bibqh7pmd8ybd"
+
+[node name="ScatterShape" type="Node3D" parent="LightGrass" unique_id=893154077]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0.48140907, 0)
+script = ExtResource("16_ubuva")
+shape = SubResource("Resource_3gngh")
+
+[node name="NegativeShape" type="Node3D" parent="LightGrass" unique_id=682108238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.145251, 0, 0)
+script = ExtResource("16_ubuva")
+negative = true
+shape = SubResource("Resource_amxoe")
+metadata/_custom_type_script = "uid://ceb1l01y5i0ww"
+
+[node name="DenseGrass" type="Node3D" parent="." unique_id=866217024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73079, 0, -15.968993)
+script = ExtResource("8_00pa0")
+modifier_stack = SubResource("Resource_jyp08")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://t2flrf1i7ndn"
+
+[node name="ScatterItem" type="Node3D" parent="DenseGrass" unique_id=1054017015]
+script = ExtResource("15_6dcgf")
+path = "uid://8uqcwuhomwe3"
+
+[node name="ScatterItem2" type="Node3D" parent="DenseGrass" unique_id=1215760654]
+script = ExtResource("15_6dcgf")
+path = "uid://bwakurg6wyv4d"
+
+[node name="ScatterShape" type="Node3D" parent="DenseGrass" unique_id=1013255142]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 5.2246532, -9.536743e-07, 0.96511555)
+script = ExtResource("16_ubuva")
+shape = SubResource("Resource_7numd")
+
+[node name="NegativeShape" type="Node3D" parent="DenseGrass" unique_id=626498457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.145251, 0, 0)
+script = ExtResource("16_ubuva")
+negative = true
+shape = SubResource("Resource_d0u6y")
+metadata/_custom_type_script = "uid://ceb1l01y5i0ww"
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=772658168]
 visible = false
@@ -233,3 +417,75 @@ transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, -11.
 
 [node name="Tree_Bare_2_A_Color15" parent="Roots" unique_id=1366167182 instance=ExtResource("14_0ourt")]
 transform = Transform3D(-0.72164404, 6.308812e-08, 0, -6.308812e-08, -0.72164404, 0, 0, 0, 0.72164404, -10.522863, 6.875551, -30.165941)
+
+[node name="Tree_1_A_Color12" parent="." unique_id=1334558694 instance=ExtResource("29_cp3aq")]
+transform = Transform3D(-0.3931204, 0, 0.8596573, 0, 0.94527996, 0, -0.8596573, 0, -0.3931204, 12.491578, 6.2506886, -4.3446813)
+
+[node name="Tree_1_C_Color12" parent="." unique_id=1511470085 instance=ExtResource("30_wgvos")]
+transform = Transform3D(0.95647144, 0, 0.29182586, 0, 1, 0, -0.29182586, 0, 0.95647144, 10.333815, 18.248423, 8.1572275)
+
+[node name="Tree_1_C_Color13" parent="." unique_id=90588603 instance=ExtResource("30_wgvos")]
+transform = Transform3D(0.95647144, 0, 0.29182586, 0, 1, 0, -0.29182586, 0, 0.95647144, 10.333815, 18.248423, 8.1572275)
+
+[node name="Tree_1_A_Color13" parent="." unique_id=2034130887 instance=ExtResource("29_cp3aq")]
+transform = Transform3D(0.7075336, 0, 0.58552253, 0, 0.9183901, 0, -0.58552253, 0, 0.7075336, 11.317618, 18.461882, 4.305109)
+
+[node name="Tree_1_B_Color12" parent="." unique_id=331925713 instance=ExtResource("31_m4706")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0182161, 7.4366355, -36.3691)
+
+[node name="Tree_1_A_Color14" parent="." unique_id=2024908871 instance=ExtResource("29_cp3aq")]
+transform = Transform3D(0.34617418, 0, -0.93817025, 0, 0.83931696, 0, 0.93817025, 0, 0.34617418, 0.796708, 7.5070634, -37.140305)
+
+[node name="Tree_1_B_Color13" parent="." unique_id=158259344 instance=ExtResource("31_m4706")]
+transform = Transform3D(-0.342448, 0, 0.9395368, 0, 1, 0, -0.9395368, 0, -0.342448, 8.989651, 11.426873, -2.098154)
+
+[node name="fence-rope2" parent="." unique_id=1195036259 instance=ExtResource("32_4xp61")]
+transform = Transform3D(2.9901319, 0, 0, 0, 2.9901319, 0, 0, 0, 2.9901319, -15.245568, 8.46459, -3.1077924)
+
+[node name="fence-rope3" parent="." unique_id=1984610479 instance=ExtResource("32_4xp61")]
+transform = Transform3D(2.9092865, 0, 0.69060826, 0, 2.9901319, 0, -0.69060826, 0, 2.9092865, -17.41944, 8.46459, -2.8594854)
+
+[node name="fence-rope4" parent="." unique_id=779608533 instance=ExtResource("32_4xp61")]
+transform = Transform3D(1.4000595, 0, 2.6421056, 0, 2.990132, 0, -2.6421056, 0, 1.4000595, -19.011326, 8.46459, -1.6178219)
+
+[node name="flowers-tall2" parent="." unique_id=1095737688 instance=ExtResource("33_4yoxl")]
+transform = Transform3D(2.401816, 0, 0, 0, 2.401816, 0, 0, 0, 2.401816, -4.3439083, 16.04087, -3.111597)
+
+[node name="flowers2" parent="." unique_id=1027257469 instance=ExtResource("34_6dcgf")]
+transform = Transform3D(1.7179611, 0, 0, 0, 1.7179611, 0, 0, 0, 1.7179611, -4.7451572, 16.19258, -4.827244)
+
+[node name="flowers3" parent="." unique_id=1327731520 instance=ExtResource("34_6dcgf")]
+transform = Transform3D(1.9352715, 0, 0, 0, 1.9352715, 0, 0, 0, 1.9352715, -16.131582, 11.574985, -23.392733)
+
+[node name="flowers4" parent="." unique_id=1543300760 instance=ExtResource("34_6dcgf")]
+transform = Transform3D(0.96838033, 0, 1.4178712, 0, 1.7170088, 0, -1.4178712, 0, 0.96838033, -14.421132, 11.574985, -25.11692)
+
+[node name="flowers-tall3" parent="." unique_id=273488892 instance=ExtResource("33_4yoxl")]
+transform = Transform3D(1.0478078, 0, -1.1900463, 0, 1.585595, 0, 1.1900463, 0, 1.0478078, -0.5951052, 7.341677, -36.110798)
+
+[node name="arrow2" parent="." unique_id=935023037 instance=ExtResource("35_ubuva")]
+transform = Transform3D(0.827032, 0, -1.8390899, 0, 2.0164905, 0, 1.8390899, 0, 0.827032, -14.122353, 8.944671, -3.1179132)
+
+[node name="stones2" parent="." unique_id=6667009 instance=ExtResource("36_0nm7o")]
+transform = Transform3D(1.4448719, 0, 0.75405025, 0, 1.6297996, 0, -0.75405025, 0, 1.4448719, 15.165615, 1.8165298e-16, -15.678147)
+
+[node name="stones3" parent="." unique_id=1210425871 instance=ExtResource("36_0nm7o")]
+transform = Transform3D(1.1477633, 0, -0.36445183, 0, 1.2042365, 0, 0.36445183, 0, 1.1477633, 13.665129, 1.8165298e-16, -16.273243)
+
+[node name="stones4" parent="." unique_id=585163185 instance=ExtResource("36_0nm7o")]
+transform = Transform3D(0.90154284, 0, 0.4326899, 0, 1, 0, -0.4326899, 0, 0.90154284, 13.490713, 1.8165298e-16, -14.857874)
+
+[node name="stones5" parent="." unique_id=1013575118 instance=ExtResource("36_0nm7o")]
+transform = Transform3D(2.340633, 0, 0.35716847, 0, 2.3677273, 0, -0.35716847, 0, 2.340633, 7.6678133, 1.8165298e-16, -12.109228)
+
+[node name="stones8" parent="." unique_id=1742089464 instance=ExtResource("36_0nm7o")]
+transform = Transform3D(2.340633, 0, 0.35716847, 0, 2.3677273, 0, -0.35716847, 0, 2.340633, 4.9939337, 1.8165298e-16, -7.704131)
+
+[node name="stones6" parent="." unique_id=2064772085 instance=ExtResource("36_0nm7o")]
+transform = Transform3D(1.3980532, 0, 0.21333568, 0, 1.4142365, 0, -0.21333568, 0, 1.3980532, 8.472283, 1.8165298e-16, -14.088812)
+
+[node name="stones9" parent="." unique_id=725837566 instance=ExtResource("36_0nm7o")]
+transform = Transform3D(1.3980532, 0, 0.21333568, 0, 1.4142365, 0, -0.21333568, 0, 1.3980532, 5.347972, 1.8165298e-16, -11.320311)
+
+[node name="stones7" parent="." unique_id=1146008121 instance=ExtResource("36_0nm7o")]
+transform = Transform3D(0.54576534, 0, 1.3046858, 0, 1.4142365, 0, -1.3046858, 0, 0.54576534, 2.6521502, 1.8165298e-16, -8.041534)
