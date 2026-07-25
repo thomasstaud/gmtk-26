@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://o8ak1op60hgr" path="res://assets/GLB format/block-grass-overhang-low-large.glb" id="8_ldpug"]
 [ext_resource type="PackedScene" uid="uid://cygd47x7g1wsk" path="res://assets/GLB format/block-grass-overhang-large-slope-steep-narrow.glb" id="9_8vr3t"]
 [ext_resource type="PackedScene" uid="uid://cty8yfmi8e5hh" path="res://assets/GLB format/block-grass-overhang-long.glb" id="10_8vr3t"]
+[ext_resource type="PackedScene" uid="uid://d02i0vwfjm367" path="res://objects/platform.tscn" id="11_ij65d"]
+[ext_resource type="PackedScene" uid="uid://bceu8bu46rr18" path="res://assets/GLB format/block-grass-overhang-large-tall.glb" id="12_gci8k"]
+[ext_resource type="PackedScene" uid="uid://dtqsqg0mn8rdw" path="res://assets/GLB format/poles.glb" id="13_gci8k"]
+[ext_resource type="PackedScene" uid="uid://oamudq0u5nq0" path="res://assets/GLB format/platform-overhang.glb" id="14_gder6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -46,8 +50,6 @@ follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_ryrav")
 tween_on_load = false
 follow_offset = Vector3(0, 0.5, 0)
-align_transform_with_view = Callable()
-align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1162071670]
@@ -87,6 +89,7 @@ size = Vector3(9.389511, 5.101551, 5.831726)
 material = SubResource("StandardMaterial3D_1y5xd")
 
 [node name="CSGCombiner3D2" type="CSGCombiner3D" parent="." unique_id=1268986324]
+visible = false
 use_collision = true
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=996313581]
@@ -102,12 +105,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.362452, 10.843379, -4.256
 size = Vector3(2.4151459, 0.37219238, 2.7858887)
 
 [node name="CSGBox3D14" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=118949022]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -15.652058, 12.383357, -9.015362)
-size = Vector3(4.9531517, 0.37219238, 5.8658447)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -15.687108, 12.415111, -9.105888)
+size = Vector3(4.681654, 0.37219238, 3.184784)
 
 [node name="CSGBox3D17" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=2067602270]
-transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, -13.0058565, 12.383357, -13.065521)
-size = Vector3(8.399543, 0.37219238, 5.8658447)
+transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, -13.560979, 12.4392805, -13.156048)
+size = Vector3(8.399543, 0.37219238, 3.080597)
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=611713682]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.90703, 10.843379, 4.6361523)
@@ -125,13 +128,9 @@ size = Vector3(2.1564598, 0.51382446, 2.6800537)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.399082, 4.959904, -16.605309)
 size = Vector3(7.9697266, 12.670908, 15.34082)
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=1033685205]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9001446, 4.9206543, -38.039658)
-size = Vector3(24.46521, 10.841309, 8.034487)
-
 [node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=1539784458]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.578801, 7.0050993, -34.433304)
-size = Vector3(9.08139, 0.9564953, 6.914216)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.828153, 7.0050993, -34.433304)
+size = Vector3(8.582687, 0.9564953, 6.914216)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=636990405]
 transform = Transform3D(0.76604444, -0.6427876, 0, 0.6427876, 0.76604444, 0, 0, 0, 1, 4.764103, 1.3081772, -6.6893578)
@@ -142,8 +141,8 @@ transform = Transform3D(-0.76604456, 0.64278764, -8.7422784e-08, 0.64278764, 0.7
 size = Vector3(12.250244, 1.5673828, 1.9396973)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=1915183221]
-transform = Transform3D(-4.3711385e-08, 0, -1, 0, 0.99999994, 0, 0.99999994, 0, -4.371139e-08, 8.068421, 3.256693, 0.5654111)
-size = Vector3(16.449097, 2.0668335, 1.9396973)
+transform = Transform3D(-4.3711385e-08, 0, -1, 0, 0.99999994, 0, 0.99999994, 0, -4.371139e-08, 9.466621, 1.5363184, 0.56534106)
+size = Vector3(16.449097, 5.507538, 4.736)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=1366717110]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 3.5527137e-15, 0, 0.99999994, -4.918884, 10.2821865, 7.860118)
@@ -169,3 +168,42 @@ transform = Transform3D(-3.8325993e-07, 0, -4.7665596, 0, 4.76656, 0, 8.767965, 
 
 [node name="block-grass-overhang-long3" parent="." unique_id=1201536469 instance=ExtResource("10_8vr3t")]
 transform = Transform3D(3.6387367, 0, 0, 0, 3.2251844, 0, 0, 0, 2.8109145, -4.8740563, 8.159097, 7.8622704)
+
+[node name="Platform" parent="." unique_id=1972592473 instance=ExtResource("11_ij65d")]
+transform = Transform3D(6.268513, 0, 0, 0, 6.268513, 0, 0, 0, 6.268513, -13.162906, -2.2442856, -38.44216)
+
+[node name="Platform3" parent="." unique_id=2083140277 instance=ExtResource("11_ij65d")]
+transform = Transform3D(7.122765, 0, 0, 0, 7.122765, 0, 0, 0, 7.122765, -5.2844667, -5.0510445, -38.455936)
+
+[node name="Platform2" parent="." unique_id=1777907205 instance=ExtResource("11_ij65d")]
+transform = Transform3D(6.6474648, 0, 0, 0, 6.6474648, 0, 0, 0, 6.6474648, -8.02401, 0.107292175, -43.444347)
+
+[node name="Platform4" parent="." unique_id=415870601 instance=ExtResource("11_ij65d")]
+transform = Transform3D(6.6474648, 0, 0, 0, 6.6474648, 0, 0, 0, 6.6474648, 2.9265976, -3.2330198, -40.380898)
+
+[node name="block-grass-overhang-large-tall2" parent="." unique_id=1679017294 instance=ExtResource("12_gci8k")]
+transform = Transform3D(4.054917, 0, 0, 0, 7.3107743, 0, 0, 0, 7.7988167, -17.350063, -3.1765041, -16.53698)
+
+[node name="poles2" parent="." unique_id=847188748 instance=ExtResource("13_gci8k")]
+transform = Transform3D(-6.3233693e-07, 0, 2.8932366, 0, 2.8932366, 0, -2.8932366, 0, -6.3233693e-07, -13.788839, 11.295359, -15.87377)
+
+[node name="poles3" parent="." unique_id=868043252 instance=ExtResource("13_gci8k")]
+transform = Transform3D(3.7940202e-07, 0, -2.8932364, 0, 2.8932364, 0, 2.8932364, 0, 3.7940202e-07, -13.788839, 11.295359, -13.11664)
+
+[node name="poles4" parent="." unique_id=1408882499 instance=ExtResource("13_gci8k")]
+transform = Transform3D(3.7940202e-07, 0, -2.8932364, 0, 2.8932364, 0, 2.8932364, 0, 3.7940202e-07, -13.788839, 11.295359, -10.257437)
+
+[node name="poles5" parent="." unique_id=941847016 instance=ExtResource("13_gci8k")]
+transform = Transform3D(-2.8932362, 0, -2.5293463e-07, 0, 2.8932362, 0, 2.5293463e-07, 0, -2.8932362, -15.695279, 11.295359, -9.236519)
+
+[node name="block-grass-overhang-low-large5" parent="." unique_id=1252771866 instance=ExtResource("8_ldpug")]
+transform = Transform3D(4.480428, 0, 0, 0, 3.630021, 0, 0, 0, 3.630021, 9.857362, 5.6846185, -34.501328)
+
+[node name="block-grass-overhang-low-large6" parent="." unique_id=1319416081 instance=ExtResource("8_ldpug")]
+transform = Transform3D(1.1807446, 0, 0, 0, 1.1807446, 0, 0, 0, 1.3961678, -13.961887, 6.0532827, -23.865932)
+
+[node name="platform-overhang2" parent="." unique_id=793323818 instance=ExtResource("14_gder6")]
+transform = Transform3D(1.4889262, 0, 0, 0, 2.303944, 0, 0, 0, 1.7883819, -14.896634, 13.666039, -18.622355)
+
+[node name="platform-overhang3" parent="." unique_id=198085037 instance=ExtResource("14_gder6")]
+transform = Transform3D(1.4889262, 0, 0, 0, 2.303944, 0, 0, 0, 1.7883819, -20.007391, 16.642418, -18.622355)
