@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bu61wp8mbtwf5" path="res://ui/ui.tscn" id="5_3sk1a"]
 [ext_resource type="PackedScene" uid="uid://e13xsxbo2hmc" path="res://assets/GLB format/block-grass-overhang-large-slope-narrow.glb" id="5_08mmt"]
 [ext_resource type="PackedScene" uid="uid://dlg5te7em1wnr" path="res://game/finish.tscn" id="5_btoec"]
+[ext_resource type="PackedScene" uid="uid://bun4pdqyr6ylv" path="res://features/ground.tscn" id="5_w75he"]
 [ext_resource type="PackedScene" uid="uid://b23e16tsdhy2f" path="res://assets/gltf/Tree_1_A_Color1.gltf" id="6_lrvbd"]
 [ext_resource type="PackedScene" uid="uid://csvmwjp4hv1fk" path="res://assets/gltf/Tree_1_B_Color1.gltf" id="7_oqlok"]
 [ext_resource type="PackedScene" uid="uid://uad7exntl5i7" path="res://assets/GLB format/fence-rope.glb" id="8_5ot28"]
@@ -35,14 +36,6 @@ sky = SubResource("Sky_feb5d")
 [sub_resource type="Resource" id="Resource_ryrav"]
 script = ExtResource("2_btoec")
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g4v7s"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
-size = Vector2(100, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
-albedo_color = Color(0.31293523, 0.68529505, 0.46231216, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhunq"]
 transparency = 4
 albedo_color = Color(1, 1, 1, 0.27450982)
@@ -65,11 +58,14 @@ follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_ryrav")
 tween_on_load = false
 follow_offset = Vector3(0, 0.5, 0)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1162071670]
 physics_interpolation_mode = 1
 transform = Transform3D(0.0725985, 0, -0.99736124, 0, 1, 0, 0.99736124, 0, 0.0725985, -7.40418, 1.5000005, -0.06480503)
+top_level = true
 fov = 90.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1012304148]
@@ -82,56 +78,48 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 transform = Transform3D(0.0011436499, 0, -0.99999934, 0, 1, 0, 0.99999934, 0, 0.0011436499, -7.40418, 1.0000005, -0.06480503)
 pcam = NodePath("../PhantomCamera3D")
 
-[node name="Ground" type="StaticBody3D" parent="." unique_id=1473587284]
+[node name="Ground" parent="." unique_id=2134665566 instance=ExtResource("5_w75he")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=272630419]
-shape = SubResource("WorldBoundaryShape3D_g4v7s")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1550237007]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0192132, 0, -0.0031137466)
-mesh = SubResource("PlaneMesh_g4v7s")
-surface_material_override/0 = SubResource("StandardMaterial3D_yf5fn")
-
-[node name="block-grass-overhang-large-slope-narrow2" parent="Ground" unique_id=1321438136 instance=ExtResource("5_08mmt")]
+[node name="block-grass-overhang-large-slope-narrow2" parent="." unique_id=1321438136 instance=ExtResource("5_08mmt")]
 transform = Transform3D(-3.0652035e-07, -0.94387025, -7.0123677, -4.1257877e-08, 7.0123677, -0.94387025, 7.0756063, 9.581535e-15, -3.092845e-07, 1.988461, -1.5704613, -29.515213)
 
-[node name="Tree_1_A_Color12" parent="Ground" unique_id=351745568 instance=ExtResource("6_lrvbd")]
+[node name="Tree_1_A_Color13" parent="." unique_id=351745568 instance=ExtResource("6_lrvbd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.673151, 0.261318, -4.995701)
 
-[node name="Tree_1_B_Color12" parent="Ground" unique_id=1017002340 instance=ExtResource("7_oqlok")]
+[node name="Tree_1_B_Color12" parent="." unique_id=1017002340 instance=ExtResource("7_oqlok")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.723935, 0.3410368, -2.0441637)
 
-[node name="Tree_1_B_Color13" parent="Ground" unique_id=1858084150 instance=ExtResource("7_oqlok")]
+[node name="Tree_1_B_Color13" parent="." unique_id=1858084150 instance=ExtResource("7_oqlok")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.026622, 4.7122946, -18.548069)
 
-[node name="Tree_1_C_Color12" parent="Ground" unique_id=1019796335 instance=ExtResource("8_7nvrk")]
+[node name="Tree_1_C_Color12" parent="." unique_id=1019796335 instance=ExtResource("8_7nvrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.585333, 0.19996077, -7.53664)
 
-[node name="Tree_1_A_Color13" parent="Ground" unique_id=968442849 instance=ExtResource("6_lrvbd")]
+[node name="Tree_1_A_Color14" parent="." unique_id=968442849 instance=ExtResource("6_lrvbd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.110975, 4.4485784, -29.61696)
 
-[node name="Tree_1_C_Color13" parent="Ground" unique_id=1453401452 instance=ExtResource("8_7nvrk")]
+[node name="Tree_1_C_Color13" parent="." unique_id=1453401452 instance=ExtResource("8_7nvrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.023157, 4.57958, -32.157898)
 
-[node name="Tree_3_A_Color12" parent="Ground" unique_id=254565754 instance=ExtResource("9_jkxa6")]
+[node name="Tree_3_A_Color12" parent="." unique_id=254565754 instance=ExtResource("9_jkxa6")]
 transform = Transform3D(1.4449408, 0, 0, 0, 1.4449408, 0, 0, 0, 1.4449408, -12.702101, 0.261318, 0.23612022)
 
-[node name="flowers2" parent="Ground" unique_id=2012570518 instance=ExtResource("10_w75he")]
+[node name="flowers2" parent="." unique_id=2012570518 instance=ExtResource("10_w75he")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0736227, 0, -3.6133225)
 
-[node name="flowers3" parent="Ground" unique_id=1952314000 instance=ExtResource("10_w75he")]
+[node name="flowers3" parent="." unique_id=1952314000 instance=ExtResource("10_w75he")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.564187, 0, -6.569845)
 
-[node name="flowers-tall2" parent="Ground" unique_id=1567121932 instance=ExtResource("11_udfhf")]
+[node name="flowers-tall2" parent="." unique_id=1567121932 instance=ExtResource("11_udfhf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.936929, 0, -2.2446666)
 
-[node name="flowers-tall3" parent="Ground" unique_id=2112649083 instance=ExtResource("11_udfhf")]
+[node name="flowers-tall3" parent="." unique_id=2112649083 instance=ExtResource("11_udfhf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.936929, 0, -1.3336687)
 
-[node name="flowers-tall4" parent="Ground" unique_id=1406723220 instance=ExtResource("11_udfhf")]
+[node name="flowers-tall4" parent="." unique_id=1406723220 instance=ExtResource("11_udfhf")]
 transform = Transform3D(0.3202076, 0, -1.170169, 0, 1.2131894, 0, 1.170169, 0, 0.3202076, 9.220883, 0, -1.9895825)
 
-[node name="arrow2" parent="Ground" unique_id=538754595 instance=ExtResource("13_jkxa6")]
+[node name="arrow2" parent="." unique_id=538754595 instance=ExtResource("13_jkxa6")]
 transform = Transform3D(2.748014, 0, 0, 0, 2.748014, 0, 0, 0, 2.748014, -1.4153969, 0.39783514, -3.2424102)
 
 [node name="Finish" parent="." unique_id=378886241 instance=ExtResource("5_btoec")]

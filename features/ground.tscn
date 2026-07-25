@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bun4pdqyr6ylv"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g4v7s"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+size = Vector2(100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+albedo_color = Color(0.31293523, 0.68529505, 0.46231216, 1)
+
+[node name="Ground" type="StaticBody3D" unique_id=2134665566]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2029864300]
+shape = SubResource("WorldBoundaryShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=145232165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0192132, 0, -0.0031137466)
+mesh = SubResource("PlaneMesh_g4v7s")
+surface_material_override/0 = SubResource("StandardMaterial3D_yf5fn")
