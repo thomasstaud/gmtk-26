@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_n7piq")
 name = "Level 5"
-base_seconds = 100
-glide_cost = 2
+base_seconds = 30
+dash_cost = 2
+glide_cost = 10
 bomb_cost = 0
-climb_cost = 2
 metadata/_custom_type_script = "uid://bpatqgqbvt63w"

@@ -13,13 +13,13 @@ const PUSH_FORCE = 2.0
 const CLIMB_POWER = 5.5 # Leicht erhöht für ein flüssigeres Klettergefühl
 
 const GROUND_ACCEL = 40.0
-const AIR_ACCEL = 3.5
+const AIR_ACCEL = 6.0
 const GROUND_DECEL = 12.0
 const DASH_DECAY = 2.0
 
 const JUMP_GRAVITY = 3.0
 const JUMP_HOLD_GRAVITY = 2.0
-const WALL_SLIDE_GRAVITY = 0.5
+const WALL_SLIDE_GRAVITY = 3.0
 
 # Gleit-Anpassungen
 const GLIDE_TERMINAL_VELOCITY = -2.5
@@ -160,7 +160,7 @@ func _physics_process(delta: float) -> void:
 			jump_count += 1
 			
 	if climb:
-		velocity.y = CLIMB_POWER       
+		velocity.y = CLIMB_POWER
 
 	var horiz_vel := Vector3(velocity.x, 0, velocity.z)
 	var current_speed := horiz_vel.length()
@@ -171,9 +171,9 @@ func _physics_process(delta: float) -> void:
 		# and that causes weird velocity when the player keeps holding
 		# forward after the climb
 		
-		# var target_max_speed := maxf(SPEED, current_speed)
-		# var target_vel := direction * target_max_speed
-		# horiz_vel = horiz_vel.lerp(target_vel, accel * delta)
+		#var target_max_speed := maxf(SPEED, current_speed)
+		#var target_vel := direction * target_max_speed
+		#horiz_vel = horiz_vel.lerp(target_vel, accel * delta)
 		
 		var clamped_speed = min(SPEED, current_speed + delta * accel)
 		horiz_vel = clamped_speed * direction

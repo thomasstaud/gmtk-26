@@ -17,7 +17,7 @@ height = 0.1
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tjrnq"]
-size = Vector3(0.9, 1.8, 1.1614189)
+size = Vector3(0.9, 1.365332, 1.1614189)
 
 [node name="Player" type="CharacterBody3D" unique_id=673498257]
 script = ExtResource("1_4flbx")
@@ -52,10 +52,11 @@ collision_mask = 2
 shape = SubResource("CapsuleShape3D_4flbx")
 
 [node name="ForwardArea" type="Area3D" parent="." unique_id=1404111112]
+collision_mask = 4
 script = ExtResource("2_w5y0b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ForwardArea" unique_id=1046845776]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017311096, 0.260621, -0.43807983)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017311096, 0.04328704, -0.43807983)
 shape = SubResource("BoxShape3D_tjrnq")
 
 [connection signal="area_entered" from="FinishDetection" to="." method="_on_finish_detection_area_entered"]
