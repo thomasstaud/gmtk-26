@@ -12,9 +12,7 @@ func _ready() -> void:
 		var tile = LEVEL_TILE.instantiate()
 		tile_grid.add_child(tile)
 		tile.init(i, GameManager.levels[i])
-	# DEBUG:
-	#leaderboard.visible = GameManager.is_leaderboard_unlocked()
-	leaderboard.visible = true
+	leaderboard.visible = GameManager.is_leaderboard_unlocked()
 
 
 func _on_leaderboard_pressed() -> void:

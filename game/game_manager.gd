@@ -37,9 +37,6 @@ func _ready() -> void:
 	time_left_ms = levels[0].base_seconds * 1000
 	total_time_ms = time_left_ms
 	time_updated.emit(time_left_ms)
-	
-	# DEBUG:
-	for level in levels: level.unlocked = true
 
 
 func _process(delta: float) -> void:
