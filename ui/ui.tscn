@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cb64oyfd8v4yl" path="res://ui/ui_assets/Illusttrator/Crosshair.png" id="3_obcwv"]
 [ext_resource type="Script" uid="uid://cw4p2cyychxfy" path="res://ui/controls.gd" id="3_tf0e0"]
 [ext_resource type="Texture2D" uid="uid://duxys66nl0h6m" path="res://ui/ui_assets/Container1_default.png" id="3_wl5ax"]
+[ext_resource type="Texture2D" uid="uid://dnxgj0m3lcu87" path="res://ui/ui_assets/Illusttrator/2x/Element 2.png" id="4_bo1jx"]
 [ext_resource type="Texture2D" uid="uid://cwle2l6j4fenx" path="res://ui/ui_assets/SquareButton3_purple.png" id="4_vkava"]
 
 [sub_resource type="Gradient" id="Gradient_bo1jx"]
@@ -68,31 +69,44 @@ mouse_filter = 2
 texture = ExtResource("3_obcwv")
 expand_mode = 2
 
-[node name="Timer" type="Label" parent="." unique_id=1809859592]
-z_index = 1
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1937847292]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -120.0
-offset_top = 94.0
-offset_right = 168.0
-offset_bottom = 155.0
+offset_left = -172.0
+offset_right = 172.0
+offset_bottom = 239.0
 grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1676731882]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=2050175708]
+z_index = 40
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("4_bo1jx")
+stretch_mode = 3
+
+[node name="Timer" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1809859592]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 8
 text = "01:00.000"
 
 [node name="Controls" type="VBoxContainer" parent="." unique_id=925141949]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -361.0
-offset_top = -167.0
-offset_right = -41.0
-offset_bottom = -36.0
-grow_horizontal = 0
+offset_left = 1620.0
+offset_top = -139.0
+grow_horizontal = 2
 grow_vertical = 0
 alignment = 2
 script = ExtResource("3_tf0e0")
@@ -103,26 +117,29 @@ step = 0.1
 texture_progress = SubResource("GradientTexture2D_pa1oa")
 
 [node name="Dash" type="Label" parent="Controls/DashCooldown" unique_id=1714219605]
-layout_mode = 0
-offset_top = 5.0
-offset_right = 320.0
-offset_bottom = 69.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 50
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -19.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
 text = "[shift] Dash"
 
 [node name="Bomb" type="Label" parent="Controls" unique_id=75553068]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
 text = "[F] Bomb"
 
 [node name="StartPanel" type="MarginContainer" parent="." unique_id=1501259970]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 0
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 15
@@ -152,13 +169,16 @@ offset_right = 748.5
 offset_bottom = 278.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 50
 columns = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="StartPanel" unique_id=1746425173]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_constants/margin_bottom = 65
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StartPanel/MarginContainer" unique_id=1810571262]
 layout_mode = 2
@@ -301,6 +321,7 @@ offset_right = 189.0
 offset_bottom = -281.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.4943006, 0.92676353, 0.47712624, 1)
 text = "00:00.000"
 
 [node name="YourTime" type="Label" parent="Win/Panel2" unique_id=1723099302]
@@ -332,7 +353,8 @@ offset_right = 263.5
 offset_bottom = 40.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "You have won!!"
+text = "You did it!"
+horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Win/Panel2" unique_id=1628367248]
 layout_mode = 1

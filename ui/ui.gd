@@ -7,7 +7,7 @@ const ABILITY_TILE := preload("uid://pnriti1de4cj")
 @onready var game_over: MarginContainer = $GameOver
 @onready var win: MarginContainer = $Win
 @onready var tile_grid: GridContainer = %TileGrid
-@onready var timer: Label = $Timer
+@onready var timer: Label = %Timer
 @onready var controls: Controls = $Controls
 @onready var win_time: Label = %WinTime
 
