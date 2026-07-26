@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bm6xjoyh28qnd" path="res://game/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://c4mkx0p61a053" path="res://game/forward_area.gd" id="2_w5y0b"]
-[ext_resource type="AudioStream" uid="uid://55i7h3ret4op" path="res://audio/Dirt Jump.ogg" id="2_wkljg"]
+[ext_resource type="AudioStream" uid="uid://55i7h3ret4op" path="res://audio/jump.ogg" id="2_wkljg"]
 [ext_resource type="AudioStream" uid="uid://dnpmy1rm1vqqr" path="res://audio/dash.ogg" id="3_iyaem"]
-[ext_resource type="AudioStream" uid="uid://pjrmyydqw8lr" path="res://audio/Firebuff 1.ogg" id="4_ry671"]
-[ext_resource type="AudioStream" uid="uid://808vyw3os878" path="res://audio/Wood Walk 1.ogg" id="5_7fxs2"]
-[ext_resource type="AudioStream" uid="uid://buf2l8fwa6drk" path="res://audio/Dirt Run 1.ogg" id="6_4uvqg"]
+[ext_resource type="AudioStream" uid="uid://pjrmyydqw8lr" path="res://audio/bomb.ogg" id="4_ry671"]
+[ext_resource type="AudioStream" uid="uid://808vyw3os878" path="res://audio/climb.ogg" id="5_7fxs2"]
+[ext_resource type="AudioStream" uid="uid://buf2l8fwa6drk" path="res://audio/walk.ogg" id="6_4uvqg"]
 [ext_resource type="AudioStream" uid="uid://cnxdytp5uhmu7" path="res://audio/glide.ogg" id="7_iyaem"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
@@ -33,6 +33,7 @@ sound_bomb = ExtResource("4_ry671")
 sound_climb = ExtResource("5_7fxs2")
 sound_footstep = ExtResource("6_4uvqg")
 sound_glide = ExtResource("7_iyaem")
+footstep_interval = 0.3
 
 [node name="Head" type="Node3D" parent="." unique_id=1310018871]
 
