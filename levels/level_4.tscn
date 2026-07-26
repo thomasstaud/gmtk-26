@@ -31,7 +31,7 @@ radius = 1.0
 [node name="Lighting" parent="." unique_id=159164141 instance=ExtResource("1_sc6c1")]
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=286133280 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(0.56155276, 0, -0.8274409, 0, 1, 0, 0.8274409, 0, 0.56155276, -7.40418, 1.5000005, -0.06480503)
+transform = Transform3D(0.56155276, 0, -0.8274409, 0, 1, 0, 0.8274409, 0, 0.56155276, -6.40418, 1.5000005, 1.935195)
 top_level = true
 script = ExtResource("1_hokjj")
 follow_mode = 2
@@ -54,13 +54,6 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Player" parent="." unique_id=673498257 node_paths=PackedStringArray("pcam") instance=ExtResource("4_sc6c1")]
 transform = Transform3D(0.0011436499, 0, -0.99999934, 0, 1, 0, 0.99999934, 0, 0.0011436499, -6.40418, 1.0000005, 1.935195)
-sound_jump = null
-sound_double_jump = null
-sound_dash = null
-sound_bomb = null
-sound_climb = null
-sound_footstep = null
-sound_glide = null
 footstep_interval = 0.2
 pcam = NodePath("../PhantomCamera3D")
 
