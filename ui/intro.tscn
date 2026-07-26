@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bpvhe5ne2jkhu"]
+
+[ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_4v4r4"]
+[ext_resource type="Script" uid="uid://dn7aivo5kwcgf" path="res://ui/intro.gd" id="2_1cctr"]
+
+[node name="Intro" type="Control" unique_id=95281652]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4v4r4")
+script = ExtResource("2_1cctr")
+
+[node name="Container" type="MarginContainer" parent="." unique_id=415247072]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="Container" unique_id=560624884]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Container/Panel" unique_id=1630630480]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 56.0
+offset_right = 20.0
+offset_bottom = 120.0
+grow_horizontal = 2
+text = "Welcome to the Spellcheck!"
+
+[node name="Label2" type="RichTextLabel" parent="Container/Panel" unique_id=367957257]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -856.0
+offset_top = -312.0
+offset_right = 857.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Once every year, graduating students at the Grand Magical Academy are sent off into the secluded forest to take on the Spellcheck - an assessment notorious for its low passing rate.
+
+Will you take your time preparing all kinds of spells or will you rush into each task? Keep in mind that the [color=dark_orchid]time you save[/color] in each level will be [color=dark_orchid]added to your total[/color] for the next one."
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/Panel" unique_id=1611910927]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -412.5
+offset_top = -158.0
+offset_right = 412.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 65
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/Panel/MarginContainer" unique_id=770016534]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Menu" type="Button" parent="Container/Panel/MarginContainer/HBoxContainer" unique_id=1194710081]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Start Game"
+
+[connection signal="pressed" from="Container/Panel/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]

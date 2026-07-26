@@ -16,7 +16,7 @@ func init(_ability: Ability):
 
 
 func update_button_text():
-	var text = "sell (%d)" if ability.bought else "buy (%d)"
+	var text = "forget - %d" if ability.bought else "study - %d"
 	button.text = text % ability.cost
 
 
