@@ -21,6 +21,7 @@ PhantomCameraManager="*uid://duq6jhf6unyis"
 GameManager="*uid://bcxr2vmcmr40o"
 AbilityManager="*uid://brr0buar7fs42"
 Talo="*uid://bpmdn8oc34pg7"
+Audiostream="*uid://b4cm3k5jp6t7v"
 
 [display]
 
