@@ -87,6 +87,9 @@ func calculate_remaining_time(level: int) -> int:
 		all_level_remaining_time += (levels[i].base_seconds * 1000) - levels[i].best_time
 	return all_level_remaining_time
 
+func is_leaderboard_unlocked():
+	return levels[LEVELS - 1].best_time != 0
+
 
 func start_level() -> void:
 	if player:
@@ -119,3 +122,6 @@ func restart() -> void:
 
 func to_level_select() -> void:
 	get_tree().change_scene_to_file("uid://cdpcfqx7ugyyd")
+
+func to_leaderboard():
+	get_tree().change_scene_to_file("uid://ctm3ccetkf0li")

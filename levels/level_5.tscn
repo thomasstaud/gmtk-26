@@ -121,7 +121,7 @@ points = PackedVector3Array(-0.09472576, 0.85071295, 1.7829452, 0.49197024, -0.0
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vqvhr"]
 points = PackedVector3Array(0.47973683, -0.6315258, 1.8896128, -0.0682655, -0.017450225, -2.0038607, -0.06586006, 0.6079214, -1.9934399, 2.9183285, -0.48943138, -0.119741045, -0.06157905, 2.0747242, 0.50111187, -1.3961512, -1.3464032, -0.11857815, -2.1223357, 0.53301746, 0.8259803, 0.32548016, -1.6466829, -1.1272424, 0.09175507, 2.0855253, -1.2076994, -1.4773921, 0.53082556, -1.4511008, 2.2202833, 0.89867437, 0.41571915, -1.1659911, -0.017317269, 1.9982504, 0.32575274, -1.4851937, 1.12053, 1.7891386, 1.2184867, -1.0406381, 0.48049286, -1.1855714, -1.9113797, -0.59687746, 1.2166181, 1.5751516, -1.3103651, -0.8723579, -1.4421024, 2.4156709, -0.9435541, 0.6563502, -1.5436577, -0.9504117, 1.3606039, -1.1488695, 1.6142591, -0.19514048, 1.8586221, -0.24199724, 1.3396856, 1.4107481, 1.8451875, -0.35005334, 0.86673164, 0.44907004, -1.8970355, 1.9609942, -1.3402853, -0.11836573, 2.747842, -0.4076914, -0.5876487, -0.8572785, -1.5942196, -1.3015636, 1.5393076, 1.2022803, 0.79462665, -0.46075088, -0.80237746, 2.0782, -0.28655604, 0.37052077, 1.9527472, 2.5690506, 0.75880057, -0.11727538, -2.1143854, -0.017943593, 0.9023758, -0.300349, 1.858821, -1.4473665)
 
-[sub_resource type="Resource" id="Resource_lyxhm"]
+[sub_resource type="Resource" id="Resource_b0qus"]
 script = ExtResource("33_lyxhm")
 amount = 225
 override_global_seed = true
@@ -129,64 +129,64 @@ custom_seed = 25
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_x04rt"]
+[sub_resource type="Resource" id="Resource_j8rdx"]
 script = ExtResource("34_x04rt")
 position = Vector3(0.15, 0, 0.15)
 rotation = Vector3(5, 360, 5)
 scale = Vector3(0.1, 0.1, 0.1)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_4h45g"]
+[sub_resource type="Resource" id="Resource_ai7y0"]
 script = ExtResource("35_4h45g")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_b514w"]
+[sub_resource type="Resource" id="Resource_q1r4k"]
 script = ExtResource("36_b514w")
 ray_length = 20.0
 ray_offset = 5.0
 remove_points_on_miss = false
 exclude_mask = 4
 
-[sub_resource type="Resource" id="Resource_gl1p1"]
+[sub_resource type="Resource" id="Resource_gw5cp"]
 script = ExtResource("31_vdvq7")
-stack = Array[ExtResource("32_0hqou")]([SubResource("Resource_lyxhm"), SubResource("Resource_x04rt"), SubResource("Resource_4h45g"), SubResource("Resource_b514w")])
+stack = Array[ExtResource("32_0hqou")]([SubResource("Resource_b0qus"), SubResource("Resource_j8rdx"), SubResource("Resource_ai7y0"), SubResource("Resource_q1r4k")])
 
 [sub_resource type="Resource" id="Resource_tlhyy"]
 script = ExtResource("40_j8rdx")
 size = Vector3(62.916916, 27.123161, 63.72891)
 
-[sub_resource type="Resource" id="Resource_3y4s7"]
+[sub_resource type="Resource" id="Resource_i55hd"]
 script = ExtResource("33_lyxhm")
 amount = 75
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_b0qus"]
+[sub_resource type="Resource" id="Resource_vdxrs"]
 script = ExtResource("34_x04rt")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(5, 360, 5)
 scale = Vector3(0.1, 0.1, 0.1)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_j8rdx"]
+[sub_resource type="Resource" id="Resource_ucg27"]
 script = ExtResource("35_4h45g")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_ai7y0"]
+[sub_resource type="Resource" id="Resource_0m2ft"]
 script = ExtResource("36_b514w")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_q1r4k"]
+[sub_resource type="Resource" id="Resource_g1l5c"]
 script = ExtResource("31_vdvq7")
-stack = Array[ExtResource("32_0hqou")]([SubResource("Resource_3y4s7"), SubResource("Resource_b0qus"), SubResource("Resource_j8rdx"), SubResource("Resource_ai7y0")])
+stack = Array[ExtResource("32_0hqou")]([SubResource("Resource_i55hd"), SubResource("Resource_vdxrs"), SubResource("Resource_ucg27"), SubResource("Resource_0m2ft")])
 
 [sub_resource type="Resource" id="Resource_3d5fg"]
 script = ExtResource("41_ai7y0")
@@ -231,6 +231,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.620387, 8.657325, -33.6163
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.179737, 0, -19.29395)
 
 [node name="UI" parent="." unique_id=461141405 instance=ExtResource("6_ij65d")]
+
+[node name="WinLabel" parent="UI/Win/Panel2" parent_id_path=PackedInt32Array(461141405, 1293588276) index="3" unique_id=1472240444]
+offset_left = -507.0
+offset_top = -135.5
+offset_right = 507.0
+offset_bottom = 105.5
+text = "Congratulations!
+
+You've passed the Spellcheck!
+Thanks for playing our game."
 
 [node name="Climbable" type="CSGCombiner3D" parent="." unique_id=374776842]
 visible = false
@@ -588,7 +598,7 @@ transform = Transform3D(0.75387335, 0, 1.0683692, 0, 1.3075694, 0, -1.0683692, 0
 [node name="LightGrass" type="Node3D" parent="." unique_id=1751880604]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73079, 13.911844, -15.968993)
 script = ExtResource("30_75mxt")
-modifier_stack = SubResource("Resource_gl1p1")
+modifier_stack = SubResource("Resource_gw5cp")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://t2flrf1i7ndn"
@@ -615,7 +625,7 @@ shape = SubResource("Resource_tlhyy")
 [node name="DenseGrass" type="Node3D" parent="." unique_id=792219426]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5555439, -1.9073486e-06, -6.906438)
 script = ExtResource("30_75mxt")
-modifier_stack = SubResource("Resource_q1r4k")
+modifier_stack = SubResource("Resource_g1l5c")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://t2flrf1i7ndn"
@@ -732,6 +742,7 @@ transform = Transform3D(0.10121292, 0, -1.1575961, 0, 1.1620125, 0, 1.1575961, 0
 [node name="flowers-tall5" parent="." unique_id=1874571116 instance=ExtResource("28_8wqug")]
 transform = Transform3D(0.7471358, 0, 1.4265125, 0, 1.610326, 0, -1.4265125, 0, 0.7471358, -15.426899, 11.295358, -17.211765)
 
+[editable path="UI"]
 [editable path="Spire/Rock_2_H_Color12"]
 [editable path="Spire/Rock_2_G_Color12"]
 [editable path="Spire/Rock_2_H_Color13"]
