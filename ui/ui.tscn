@@ -15,6 +15,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pa1oa"]
 gradient = SubResource("Gradient_bo1jx")
 width = 300
+height = 40
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bhunq"]
 texture = ExtResource("4_vkava")
@@ -150,10 +151,9 @@ text = "[F] Bomb"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "[R] Restart"
+text = "[space] Glide"
 
 [node name="StartPanel" type="MarginContainer" parent="." unique_id=1501259970]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

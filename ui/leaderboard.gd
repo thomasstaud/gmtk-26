@@ -52,7 +52,7 @@ func render_board(scores: Array[TaloLeaderboardEntry]) -> void:
 	else:
 		if len(scores) > 1 and scores[0].score > scores[-1].score:
 			scores.reverse()
-		for i in range(min(len(scores), 10)):
+		for i in range(min(len(scores), 8)):
 			var score = scores[i]
 			add_item(score.player_alias.display_name, UI.format_ms(score.score))
 
