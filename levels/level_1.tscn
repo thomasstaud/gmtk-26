@@ -20,18 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://1ybauv2o2xu3" path="res://assets/GLB format/arrow.glb" id="13_jkxa6"]
 [ext_resource type="PackedScene" uid="uid://cj7rsm8qtfvi3" path="res://assets/GLB format/stones.glb" id="17_i6od7"]
 [ext_resource type="PackedScene" uid="uid://fs63dxldrkl2" path="res://assets/GLB format/block-grass-overhang-large.glb" id="21_w75he"]
-[ext_resource type="Script" uid="uid://t2flrf1i7ndn" path="res://addons/proton_scatter/src/scatter.gd" id="22_e5brb"]
 [ext_resource type="PackedScene" uid="uid://q6qtyas6ejg6" path="res://assets/gltf/Rock_1_A_Color1.gltf" id="22_i6od7"]
-[ext_resource type="Script" uid="uid://c7vjuftvncpvs" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="23_rf48r"]
 [ext_resource type="PackedScene" uid="uid://nh0iygkg1bdj" path="res://assets/gltf/Rock_1_H_Color1.gltf" id="23_ryfpa"]
-[ext_resource type="Script" uid="uid://tjeiwverefj" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="24_toluw"]
-[ext_resource type="Script" uid="uid://7wrkimxdrudx" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="25_dp1ib"]
-[ext_resource type="Script" uid="uid://dwhiii5ghdgx2" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="26_5t0se"]
-[ext_resource type="Script" uid="uid://d3ed5h50trryb" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="27_tqj1w"]
-[ext_resource type="Script" uid="uid://dva8mt8ggo46g" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="28_gtrna"]
-[ext_resource type="Script" uid="uid://b0xlj8ekc64in" path="res://addons/proton_scatter/src/scatter_item.gd" id="30_r0nt2"]
-[ext_resource type="Script" uid="uid://ceb1l01y5i0ww" path="res://addons/proton_scatter/src/scatter_shape.gd" id="31_xv8d5"]
-[ext_resource type="Script" uid="uid://baia4iwkwenu1" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="32_e5brb"]
 [ext_resource type="Texture2D" uid="uid://bxhwqp8hux5nf" path="res://assets/gltf/forest_texture.png" id="33_dp1ib"]
 [ext_resource type="Texture2D" uid="uid://b3tihove8r1rb" path="res://assets/GLB format/Textures/colormap.png" id="34_5t0se"]
 
@@ -1174,49 +1164,6 @@ instance_count = 4
 mesh = SubResource("ArrayMesh_l2rw2")
 buffer = PackedFloat32Array(0.92016584, 0.051389977, -0.44571242, -7.342745, -0.055944916, 1.0221889, 0.002359527, 0, 0.44516367, 0.022236697, 0.9215967, 5.37817, 0.32551664, 0.052139524, 0.94829684, 4.709362, -0.015382745, 1.0026093, -0.049845394, 0, -0.9496046, 0.0016316262, 0.32587582, -5.37817, 0.5557171, -0.115431376, -0.92997706, 7.3427467, 0.04790809, 1.0832857, -0.10583248, 0, 0.9358882, 0.013088148, 0.55762476, -5.375946, 0.54403853, -0.018621044, -0.9051942, -0.90259933, -0.013093927, 1.0557718, -0.029588321, 0, 0.905291, 0.026460845, 0.5435524, 3.5905952)
 
-[sub_resource type="Resource" id="Resource_gtrna"]
-script = ExtResource("25_dp1ib")
-amount = 170
-restrict_height = true
-reference_frame = 1
-
-[sub_resource type="Resource" id="Resource_xapae"]
-script = ExtResource("26_5t0se")
-position = Vector3(0.15, 0.15, 0.15)
-rotation = Vector3(5, 360, 5)
-scale = Vector3(0.3, 0.3, 0.3)
-reference_frame = 2
-
-[sub_resource type="Resource" id="Resource_r0nt2"]
-script = ExtResource("27_tqj1w")
-offset_step = 0.2
-consecutive_step_multiplier = 0.75
-use_computeshader = false
-restrict_height = true
-
-[sub_resource type="Resource" id="Resource_xv8d5"]
-script = ExtResource("28_gtrna")
-ray_length = 5.0
-ray_offset = 5.0
-remove_points_on_miss = false
-
-[sub_resource type="Resource" id="Resource_0wxk8"]
-script = ExtResource("23_rf48r")
-stack = Array[ExtResource("24_toluw")]([SubResource("Resource_gtrna"), SubResource("Resource_xapae"), SubResource("Resource_r0nt2"), SubResource("Resource_xv8d5")])
-
-[sub_resource type="Curve3D" id="Curve3D_e5brb"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -18.10355, 3.8146973e-06, 54.99534, 0, 0, 0, 0, 0, 0, -18.755657, 3.8146973e-06, -67.379036, 0, 0, 0, 0, 0, 0, 99.53998, 3.8146973e-06, -71.58106, 0, 0, 0, 0, 0, 0, 87.56221, 0, 37.79268, 0, 0, 0, 0, 0, 0, -0.4721985, 0, 37.34646),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
-}
-point_count = 5
-
-[sub_resource type="Resource" id="Resource_ohjdc"]
-script = ExtResource("32_e5brb")
-closed = false
-thickness = 25.055
-curve = SubResource("Curve3D_e5brb")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rfav"]
 resource_name = "forest"
 albedo_texture = ExtResource("33_dp1ib")
@@ -1388,8 +1335,6 @@ follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_ryrav")
 tween_on_load = false
 follow_offset = Vector3(0, 0.5, 0)
-align_transform_with_view = Callable()
-align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1162071670]
@@ -2316,34 +2261,12 @@ multimesh = SubResource("MultiMesh_eqwo4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.232777, -4.438697, 43.734554)
 multimesh = SubResource("MultiMesh_7r75m")
 
-[node name="Trees" type="Node3D" parent="." unique_id=1243087076]
+[node name="ScatterOutput3" type="Marker3D" parent="." unique_id=1615019151]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.85527, -3.6538515, -28.865377)
-script = ExtResource("22_e5brb")
-enabled = false
-show_output_in_tree = true
-modifier_stack = SubResource("Resource_0wxk8")
-Performance/use_chunks = true
-Performance/chunk_dimensions = Vector3(15, 15, 15)
-metadata/_custom_type_script = "uid://t2flrf1i7ndn"
 
-[node name="ScatterItem" type="Node3D" parent="Trees" unique_id=200498150]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.646353, 0, 0)
-script = ExtResource("30_r0nt2")
-source_scale_multiplier = 1.85
-path = "uid://dmnjemp3lkbqx"
+[node name="ScatterItem" type="Node3D" parent="ScatterOutput3" unique_id=492104476]
 
-[node name="ScatterShape" type="Node3D" parent="Trees" unique_id=1681741876]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 5.224655, 4.6613245, 36.2246)
-script = ExtResource("31_xv8d5")
-shape = SubResource("Resource_ohjdc")
-
-[node name="ScatterItem2" type="Node3D" parent="Trees" unique_id=165865679]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.646353, 0, 0)
-script = ExtResource("30_r0nt2")
-source_scale_multiplier = 1.85
-path = "uid://csvmwjp4hv1fk"
-
-[node name="ScatterOutput" type="Marker3D" parent="Trees" unique_id=343661810]
+[node name="ScatterItem2" type="Node3D" parent="ScatterOutput3" unique_id=108180504]
 
 [node name="ScatterOutput2" type="Marker3D" parent="." unique_id=1550395023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.453126, -5.1067986, -14.432689)
