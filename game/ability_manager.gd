@@ -1,11 +1,11 @@
 extends Node
 ## hardcode ftw
 
-var dash := Ability.new("Dash", "Yeets the user forward with zero regard for personal safety or structural integrity.")
-var jump := Ability.new("Jump", "Temporarily overcomes the tragic reality of skipping leg day for the last 50 years in this academy.")
-var bomb := Ability.new("Bomb", "Blows up stuff. Like BOOM!")
-var climb := Ability.new("Climb", "Aggressively hugs the architecture to slowly ascend.")
-var glide := Ability.new("Glide", "A highly dignified way to delay your inevitable, catastrophic impact with the ground.")
+var dash := Ability.new("Woosh", "Slings you forward with zero respect to your safety and structural integrity")
+var jump := Ability.new("Frog Leap", "Skipping leg day is fine when you have this bad boy in your spell book.")
+var bomb := Ability.new("Bomb", "This is not even a spell. You just brought some explosives.")
+var climb := Ability.new("Gecko Hands", "Scale Rocks and Hedges with your amazing, disgusting new hands.")
+var glide := Ability.new("Levitate", "At your current skill level, this just makes you fall slower.")
 
 var abilities: Array[Ability] = [dash, jump, glide, bomb, climb]
 

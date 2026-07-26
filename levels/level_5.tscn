@@ -205,6 +205,8 @@ follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_ryrav")
 tween_on_load = false
 follow_offset = Vector3(0, 0.5, 0)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1162071670]
@@ -229,16 +231,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.620387, 8.657325, -33.6163
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.179737, 0, -19.29395)
 
 [node name="UI" parent="." unique_id=461141405 instance=ExtResource("6_ij65d")]
-
-[node name="WinLabel" parent="UI/Win/Panel2" parent_id_path=PackedInt32Array(461141405, 1293588276) index="3" unique_id=1472240444]
-offset_left = -507.0
-offset_top = -135.5
-offset_right = 507.0
-offset_bottom = 105.5
-text = "Congratulations!
-
-You've passed the Spellcheck!
-Thanks for playing our game."
 
 [node name="Climbable" type="CSGCombiner3D" parent="." unique_id=374776842]
 visible = false
@@ -740,7 +732,6 @@ transform = Transform3D(0.10121292, 0, -1.1575961, 0, 1.1620125, 0, 1.1575961, 0
 [node name="flowers-tall5" parent="." unique_id=1874571116 instance=ExtResource("28_8wqug")]
 transform = Transform3D(0.7471358, 0, 1.4265125, 0, 1.610326, 0, -1.4265125, 0, 0.7471358, -15.426899, 11.295358, -17.211765)
 
-[editable path="UI"]
 [editable path="Spire/Rock_2_H_Color12"]
 [editable path="Spire/Rock_2_G_Color12"]
 [editable path="Spire/Rock_2_H_Color13"]
