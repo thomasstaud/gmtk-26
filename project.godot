@@ -22,6 +22,7 @@ GameManager="*uid://bcxr2vmcmr40o"
 AbilityManager="*uid://brr0buar7fs42"
 SilentWolf="*uid://dk7ij06t68j4o"
 GlobalLeaderboard="*uid://rptjnlnh47w4"
+Talo="*uid://bpmdn8oc34pg7"
 
 [display]
 
@@ -32,7 +33,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/silent_wolf/plugin.cfg")
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/silent_wolf/plugin.cfg", "res://addons/talo/plugin.cfg")
 
 [file_customization]
 
