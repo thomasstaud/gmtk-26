@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://54tl67nc4qa2"]
 
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_n46q3"]
+[ext_resource type="PackedScene" uid="uid://ydaofmjdxhc6" path="res://features/lighting.tscn" id="1_rf48r"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_btoec"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_gwceb"]
 [ext_resource type="PackedScene" uid="uid://oqh5oxx1mkyn" path="res://game/player.tscn" id="4_l53as"]
@@ -24,36 +25,15 @@
 [ext_resource type="Script" uid="uid://c7vjuftvncpvs" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="23_rf48r"]
 [ext_resource type="PackedScene" uid="uid://nh0iygkg1bdj" path="res://assets/gltf/Rock_1_H_Color1.gltf" id="23_ryfpa"]
 [ext_resource type="Script" uid="uid://tjeiwverefj" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="24_toluw"]
-[ext_resource type="Script" uid="uid://u0veh2dsx63a" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="25_dp1ib"]
-[ext_resource type="Script" uid="uid://b3am8miam7bc4" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="26_5t0se"]
+[ext_resource type="Script" uid="uid://7wrkimxdrudx" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="25_dp1ib"]
+[ext_resource type="Script" uid="uid://dwhiii5ghdgx2" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="26_5t0se"]
 [ext_resource type="Script" uid="uid://d3ed5h50trryb" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="27_tqj1w"]
-[ext_resource type="Script" uid="uid://88fa502kaf11" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="28_gtrna"]
+[ext_resource type="Script" uid="uid://dva8mt8ggo46g" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="28_gtrna"]
 [ext_resource type="Script" uid="uid://b0xlj8ekc64in" path="res://addons/proton_scatter/src/scatter_item.gd" id="30_r0nt2"]
 [ext_resource type="Script" uid="uid://ceb1l01y5i0ww" path="res://addons/proton_scatter/src/scatter_shape.gd" id="31_xv8d5"]
-[ext_resource type="Script" uid="uid://co2j2eotnijgl" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="32_0wxk8"]
-[ext_resource type="Script" uid="uid://c4jkylghvxlk2" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="32_e5brb"]
-[ext_resource type="Script" uid="uid://dt6duudgojkuk" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="33_stsco"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ng40l"]
-sky_top_color = Color(0.2901961, 0.5647059, 0.8862745, 1)
-sky_horizon_color = Color(0.6241623, 0.7784776, 0.95207316, 1)
-ground_bottom_color = Color(0.31317163, 0.685284, 0.4620269, 1)
-ground_horizon_color = Color(0.62352943, 0.78039217, 0.9529412, 1)
-ground_curve = 0.02378416
-energy_multiplier = 1.1
-
-[sub_resource type="Sky" id="Sky_e5brb"]
-sky_material = SubResource("ProceduralSkyMaterial_ng40l")
-
-[sub_resource type="Environment" id="Environment_fc0e3"]
-background_mode = 2
-sky = SubResource("Sky_e5brb")
-tonemap_mode = 3
-tonemap_exposure = 0.55
-fog_enabled = true
-fog_light_color = Color(0.62352943, 0.654902, 0.96862745, 1)
-fog_light_energy = 0.7
-fog_sky_affect = 0.034
+[ext_resource type="Script" uid="uid://cfh6jl3eil2as" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="32_0wxk8"]
+[ext_resource type="Script" uid="uid://baia4iwkwenu1" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="32_e5brb"]
+[ext_resource type="Script" uid="uid://bkbx8yli58r86" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="33_stsco"]
 
 [sub_resource type="Resource" id="Resource_ryrav"]
 script = ExtResource("2_btoec")
@@ -176,14 +156,7 @@ radius = 15.327569
 
 [node name="Level" type="Node3D" unique_id=1095529181]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=98621756]
-environment = SubResource("Environment_fc0e3")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1958742849]
-transform = Transform3D(-0.8660254, -0.4763308, -0.15201655, 0, -0.30403307, 0.95266145, -0.50000006, 0.825029, 0.26330036, 0, 0, 0)
-light_color = Color(0.9999998, 0.9384145, 0.8531916, 1)
-light_energy = 0.9
-shadow_enabled = true
+[node name="Lighting" parent="." unique_id=159164141 instance=ExtResource("1_rf48r")]
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=286133280 node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(0.0725985, 0, -0.99736124, 0, 1, 0, 0.99736124, 0, 0.0725985, -7.40418, 1.5000005, -0.06480503)
@@ -194,8 +167,6 @@ follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_ryrav")
 tween_on_load = false
 follow_offset = Vector3(0, 0.5, 0)
-align_transform_with_view = Callable()
-align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1162071670]
