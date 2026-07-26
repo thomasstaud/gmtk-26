@@ -69,13 +69,6 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Player" parent="." unique_id=673498257 node_paths=PackedStringArray("pcam") instance=ExtResource("4_sc6c1")]
 transform = Transform3D(0.0011436499, 0, -0.99999934, 0, 1, 0, 0.99999934, 0, 0.0011436499, -6.40418, 1.0000005, 1.935195)
-sound_jump = null
-sound_double_jump = null
-sound_dash = null
-sound_bomb = null
-sound_climb = null
-sound_footstep = null
-sound_glide = null
 footstep_interval = 0.2
 pcam = NodePath("../PhantomCamera3D")
 
