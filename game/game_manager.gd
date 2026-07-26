@@ -14,6 +14,7 @@ var total_time_ms: int
 var time_left_ms: int
 
 var total_submission: int = 0
+var previous_name: String
 
 var levels: Array[Level] = []
 
@@ -113,7 +114,7 @@ func on_win() -> void:
 		levels[current_level + 1].unlocked = true
 	
 	var time = total_time_ms - time_left_ms
-	if time < levels[current_level].best_time:
+	if time < levels[current_level].best_time or levels[current_level].best_time == 0:
 		levels[current_level].best_time = time
 	
 	win.emit(time)

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTK26"
-run/main_scene="uid://54tl67nc4qa2"
+run/main_scene="uid://cdpcfqx7ugyyd"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://ui/icon.svg"
 
