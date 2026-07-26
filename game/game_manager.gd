@@ -90,6 +90,12 @@ func calculate_remaining_time(level: int) -> int:
 func is_leaderboard_unlocked():
 	return levels[LEVELS - 1].best_time != 0
 
+func final_time():
+	var time = 0
+	for i in range(LEVELS):
+		time += levels[i].best_time
+	return time
+
 
 func start_level() -> void:
 	if player:
