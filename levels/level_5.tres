@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="Level" format=3 uid="uid://buexaj5x3hthr"]
+[gd_resource type="Resource" script_class="Level" format=3 uid="uid://c31magesvncnq"]
 
 [ext_resource type="Script" uid="uid://bpatqgqbvt63w" path="res://levels/level.gd" id="1_n7piq"]
 
 [resource]
 script = ExtResource("1_n7piq")
 name = "Level 5"
-base_seconds = 30
-dash_cost = 2
+base_seconds = 10
+dash_cost = 5
+jump_cost = 0
 glide_cost = 10
 bomb_cost = 0
+climb_cost = 40
 metadata/_custom_type_script = "uid://bpatqgqbvt63w"

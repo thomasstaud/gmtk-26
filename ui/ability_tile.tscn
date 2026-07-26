@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_3hk0j"]
 [ext_resource type="Script" uid="uid://ry3mh76h28io" path="res://ui/ability_tile.gd" id="2_sh243"]
-[ext_resource type="Texture2D" uid="uid://c4b46meak6ut" path="res://ui/ui_assets/Container3_default.png" id="3_84wsw"]
+[ext_resource type="Texture2D" uid="uid://bv4owesylgai7" path="res://ui/ui_assets/Container3_blue.png" id="3_84wsw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vkava"]
 texture = ExtResource("3_84wsw")
@@ -26,6 +26,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -32.64499
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_vkava")

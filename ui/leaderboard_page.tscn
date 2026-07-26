@@ -2,7 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_xnwyy"]
 [ext_resource type="Script" uid="uid://cl5iiha7wukdq" path="res://ui/leaderboard_page.gd" id="2_jf0pq"]
-[ext_resource type="PackedScene" uid="uid://bplmwn7hya50q" path="res://ui/leaderboard.tscn" id="3_jf0pq"]
+[ext_resource type="Script" uid="uid://ur0krcmrf2wm" path="res://ui/leaderboard.gd" id="3_jf0pq"]
+
+[sub_resource type="Theme" id="Theme_pa1oa"]
 
 [node name="LeaderboardPage" type="Control" unique_id=501126264]
 layout_mode = 3
@@ -55,9 +57,92 @@ offset_bottom = 117.0
 grow_horizontal = 2
 text = "00:00.000"
 
-[node name="Leaderboard" parent="StartPanel/Panel" unique_id=677671061 instance=ExtResource("3_jf0pq")]
+[node name="Leaderboard" type="Control" parent="StartPanel/Panel" unique_id=677671061]
 unique_name_in_owner = true
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -625.0
+offset_top = -347.0
+offset_right = 625.0
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xnwyy")
+script = ExtResource("3_jf0pq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartPanel/Panel/Leaderboard" unique_id=46044557]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -286.0
+offset_right = 286.0
+offset_bottom = 112.0
+grow_horizontal = 2
+theme_override_constants/separation = 19
+alignment = 1
+
+[node name="Name" type="LineEdit" parent="StartPanel/Panel/Leaderboard/HBoxContainer" unique_id=1497381858]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = SubResource("Theme_pa1oa")
+placeholder_text = "Your Name"
+
+[node name="Submit" type="Button" parent="StartPanel/Panel/Leaderboard/HBoxContainer" unique_id=2042058637]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Submit"
+
+[node name="Error" type="Label" parent="StartPanel/Panel/Leaderboard" unique_id=1520065822]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -167.0
+offset_top = 86.0
+offset_right = 173.0
+offset_bottom = 124.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Please enter a name!"
+
+[node name="ScoresContainer" type="VBoxContainer" parent="StartPanel/Panel/Leaderboard" unique_id=1471330514]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MessageContainer" type="CenterContainer" parent="StartPanel/Panel/Leaderboard" unique_id=955605512]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.5
+offset_top = -64.0
+offset_right = 68.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextMessage" type="Label" parent="StartPanel/Panel/Leaderboard/MessageContainer" unique_id=260767630]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="StartPanel/Panel" unique_id=1511013833]
 layout_mode = 1
@@ -83,4 +168,5 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Menu"
 
+[connection signal="pressed" from="StartPanel/Panel/Leaderboard/HBoxContainer/Submit" to="StartPanel/Panel/Leaderboard" method="_on_submit_pressed"]
 [connection signal="pressed" from="StartPanel/Panel/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
