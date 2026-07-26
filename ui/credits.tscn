@@ -13,6 +13,15 @@ grow_vertical = 2
 theme = ExtResource("1_ed0b0")
 script = ExtResource("2_orljq")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1195241477]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28224665, 0.14239442, 0.35839185, 1)
+
 [node name="Container" type="MarginContainer" parent="." unique_id=2047457234]
 layout_mode = 1
 anchors_preset = 15
