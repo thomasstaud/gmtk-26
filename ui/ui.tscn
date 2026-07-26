@@ -115,6 +115,7 @@ alignment = 2
 script = ExtResource("3_tf0e0")
 
 [node name="DashCooldown" type="TextureProgressBar" parent="Controls" unique_id=2012902179]
+unique_name_in_owner = true
 layout_mode = 2
 step = 0.1
 texture_progress = SubResource("GradientTexture2D_pa1oa")
@@ -133,6 +134,7 @@ theme_override_font_sizes/font_size = 30
 text = "[shift] Dash"
 
 [node name="Bomb" type="Label" parent="Controls" unique_id=75553068]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 30
