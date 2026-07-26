@@ -7,6 +7,6 @@ script = ExtResource("1_3et5p")
 name = "Level 4"
 base_seconds = 14
 dash_cost = 2
-glide_cost = 10
+glide_cost = 8
 bomb_cost = 0
 metadata/_custom_type_script = "uid://bpatqgqbvt63w"
