@@ -1,19 +1,27 @@
 [gd_scene format=3 uid="uid://dff0rnn50u2q1"]
 
 [ext_resource type="Script" uid="uid://cws84kj47rwv3" path="res://features/bomb.gd" id="1_kjrfn"]
+[ext_resource type="PackedScene" uid="uid://cxbb6hfbu5mhn" path="res://assets/GLB format/bomb.glb" id="2_hwij4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjrfn"]
-transparency = 4
-albedo_color = Color(0.68235296, 0.21568628, 0.1254902, 1)
+[sub_resource type="Gradient" id="Gradient_ubjch"]
+offsets = PackedFloat32Array(0.32587063, 0.40049753, 1)
+colors = PackedColorArray(0.99985176, 0.3071062, 0.2923053, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_218fb"]
-material = SubResource("StandardMaterial3D_kjrfn")
-radius = 0.3
-height = 0.6
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8lpu0"]
+frequency = 0.025
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ndfen"]
+noise = SubResource("FastNoiseLite_8lpu0")
+color_ramp = SubResource("Gradient_ubjch")
+seamless = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_218fb"]
 transparency = 4
-albedo_color = Color(0.75686276, 0, 0, 0.1882353)
+no_depth_test = true
+albedo_color = Color(0.9764706, 0.7137255, 0.7176471, 0.0627451)
+albedo_texture = SubResource("NoiseTexture2D_ndfen")
+emission_enabled = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
 material = SubResource("StandardMaterial3D_218fb")
@@ -21,15 +29,16 @@ radius = 1.0
 height = 2.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
-radius = 1.0
+radius = 1.5929605
 
 [node name="Bomb" type="Node3D" unique_id=1005525704]
 script = ExtResource("1_kjrfn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=531836566]
-mesh = SubResource("SphereMesh_218fb")
+[node name="bomb2" parent="." unique_id=1979178997 instance=ExtResource("2_hwij4")]
+transform = Transform3D(2.045, 0, 0, 0, 2.045, 0, 0, 0, 2.045, 0, -0.47045362, 0)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=426791300]
+transform = Transform3D(1.5874946, 0, 0, 0, 1.5874946, 0, 0, 0, 1.5874946, 0, 0, 0)
 mesh = SubResource("SphereMesh_g4v7s")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=665647303]
