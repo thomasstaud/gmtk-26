@@ -9,7 +9,11 @@ const ABILITY_TILE := preload("uid://pnriti1de4cj")
 @onready var tile_grid: GridContainer = %TileGrid
 @onready var timer: Label = %Timer
 @onready var controls: Controls = $Controls
+
 @onready var win_time: Label = %WinTime
+
+@onready var leaderboard: Button = %Leaderboard
+@onready var next: Button = %Next
 
 
 func _ready() -> void:
@@ -54,6 +58,12 @@ func on_timer_update(ms: int) -> void:
 func on_win(time) -> void:
 	win_time.text = format_ms(time)
 	win.show()
+	
+	# if this is the last level, show leaderboard button
+	if (GameManager.current_level == GameManager.LEVELS - 1):
+		leaderboard.show()
+	else:
+		next.show()
 
 func on_game_over() -> void:
 	game_over.show()
@@ -64,3 +74,7 @@ func _on_menu_pressed() -> void:
 
 func _on_next_pressed() -> void:
 	GameManager.load_next_level()
+
+
+func _on_leaderboard_pressed() -> void:
+	GameManager.to_leaderboard()

@@ -140,6 +140,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 0
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 15
@@ -340,7 +342,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Your Time:"
 
-[node name="Label" type="Label" parent="Win/Panel2" unique_id=1472240444]
+[node name="WinLabel" type="Label" parent="Win/Panel2" unique_id=1472240444]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -374,7 +376,16 @@ theme_override_constants/margin_bottom = 65
 layout_mode = 2
 theme_override_constants/separation = 25
 
+[node name="Leaderboard" type="Button" parent="Win/Panel2/MarginContainer/HBoxContainer" unique_id=30532026]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Leaderboard"
+
 [node name="Next" type="Button" parent="Win/Panel2/MarginContainer/HBoxContainer" unique_id=1453608001]
+unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Next Level"
@@ -393,6 +404,7 @@ text = "Menu"
 [connection signal="pressed" from="StartPanel/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="GameOver/Panel2/MarginContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="GameOver/Panel2/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/Leaderboard" to="." method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]

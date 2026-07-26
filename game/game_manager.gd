@@ -13,6 +13,8 @@ var current_level := 0
 var total_time_ms: int
 var time_left_ms: int
 
+var total_submission: int = 0
+
 var levels: Array[Level] = []
 
 var paused: bool:
@@ -87,6 +89,15 @@ func calculate_remaining_time(level: int) -> int:
 		all_level_remaining_time += (levels[i].base_seconds * 1000) - levels[i].best_time
 	return all_level_remaining_time
 
+func is_leaderboard_unlocked():
+	return levels[LEVELS - 1].best_time != 0
+
+func final_time():
+	var time = 0
+	for i in range(LEVELS):
+		time += levels[i].best_time
+	return time
+
 
 func start_level() -> void:
 	if player:
@@ -102,7 +113,7 @@ func on_win() -> void:
 		levels[current_level + 1].unlocked = true
 	
 	var time = total_time_ms - time_left_ms
-	if time > levels[current_level].best_time:
+	if time < levels[current_level].best_time:
 		levels[current_level].best_time = time
 	
 	win.emit(time)
@@ -119,3 +130,6 @@ func restart() -> void:
 
 func to_level_select() -> void:
 	get_tree().change_scene_to_file("uid://cdpcfqx7ugyyd")
+
+func to_leaderboard():
+	get_tree().change_scene_to_file("uid://ctm3ccetkf0li")
