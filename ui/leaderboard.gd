@@ -1,6 +1,5 @@
 extends Control
 
-@onready var time: Label = %Time
 @onready var name_edit: LineEdit = %Name
 @onready var error: Label = %Error
 @onready var submit: Button = %Submit
@@ -14,17 +13,19 @@ const SCORE_ITEM = preload("uid://bx85ahfgnoqyy")
 var list_index = 0
 var ld_name = "main"
 var options := Talo.leaderboards.GetEntriesOptions.new()
+var level
+var time
 
 func _ready():
-	time.text = UI.format_ms(GameManager.final_time())
+	name_edit.text = GameManager.previous_name
 	
 	options.page = 0
+
+func init(_level: String, _time: int):
+	level = _level
+	time = _time
 	
-	add_loading_scores_message()
-	var res := await Talo.leaderboards.get_entries(ld_name, options)
-	var scores: Array[TaloLeaderboardEntry] = res.entries
-	hide_message()
-	render_board(scores)
+	refresh()
 
 
 func refresh() -> void:
@@ -41,12 +42,17 @@ func refresh() -> void:
 	render_board(scores)
 
 func render_board(scores: Array[TaloLeaderboardEntry]) -> void:
+	scores = scores.filter(
+		func (entry: TaloLeaderboardEntry):
+			return entry.get_prop("level", "None") == level
+	)
+	
 	if scores.is_empty():
 		add_no_scores_message()
 	else:
 		if len(scores) > 1 and scores[0].score > scores[-1].score:
 			scores.reverse()
-		for i in range(len(scores)):
+		for i in range(min(len(scores), 10)):
 			var score = scores[i]
 			add_item(score.player_alias.display_name, UI.format_ms(score.score))
 
@@ -91,21 +97,23 @@ func hide_message() -> void:
 	message_container.hide()
 
 
-func _on_menu_pressed() -> void:
-	GameManager.to_level_select()
-
-
 func _on_submit_pressed() -> void:
 	var score = GameManager.final_time()
-	if GameManager.total_submission == score:
-		return
+	if level == "total":
+		if GameManager.total_submission == score: return
+	else:
+		if GameManager.levels[int(level)].last_submission == score: return
 	
 	var player_name = name_edit.text
 	if player_name != "":
 		error.hide()
 		await Talo.players.identify("username", player_name)
-		Talo.leaderboards.add_entry(ld_name, score)
-		GameManager.total_submission = score
+		Talo.leaderboards.add_entry(ld_name, time, { "level": level })
+		if level == "total":
+			GameManager.total_submission = score
+		else:
+			GameManager.levels[int(level)].last_submission = score
+		GameManager.previous_name = player_name
 		submit.disabled = true
 		refresh()
 	else:

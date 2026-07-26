@@ -11,3 +11,4 @@ extends Resource
 
 var unlocked := false
 var best_time := 0
+var last_submission := 0

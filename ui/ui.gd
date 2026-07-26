@@ -12,7 +12,8 @@ const ABILITY_TILE := preload("uid://pnriti1de4cj")
 
 @onready var win_time: Label = %WinTime
 
-@onready var leaderboard: Button = %Leaderboard
+@onready var leaderboard: Control = %Leaderboard
+@onready var leaderboard_btn: Button = %LeaderboardBtn
 @onready var next: Button = %Next
 
 
@@ -57,11 +58,12 @@ func on_timer_update(ms: int) -> void:
 
 func on_win(time) -> void:
 	win_time.text = format_ms(time)
+	leaderboard.init(str(GameManager.current_level), GameManager.levels[GameManager.current_level].best_time)
 	win.show()
 	
 	# if this is the last level, show leaderboard button
 	if (GameManager.current_level == GameManager.LEVELS - 1):
-		leaderboard.show()
+		leaderboard_btn.show()
 	else:
 		next.show()
 

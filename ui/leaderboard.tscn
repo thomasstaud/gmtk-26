@@ -1,96 +1,61 @@
-[gd_scene format=3 uid="uid://ctm3ccetkf0li"]
+[gd_scene format=3 uid="uid://bplmwn7hya50q"]
 
-[ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_wvlxr"]
-[ext_resource type="Script" uid="uid://cl5iiha7wukdq" path="res://ui/leaderboard.gd" id="2_wvlxr"]
+[ext_resource type="Script" uid="uid://ur0krcmrf2wm" path="res://ui/leaderboard.gd" id="2_wvlxr"]
 
-[node name="Leaderboard" type="Control" unique_id=501126264]
+[node name="Leaderboard" type="Control" unique_id=677671061]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_wvlxr")
-script = ExtResource("2_wvlxr")
-
-[node name="StartPanel" type="MarginContainer" parent="." unique_id=1846133284]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 0
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="Panel" type="Panel" parent="StartPanel" unique_id=214583109]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="StartPanel/Panel" unique_id=1581903867]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -180.5
-offset_top = 51.0
-offset_right = 180.5
-offset_bottom = 139.0
-grow_horizontal = 2
-text = "Leaderboard"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="StartPanel/Panel" unique_id=827070935]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -353.0
-offset_top = -349.0
-offset_right = 341.0
-offset_bottom = -276.0
+offset_left = -625.0
+offset_top = -347.0
+offset_right = 625.0
+offset_bottom = 297.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_wvlxr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=46044557]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -193.0
+offset_right = 193.0
+offset_bottom = 73.0
+grow_horizontal = 2
 theme_override_constants/separation = 50
+alignment = 1
 
-[node name="Time" type="Label" parent="StartPanel/Panel/HBoxContainer" unique_id=984452466]
-unique_name_in_owner = true
-layout_mode = 2
-text = "00:00.000"
-
-[node name="Name" type="LineEdit" parent="StartPanel/Panel/HBoxContainer" unique_id=1787917438]
+[node name="Name" type="LineEdit" parent="HBoxContainer" unique_id=1497381858]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 placeholder_text = "Your Name"
 
-[node name="Submit" type="Button" parent="StartPanel/Panel/HBoxContainer" unique_id=843085680]
+[node name="Submit" type="Button" parent="HBoxContainer" unique_id=2042058637]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Submit"
 
-[node name="Error" type="Label" parent="StartPanel/Panel" unique_id=2070462757]
+[node name="Error" type="Label" parent="." unique_id=1520065822]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -170.0
-offset_top = -254.0
-offset_right = 170.0
-offset_bottom = -190.0
+offset_left = -167.0
+offset_top = 86.0
+offset_right = 173.0
+offset_bottom = 124.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Please enter a name!"
 
-[node name="ScoresContainer" type="VBoxContainer" parent="StartPanel/Panel" unique_id=543897951]
+[node name="ScoresContainer" type="VBoxContainer" parent="." unique_id=1471330514]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -98,56 +63,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MessageContainer" type="CenterContainer" parent="StartPanel/Panel" unique_id=144813690]
+[node name="MessageContainer" type="CenterContainer" parent="." unique_id=955605512]
 unique_name_in_owner = true
 visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 234.0
-offset_right = 20.0
-offset_bottom = 298.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextMessage" type="Label" parent="StartPanel/Panel/MessageContainer" unique_id=1226459067]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="StartPanel/Panel" unique_id=1511013833]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -412.5
-offset_top = -158.0
-offset_right = 412.5
+offset_left = -68.5
+offset_top = -64.0
+offset_right = 68.5
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_bottom = 65
 
-[node name="HBoxContainer" type="HBoxContainer" parent="StartPanel/Panel/MarginContainer" unique_id=935413141]
+[node name="TextMessage" type="Label" parent="MessageContainer" unique_id=260767630]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 25
-alignment = 1
 
-[node name="Menu" type="Button" parent="StartPanel/Panel/MarginContainer/HBoxContainer" unique_id=2029391627]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-text = "Menu"
-
-[connection signal="pressed" from="StartPanel/Panel/HBoxContainer/Submit" to="." method="_on_submit_pressed"]
-[connection signal="pressed" from="StartPanel/Panel/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="HBoxContainer/Submit" to="." method="_on_submit_pressed"]

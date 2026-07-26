@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://duxys66nl0h6m" path="res://ui/ui_assets/Container1_default.png" id="3_wl5ax"]
 [ext_resource type="Texture2D" uid="uid://dnxgj0m3lcu87" path="res://ui/ui_assets/Illusttrator/2x/Element 2.png" id="4_bo1jx"]
 [ext_resource type="Texture2D" uid="uid://cwle2l6j4fenx" path="res://ui/ui_assets/SquareButton3_purple.png" id="4_vkava"]
+[ext_resource type="PackedScene" uid="uid://bplmwn7hya50q" path="res://ui/leaderboard.tscn" id="8_gycre"]
 
 [sub_resource type="Gradient" id="Gradient_bo1jx"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -340,7 +341,7 @@ offset_right = -164.0
 offset_bottom = -281.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Your Time:"
+text = "You took:"
 
 [node name="WinLabel" type="Label" parent="Win/Panel2" unique_id=1472240444]
 layout_mode = 1
@@ -349,14 +350,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -263.5
-offset_top = -40.5
-offset_right = 263.5
-offset_bottom = 40.5
+offset_left = 200.0
+offset_top = -391.5
+offset_right = 727.0
+offset_bottom = -310.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "You did it!"
 horizontal_alignment = 1
+
+[node name="Leaderboard" parent="Win/Panel2" unique_id=677671061 instance=ExtResource("8_gycre")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = -267.5
 
 [node name="MarginContainer" type="MarginContainer" parent="Win/Panel2" unique_id=1628367248]
 layout_mode = 1
@@ -376,7 +382,7 @@ theme_override_constants/margin_bottom = 65
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="Leaderboard" type="Button" parent="Win/Panel2/MarginContainer/HBoxContainer" unique_id=30532026]
+[node name="LeaderboardBtn" type="Button" parent="Win/Panel2/MarginContainer/HBoxContainer" unique_id=30532026]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(400, 0)
@@ -404,7 +410,7 @@ text = "Menu"
 [connection signal="pressed" from="StartPanel/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="GameOver/Panel2/MarginContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="GameOver/Panel2/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/Leaderboard" to="." method="_on_leaderboard_pressed"]
+[connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/LeaderboardBtn" to="." method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Win/Panel2/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
