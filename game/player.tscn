@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bm6xjoyh28qnd" path="res://game/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://c4mkx0p61a053" path="res://game/forward_area.gd" id="2_w5y0b"]
+[ext_resource type="AudioStream" uid="uid://55i7h3ret4op" path="res://audio/jump.ogg" id="2_wkljg"]
+[ext_resource type="AudioStream" uid="uid://dnpmy1rm1vqqr" path="res://audio/dash.ogg" id="3_iyaem"]
+[ext_resource type="AudioStream" uid="uid://pjrmyydqw8lr" path="res://audio/bomb.ogg" id="4_ry671"]
+[ext_resource type="AudioStream" uid="uid://808vyw3os878" path="res://audio/climb.ogg" id="5_7fxs2"]
+[ext_resource type="AudioStream" uid="uid://buf2l8fwa6drk" path="res://audio/walk.ogg" id="6_4uvqg"]
+[ext_resource type="AudioStream" uid="uid://cnxdytp5uhmu7" path="res://audio/glide.ogg" id="7_iyaem"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(0.5761719, 0.33251953, 0.4453125)
@@ -20,6 +26,14 @@ size = Vector3(0.9, 1.365332, 1.1614189)
 [node name="Player" type="CharacterBody3D" unique_id=673498257]
 script = ExtResource("1_4flbx")
 max_jump_count = 1
+sound_jump = ExtResource("2_wkljg")
+sound_double_jump = ExtResource("2_wkljg")
+sound_dash = ExtResource("3_iyaem")
+sound_bomb = ExtResource("4_ry671")
+sound_climb = ExtResource("5_7fxs2")
+sound_footstep = ExtResource("6_4uvqg")
+sound_glide = ExtResource("7_iyaem")
+footstep_interval = 0.22
 
 [node name="Head" type="Node3D" parent="." unique_id=1310018871]
 
@@ -53,5 +67,9 @@ script = ExtResource("2_w5y0b")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ForwardArea" unique_id=1046845776]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017311096, 0.04328704, -0.43807983)
 shape = SubResource("BoxShape3D_tjrnq")
+
+[node name="AudioPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1476575252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.629859, 0)
+volume_db = 7.027
 
 [connection signal="area_entered" from="FinishDetection" to="." method="_on_finish_detection_area_entered"]

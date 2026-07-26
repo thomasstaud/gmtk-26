@@ -37,11 +37,23 @@ var coyote_timer := 0.0
 @export var sensitivity = 0.2
 @export var max_jump_count := 2
 
+
+@export var sound_jump: AudioStream
+@export var sound_double_jump: AudioStream
+@export var sound_dash: AudioStream
+@export var sound_bomb: AudioStream
+@export var sound_climb: AudioStream
+@export var sound_footstep: AudioStream
+@export var sound_glide: AudioStream
+@export var footstep_interval: float = 0.2
+var footstep_timer: float = 0.0
+
 var can_move := false
 var jump := false
 var jump_count := 0
 var climb := false
 var glide := false
+var was_gliding := false
 
 var is_dashing := false
 var dash_timer := 0.0
@@ -52,6 +64,8 @@ var can_bomb := true
 @onready var head: Node3D = $Head
 @onready var bomb_spawn: Node3D = %BombSpawn
 @onready var forward_area: Area3D = $ForwardArea
+@onready var audio_player: AudioStreamPlayer3D = $AudioPlayer 
+
 
 
 func _ready() -> void:
@@ -71,6 +85,10 @@ func _input(event: InputEvent) -> void:
 			can_dash = false
 			dash_timer = DASH_DURATION
 			dashed.emit(DASH_COOLDOWN)
+			
+			
+			play_sound(sound_dash)
+			
 			get_tree().create_timer(DASH_COOLDOWN).timeout.connect(func(): can_dash = true)
 		
 	if event.is_action_pressed("bomb"):
@@ -80,6 +98,10 @@ func _input(event: InputEvent) -> void:
 			get_parent().add_child(bomb)
 			bomb.position = bomb_spawn.global_position
 			bomb.fuse()
+			
+			
+			play_sound(sound_bomb)
+			
 			get_tree().create_timer(BOMB_COOLDOWN).timeout.connect(func(): can_bomb = true)
 	
 	if event.is_action_pressed("pause"):
@@ -110,12 +132,15 @@ func _physics_process(delta: float) -> void:
 	climb = can_move and AbilityManager.climb.bought and is_holding_forward and forward_area.has_normal_overlapping_bodies()
 	glide = AbilityManager.glide.bought and not is_on_floor() and not climb and is_holding_jump and velocity.y < 0
 	
+	if glide and not was_gliding:
+		play_sound(sound_glide)
+	was_gliding = glide
+	
 	if is_on_floor():
 		jump_count = 0
 		coyote_timer = COYOTE_TIME
 	else:
 		coyote_timer -= delta 
-
 
 	if is_dashing:
 		dash_timer -= delta
@@ -153,14 +178,23 @@ func _physics_process(delta: float) -> void:
 			velocity.y = JUMP_POWER
 			jump_count = 1
 			coyote_timer = 0.0 
+			var random_pitch = randf_range(0.9, 1.1)
+			play_sound(sound_jump,random_pitch)
 		elif is_on_wall():
 			velocity = -direction * JUMP_POWER + Vector3.UP * JUMP_POWER
+			play_sound(sound_jump)
 		elif jump_count < max_jump_count:
 			velocity.y = JUMP_POWER
 			jump_count += 1
+			play_sound(sound_double_jump)
 			
 	if climb:
 		velocity.y = CLIMB_POWER
+		footstep_timer -= delta
+		if footstep_timer <= 0:
+			var random_pitch = randf_range(0.9, 1.1)
+			play_sound(sound_climb,random_pitch)
+			footstep_timer = footstep_interval*2
 
 	var horiz_vel := Vector3(velocity.x, 0, velocity.z)
 	var current_speed := horiz_vel.length()
@@ -173,6 +207,13 @@ func _physics_process(delta: float) -> void:
 		if horiz_vel.length() > SPEED:
 			var new_speed := move_toward(horiz_vel.length(), SPEED, DASH_DECAY * SPEED * delta)
 			horiz_vel = horiz_vel.normalized() * new_speed
+			
+		if is_on_floor():
+			footstep_timer -= delta
+			if footstep_timer <= 0:
+				var random_pitch = randf_range(0.8, 1.2)
+				play_sound(sound_footstep, random_pitch)
+				footstep_timer = footstep_interval
 	else:
 		horiz_vel = horiz_vel.lerp(Vector3.ZERO, GROUND_DECEL * delta)
 
@@ -185,6 +226,13 @@ func _physics_process(delta: float) -> void:
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody3D:
 			c.get_collider().apply_central_force(-c.get_normal() * PUSH_FORCE)
+
+
+func play_sound(stream: AudioStream, pitch: float = 1.0) -> void:
+	if stream and audio_player:
+		audio_player.stream = stream
+		audio_player.pitch_scale = pitch
+		audio_player.play()
 
 
 func _on_finish_detection_area_entered(_area: Area3D) -> void:
