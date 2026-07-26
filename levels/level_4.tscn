@@ -1,34 +1,17 @@
 [gd_scene format=3 uid="uid://suxxqmb8wrgx"]
 
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_hokjj"]
+[ext_resource type="PackedScene" uid="uid://ydaofmjdxhc6" path="res://features/lighting.tscn" id="1_sc6c1"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_0fd8o"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_dmnu2"]
 [ext_resource type="PackedScene" uid="uid://oqh5oxx1mkyn" path="res://game/player.tscn" id="4_sc6c1"]
 [ext_resource type="PackedScene" uid="uid://dlg5te7em1wnr" path="res://game/finish.tscn" id="5_ng40l"]
 [ext_resource type="PackedScene" uid="uid://bu61wp8mbtwf5" path="res://ui/ui.tscn" id="6_04hp8"]
+[ext_resource type="PackedScene" uid="uid://bun4pdqyr6ylv" path="res://features/ground.tscn" id="6_ng40l"]
 [ext_resource type="PackedScene" uid="uid://chl702hlkq04" path="res://features/box.tscn" id="7_0fd8o"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_feb5d"]
-sky_material = SubResource("ProceduralSkyMaterial_e2o6t")
-
-[sub_resource type="Environment" id="Environment_fc0e3"]
-background_mode = 2
-sky = SubResource("Sky_feb5d")
 
 [sub_resource type="Resource" id="Resource_ryrav"]
 script = ExtResource("2_0fd8o")
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g4v7s"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
-size = Vector2(100, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
-albedo_color = Color(0.8280984, 0.25504667, 0.27513903, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofchu"]
 albedo_color = Color(0.4513979, 0.12460937, 0.16439524, 1)
@@ -45,12 +28,7 @@ radius = 1.0
 
 [node name="Level" type="Node3D" unique_id=1095529181]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=98621756]
-environment = SubResource("Environment_fc0e3")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1958742849]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
+[node name="Lighting" parent="." unique_id=159164141 instance=ExtResource("1_sc6c1")]
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=286133280 node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(0.0725985, 0, -0.99736124, 0, 1, 0, 0.99736124, 0, 0.0725985, -7.40418, 1.5000005, -0.06480503)
@@ -80,14 +58,8 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 transform = Transform3D(0.0011436499, 0, -0.99999934, 0, 1, 0, 0.99999934, 0, 0.0011436499, -7.40418, 1.0000005, -0.06480503)
 pcam = NodePath("../PhantomCamera3D")
 
-[node name="Ground" type="StaticBody3D" parent="." unique_id=1473587284]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=272630419]
-shape = SubResource("WorldBoundaryShape3D_g4v7s")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1550237007]
-mesh = SubResource("PlaneMesh_g4v7s")
-surface_material_override/0 = SubResource("StandardMaterial3D_yf5fn")
+[node name="Ground" parent="." unique_id=2134665566 instance=ExtResource("6_ng40l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.486801)
 
 [node name="Finish" parent="." unique_id=378886241 instance=ExtResource("5_ng40l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.67745, 13.064436, -14.153896)
