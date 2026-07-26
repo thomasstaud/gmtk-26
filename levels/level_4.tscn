@@ -50,6 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://bibqh7pmd8ybd" path="res://assets/gltf/Grass_1_D_Color1.gltf" id="48_b0qus"]
 [ext_resource type="PackedScene" uid="uid://c34we8y0hcm8" path="res://assets/gltf/Grass_1_C_Color1.gltf" id="49_j8rdx"]
 [ext_resource type="PackedScene" uid="uid://8uqcwuhomwe3" path="res://assets/gltf/Grass_1_B_Color1.gltf" id="50_b0qus"]
+[ext_resource type="Script" uid="uid://c4jkylghvxlk2" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="51_m0qt0"]
 
 [sub_resource type="Resource" id="Resource_ryrav"]
 script = ExtResource("2_v5ho1")
@@ -191,6 +192,49 @@ stack = Array[ExtResource("32_0hqou")]([SubResource("Resource_i55hd"), SubResour
 [sub_resource type="Resource" id="Resource_3d5fg"]
 script = ExtResource("41_ai7y0")
 radius = 11.319633
+
+[sub_resource type="Resource" id="Resource_wred1"]
+script = ExtResource("33_lyxhm")
+amount = 170
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_65scv"]
+script = ExtResource("34_x04rt")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(5, 360, 5)
+scale = Vector3(0.3, 0.3, 0.3)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_xtn87"]
+script = ExtResource("35_4h45g")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = false
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_uxflf"]
+script = ExtResource("36_b514w")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_2xw5q"]
+script = ExtResource("31_vdvq7")
+stack = Array[ExtResource("32_0hqou")]([SubResource("Resource_wred1"), SubResource("Resource_65scv"), SubResource("Resource_xtn87"), SubResource("Resource_uxflf")])
+
+[sub_resource type="Curve3D" id="Curve3D_746kk"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.625431, 3.8146973e-06, 28.533161, 0, 0, 0, 0, 0, 0, -8.13332, 3.8146973e-06, -77.33136, 0, 0, 0, 0, 0, 0, 86.86711, 3.8146973e-06, -81.61392, 0, 0, 0, 0, 0, 0, 87.56221, 0, 37.79268, 0, 0, 0, 0, 0, 0, 1.7567062, 0, 29.961937),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Resource" id="Resource_436cy"]
+script = ExtResource("51_m0qt0")
+closed = false
+thickness = 25.055
+curve = SubResource("Curve3D_746kk")
 
 [node name="Level" type="Node3D" unique_id=1095529181]
 
@@ -728,6 +772,31 @@ transform = Transform3D(0.10121292, 0, -1.1575961, 0, 1.1620125, 0, 1.1575961, 0
 
 [node name="flowers-tall5" parent="." unique_id=1874571116 instance=ExtResource("28_8wqug")]
 transform = Transform3D(0.7471358, 0, 1.4265125, 0, 1.610326, 0, -1.4265125, 0, 0.7471358, -15.426899, 11.295358, -17.211765)
+
+[node name="Trees" type="Node3D" parent="." unique_id=898051768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.85527, -3.6538515, -28.865377)
+script = ExtResource("30_75mxt")
+modifier_stack = SubResource("Resource_2xw5q")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://t2flrf1i7ndn"
+
+[node name="ScatterItem" type="Node3D" parent="Trees" unique_id=1110856417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.646353, 0, 0)
+script = ExtResource("38_3y4s7")
+source_scale_multiplier = 1.85
+path = "uid://dmnjemp3lkbqx"
+
+[node name="ScatterShape" type="Node3D" parent="Trees" unique_id=749314346]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 5.224655, 4.6613245, 36.2246)
+script = ExtResource("39_b0qus")
+shape = SubResource("Resource_436cy")
+
+[node name="ScatterItem2" type="Node3D" parent="Trees" unique_id=1753935096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.646353, 0, 0)
+script = ExtResource("38_3y4s7")
+source_scale_multiplier = 1.85
+path = "uid://csvmwjp4hv1fk"
 
 [editable path="Spire/Rock_2_H_Color12"]
 [editable path="Spire/Rock_2_G_Color12"]
