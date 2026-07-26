@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="GMTK26"
+config/name="Spellcheck"
+config/description="A magic speedrungame!"
 run/main_scene="uid://bpvhe5ne2jkhu"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://ui/icon.svg"
+boot_splash/bg_color=Color(0.07450981, 0, 0.15686275, 1)
+boot_splash/image="uid://bk4upt4nc27md"
+config/icon="uid://dla4xfphjnro1"
 
 [autoload]
 
