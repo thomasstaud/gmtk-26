@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://bplmwn7hya50q"]
+[gd_scene format=3 uid="uid://ctm3ccetkf0li"]
 
+[ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_wvlxr"]
 [ext_resource type="Script" uid="uid://ur0krcmrf2wm" path="res://ui/leaderboard.gd" id="2_wvlxr"]
+
+[sub_resource type="Theme" id="Theme_pa1oa"]
 
 [node name="Leaderboard" type="Control" unique_id=677671061]
 layout_mode = 3
@@ -15,6 +18,7 @@ offset_right = 625.0
 offset_bottom = 297.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_wvlxr")
 script = ExtResource("2_wvlxr")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=46044557]
@@ -22,21 +26,23 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -193.0
-offset_right = 193.0
-offset_bottom = 73.0
+offset_left = -286.0
+offset_right = 286.0
+offset_bottom = 112.0
 grow_horizontal = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 19
 alignment = 1
 
 [node name="Name" type="LineEdit" parent="HBoxContainer" unique_id=1497381858]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
+theme = SubResource("Theme_pa1oa")
 placeholder_text = "Your Name"
 
 [node name="Submit" type="Button" parent="HBoxContainer" unique_id=2042058637]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Submit"
 

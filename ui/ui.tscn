@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://duxys66nl0h6m" path="res://ui/ui_assets/Container1_default.png" id="3_wl5ax"]
 [ext_resource type="Texture2D" uid="uid://dnxgj0m3lcu87" path="res://ui/ui_assets/Illusttrator/2x/Element 2.png" id="4_bo1jx"]
 [ext_resource type="Texture2D" uid="uid://cwle2l6j4fenx" path="res://ui/ui_assets/SquareButton3_purple.png" id="4_vkava"]
-[ext_resource type="PackedScene" uid="uid://bplmwn7hya50q" path="res://ui/leaderboard.tscn" id="8_gycre"]
+[ext_resource type="PackedScene" uid="uid://ctm3ccetkf0li" path="res://ui/leaderboard.tscn" id="8_gycre"]
 
 [sub_resource type="Gradient" id="Gradient_bo1jx"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
