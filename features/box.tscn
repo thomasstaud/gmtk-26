@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://chl702hlkq04"]
 
+[ext_resource type="PackedScene" uid="uid://crsuw08tnggyc" path="res://assets/GLB format/crate.glb" id="1_5j3mw"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0djwf"]
 albedo_color = Color(0.49680287, 0.23042, 0.2680867, 1)
 
@@ -12,7 +14,11 @@ material = SubResource("StandardMaterial3D_0djwf")
 mass = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1341169661]
+visible = false
 mesh = SubResource("BoxMesh_yf5fn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1677113068]
 shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="crate2" parent="." unique_id=2058307712 instance=ExtResource("1_5j3mw")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.5, 0)

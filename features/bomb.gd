@@ -1,8 +1,8 @@
 class_name Bomb
 extends Node3D
 
-const EXPLOSION_STRENGTH := 2.5
-const DECAY_FACTOR := 0.1
+const EXPLOSION_STRENGTH := 2
+const DECAY_FACTOR := 0.08
 const DELAY := 2.5
 
 @onready var area: Area3D = $Area3D
