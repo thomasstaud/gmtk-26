@@ -47,6 +47,7 @@ func generate_ability_tiles():
 
 func _on_start_pressed() -> void:
 	start_panel.hide()
+	controls.update_visibility()
 	GameManager.start_level()
 
 func _on_restart_pressed() -> void:

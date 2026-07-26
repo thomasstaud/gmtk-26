@@ -108,11 +108,17 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1620.0
-offset_top = -139.0
+offset_top = -172.0
+offset_bottom = -33.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 2
 script = ExtResource("3_tf0e0")
+
+[node name="Reset" type="Label" parent="Controls" unique_id=993618731]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "[R] Restart"
 
 [node name="DashCooldown" type="TextureProgressBar" parent="Controls" unique_id=2012902179]
 unique_name_in_owner = true
@@ -140,7 +146,14 @@ size_flags_vertical = 1
 theme_override_font_sizes/font_size = 30
 text = "[F] Bomb"
 
+[node name="Glide" type="Label" parent="Controls" unique_id=1505857099]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "[R] Restart"
+
 [node name="StartPanel" type="MarginContainer" parent="." unique_id=1501259970]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

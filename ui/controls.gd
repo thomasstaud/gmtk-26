@@ -3,6 +3,7 @@ extends Node
 
 @onready var dash_cooldown: TextureProgressBar = $DashCooldown
 @onready var bomb: Label = %Bomb
+@onready var glide: Label = %Glide
 
 func _ready() -> void:
 	update_visibility()
@@ -10,6 +11,7 @@ func _ready() -> void:
 func update_visibility() -> void:
 	dash_cooldown.visible = AbilityManager.dash.bought
 	bomb.visible = AbilityManager.bomb.bought
+	glide.visible = AbilityManager.glide.bought
 
 func dash(cooldown: int) -> void:
 	if not dash_cooldown.visible:
