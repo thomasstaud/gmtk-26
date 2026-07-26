@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_m6e0p"]
 [ext_resource type="Script" uid="uid://qtk2jbaeaf8a" path="res://ui/ui.gd" id="2_27fn8"]
+[ext_resource type="Texture2D" uid="uid://cb64oyfd8v4yl" path="res://ui/ui_assets/Illusttrator/Crosshair.png" id="3_obcwv"]
 [ext_resource type="Script" uid="uid://cw4p2cyychxfy" path="res://ui/controls.gd" id="3_tf0e0"]
 [ext_resource type="Texture2D" uid="uid://duxys66nl0h6m" path="res://ui/ui_assets/Container1_default.png" id="3_wl5ax"]
 [ext_resource type="Texture2D" uid="uid://cwle2l6j4fenx" path="res://ui/ui_assets/SquareButton3_purple.png" id="4_vkava"]
@@ -50,21 +51,22 @@ mouse_filter = 2
 theme = ExtResource("1_m6e0p")
 script = ExtResource("2_27fn8")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=989841898]
-custom_maximum_size = Vector2(18, 1.5)
+[node name="ColorRect" type="TextureRect" parent="." unique_id=1861616490]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -9.0
-offset_top = -0.75
-offset_right = 9.0
-offset_bottom = 0.75
+offset_left = -24.0
+offset_top = -21.0
+offset_right = 27.829346
+offset_bottom = 21.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("3_obcwv")
+expand_mode = 2
 
 [node name="Timer" type="Label" parent="." unique_id=1809859592]
 z_index = 1

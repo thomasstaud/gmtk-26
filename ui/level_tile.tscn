@@ -21,6 +21,51 @@ texture_margin_right = 21.173416
 texture_margin_bottom = 17.75835
 region_rect = Rect2(0, 0, 104, 107)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bokqi"]
+texture = ExtResource("4_q2dq2")
+texture_margin_left = 21.85643
+texture_margin_top = 23.905472
+texture_margin_right = 21.173416
+texture_margin_bottom = 17.75835
+region_rect = Rect2(0, 0, 104, 107)
+modulate_color = Color(0.84705883, 0.7411765, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q2dq2"]
+texture = ExtResource("4_q2dq2")
+texture_margin_left = 21.85643
+texture_margin_top = 23.905472
+texture_margin_right = 21.173416
+texture_margin_bottom = 17.75835
+region_rect = Rect2(0, 0, 104, 107)
+modulate_color = Color(0.796243, 0.796243, 0.796243, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ysx6m"]
+texture = ExtResource("4_q2dq2")
+texture_margin_left = 21.85643
+texture_margin_top = 23.905472
+texture_margin_right = 21.173416
+texture_margin_bottom = 17.75835
+region_rect = Rect2(0, 0, 104, 107)
+modulate_color = Color(0.796243, 0.796243, 0.796243, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dpbci"]
+texture = ExtResource("4_q2dq2")
+texture_margin_left = 21.85643
+texture_margin_top = 23.905472
+texture_margin_right = 21.173416
+texture_margin_bottom = 17.75835
+region_rect = Rect2(0, 0, 104, 107)
+modulate_color = Color(0.796243, 0.796243, 0.796243, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_loi3m"]
+texture = ExtResource("4_q2dq2")
+texture_margin_left = 21.85643
+texture_margin_top = 23.905472
+texture_margin_right = 21.173416
+texture_margin_bottom = 17.75835
+region_rect = Rect2(0, 0, 104, 107)
+modulate_color = Color(0.533037, 0.5330366, 0.5330369, 1)
+
 [node name="LevelTile" type="Control" unique_id=1901928797]
 custom_minimum_size = Vector2(500, 300)
 layout_mode = 3
@@ -78,6 +123,11 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_g3cbd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bokqi")
+theme_override_styles/hover = SubResource("StyleBoxTexture_q2dq2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ysx6m")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_dpbci")
+theme_override_styles/focus = SubResource("StyleBoxTexture_loi3m")
 text = "start"
 
 [connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
