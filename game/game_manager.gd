@@ -134,3 +134,6 @@ func to_level_select() -> void:
 
 func to_leaderboard():
 	get_tree().change_scene_to_file("uid://ctm3ccetkf0li")
+
+func to_credits():
+	get_tree().change_scene_to_file("uid://bbgm0d3dtfvkm")

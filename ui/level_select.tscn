@@ -82,4 +82,10 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Leaderboard"
 
+[node name="Credits" type="Button" parent="StartPanel/Panel/MarginContainer/HBoxContainer" unique_id=1368439480]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Credits"
+
 [connection signal="pressed" from="StartPanel/Panel/MarginContainer/HBoxContainer/Leaderboard" to="." method="_on_leaderboard_pressed"]
+[connection signal="pressed" from="StartPanel/Panel/MarginContainer/HBoxContainer/Credits" to="." method="_on_credits_pressed"]

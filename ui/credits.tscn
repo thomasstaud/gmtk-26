@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bbgm0d3dtfvkm"]
+
+[ext_resource type="Theme" uid="uid://reoi33msyln8" path="res://ui/theme.tres" id="1_ed0b0"]
+[ext_resource type="Script" uid="uid://najqmfh0m0l3" path="res://ui/credits.gd" id="2_orljq"]
+
+[node name="Credits" type="Control" unique_id=985063788]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ed0b0")
+script = ExtResource("2_orljq")
+
+[node name="Container" type="MarginContainer" parent="." unique_id=2047457234]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="Container" unique_id=1420795820]
+layout_mode = 2
+
+[node name="Label2" type="RichTextLabel" parent="Container/Panel" unique_id=389584281]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -856.5
+offset_top = -374.0
+offset_right = 856.5
+offset_bottom = 258.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Thanks for playing Spellcheck!
+
+a game made by:
+Homs, Enni, Diablominer
+
+music made by Skyparticles
+
+all 3D assets are from
+kenney.nl & kaylousberg.com
+"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/Panel" unique_id=1394670551]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -412.5
+offset_top = -158.0
+offset_right = 412.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 65
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/Panel/MarginContainer" unique_id=106001019]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Leaderboard" type="Button" parent="Container/Panel/MarginContainer/HBoxContainer" unique_id=1133549504]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Leaderboard"
+
+[node name="Menu" type="Button" parent="Container/Panel/MarginContainer/HBoxContainer" unique_id=1197188752]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Menu"
+
+[connection signal="pressed" from="Container/Panel/MarginContainer/HBoxContainer/Leaderboard" to="." method="_on_leaderboard_pressed"]
+[connection signal="pressed" from="Container/Panel/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]

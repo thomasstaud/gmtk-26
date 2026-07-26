@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cwle2l6j4fenx" path="res://ui/ui_assets/SquareButton3_purple.png" id="2_7any1"]
 [ext_resource type="Texture2D" uid="uid://clckcle5ncatp" path="res://ui/ui_assets/Toggle1_darkBlue.png" id="3_3fgq6"]
 [ext_resource type="Texture2D" uid="uid://bh8xmqhe15ifi" path="res://ui/ui_assets/Toggle2_darkBlue.png" id="4_y5ki2"]
-[ext_resource type="Texture2D" uid="uid://duxys66nl0h6m" path="res://ui/ui_assets/Container1_default.png" id="5_rtqkv"]
+[ext_resource type="Texture2D" uid="uid://c4b46meak6ut" path="res://ui/ui_assets/Container3_default.png" id="5_7any1"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_47c11"]
 load_path = "res://.godot/imported/SquareButton3_purple.png-84224f4541449db66cd1e90be399a47c.ctex"
@@ -54,12 +54,12 @@ region_rect = Rect2(0, 0, 104, 107)
 modulate_color = Color(0.84705883, 0.7411765, 1, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6wjk3"]
-texture = ExtResource("5_rtqkv")
+texture = ExtResource("5_7any1")
 texture_margin_left = 70.35039
 texture_margin_top = 67.61833
 texture_margin_right = 72.39943
 texture_margin_bottom = 67.61833
-region_rect = Rect2(0, 0, 787, 195)
+region_rect = Rect2(0, 0, 721, 129)
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
@@ -80,4 +80,9 @@ Label/colors/font_outline_color = Color(0.15462527, 0.15378866, 0.19616187, 1)
 Label/constants/outline_size = 8
 Label/font_sizes/font_size = 50
 Label/fonts/font = ExtResource("1_rqugq")
+LineEdit/font_sizes/font_size = 30
+LineEdit/fonts/font = ExtResource("1_rqugq")
 Panel/styles/panel = SubResource("StyleBoxTexture_6wjk3")
+RichTextLabel/constants/outline_size = 8
+RichTextLabel/font_sizes/normal_font_size = 50
+RichTextLabel/fonts/normal_font = ExtResource("1_rqugq")

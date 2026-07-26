@@ -15,19 +15,19 @@
 [ext_resource type="PackedScene" uid="uid://cygd47x7g1wsk" path="res://assets/GLB format/block-grass-overhang-large-slope-steep-narrow.glb" id="9_at1ld"]
 [ext_resource type="Script" uid="uid://tjeiwverefj" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="10_cp3aq"]
 [ext_resource type="PackedScene" uid="uid://bceu8bu46rr18" path="res://assets/GLB format/block-grass-overhang-large-tall.glb" id="10_sd18g"]
-[ext_resource type="Script" uid="uid://u0veh2dsx63a" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="11_wgvos"]
+[ext_resource type="Script" uid="uid://7wrkimxdrudx" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="11_wgvos"]
 [ext_resource type="PackedScene" uid="uid://bl8v5h380tjij" path="res://assets/gltf/Tree_Bare_1_A_Color1.gltf" id="12_hbb88"]
-[ext_resource type="Script" uid="uid://b3am8miam7bc4" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="12_m4706"]
+[ext_resource type="Script" uid="uid://dwhiii5ghdgx2" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="12_m4706"]
 [ext_resource type="Script" uid="uid://d3ed5h50trryb" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="13_4xp61"]
 [ext_resource type="PackedScene" uid="uid://dsoecmk7fm5vm" path="res://assets/gltf/Tree_Bare_1_B_Color1.gltf" id="13_5orea"]
 [ext_resource type="PackedScene" uid="uid://dq1kyqpqrmsg" path="res://assets/gltf/Tree_Bare_2_A_Color1.gltf" id="14_0ourt"]
-[ext_resource type="Script" uid="uid://88fa502kaf11" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="14_4yoxl"]
+[ext_resource type="Script" uid="uid://dva8mt8ggo46g" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="14_4yoxl"]
 [ext_resource type="PackedScene" uid="uid://b05wco8eqgjdn" path="res://assets/gltf/Tree_Bare_1_C_Color1.gltf" id="15_0ourt"]
 [ext_resource type="Script" uid="uid://b0xlj8ekc64in" path="res://addons/proton_scatter/src/scatter_item.gd" id="15_6dcgf"]
 [ext_resource type="Script" uid="uid://ceb1l01y5i0ww" path="res://addons/proton_scatter/src/scatter_shape.gd" id="16_ubuva"]
-[ext_resource type="Script" uid="uid://co2j2eotnijgl" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="17_0nm7o"]
-[ext_resource type="Script" uid="uid://dt6duudgojkuk" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="18_pjs8f"]
-[ext_resource type="Script" uid="uid://c4jkylghvxlk2" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="19_bf7t1"]
+[ext_resource type="Script" uid="uid://cfh6jl3eil2as" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="17_0nm7o"]
+[ext_resource type="Script" uid="uid://bkbx8yli58r86" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="18_pjs8f"]
+[ext_resource type="Script" uid="uid://baia4iwkwenu1" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="19_bf7t1"]
 [ext_resource type="PackedScene" uid="uid://b23e16tsdhy2f" path="res://assets/gltf/Tree_1_A_Color1.gltf" id="29_cp3aq"]
 [ext_resource type="PackedScene" uid="uid://dasnp553jdppy" path="res://assets/gltf/Tree_1_C_Color1.gltf" id="30_wgvos"]
 [ext_resource type="PackedScene" uid="uid://csvmwjp4hv1fk" path="res://assets/gltf/Tree_1_B_Color1.gltf" id="31_m4706"]
@@ -63,7 +63,7 @@ restrict_height = true
 
 [sub_resource type="Resource" id="Resource_ghfw4"]
 script = ExtResource("14_4yoxl")
-ray_length = 20.0
+ray_length = 30.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
